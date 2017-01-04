@@ -18,68 +18,67 @@ import Swiper from 'react-native-swiper';
 
 const { width } = Dimensions.get('window');
 
+
+
+
+
+const petData = {
+  "petfinder": {
+    "header": {
+      "version": "0.1",
+      "timestamp": "2008-10-21T15:28:37Z",
+      "status": {
+        "code": "100",
+        "message": ""
+      }
+    },
+
+    "pet": {
+      "id": "24601",
+      "animal": "Dog",
+      "breeds": {
+        "breed": "German Shepherd Dog"
+      },
+      "mix": "no",
+      "age": "Adult",
+      "name": "Jean Valjean",
+      "shelterId": "NJ94",
+      "size": "M",
+      "sex": "M",
+      "description": "Steals bread, but is a good doggie.",
+      "lastUpdate": "2008-09-30 17:01:12",
+      "status": "A",
+      "media": {
+        "photos": {
+          "photo": [
+            {
+              "_id": "1",
+              "_size": "x",
+              "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/1/?bust=1482790177&width=632&no_scale_up=1"
+            },
+            {
+              "_id": "1",
+              "_size": "t",
+              "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/2/?bust=1482790177&width=632&no_scale_up=1"
+            },
+            {
+              "_id": "1",
+              "_size": "pn",
+              "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/3/?bust=1482790178&width=632&no_scale_up=1"
+            }
+          ]
+        }
+      },
+      "contact": ""
+    },
+    "_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "_xsi:noNamespaceSchemaLocation": "http://api.petfinder.com/schemas/0.9/petfinder.xsd"
+  }
+}
+
 class AnimalDetails extends Component {
 
-  constructor() {
-    super();
-
-  }
-
   render() {
-    let petData = {
-      "petfinder": {
-        "header": {
-          "version": "0.1",
-          "timestamp": "2008-10-21T15:28:37Z",
-          "status": {
-            "code": "100",
-            "message": ""
-          }
-        },
-
-        "pet": {
-          "id": "24601",
-          "animal": "Dog",
-          "breeds": {
-            "breed": "German Shepherd Dog"
-          },
-          "mix": "no",
-          "age": "Adult",
-          "name": "Jean Valjean",
-          "shelterId": "NJ94",
-          "size": "M",
-          "sex": "M",
-          "description": "Steals bread, but is a good doggie.",
-          "lastUpdate": "2008-09-30 17:01:12",
-          "status": "A",
-          "media": {
-            "photos": {
-              "photo": [
-                {
-                  "_id": "1",
-                  "_size": "x",
-                  "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/1/?bust=1482790177&width=632&no_scale_up=1"
-                },
-                {
-                  "_id": "1",
-                  "_size": "t",
-                  "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/2/?bust=1482790177&width=632&no_scale_up=1"
-                },
-                {
-                  "_id": "1",
-                  "_size": "pn",
-                  "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/3/?bust=1482790178&width=632&no_scale_up=1"
-                }
-              ]
-            }
-          },
-          "contact": ""
-        },
-        "_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-        "_xsi:noNamespaceSchemaLocation": "http://api.petfinder.com/schemas/0.9/petfinder.xsd"
-      }
-    }
-
     let images = []
     let numImages = petData["petfinder"]["pet"]["media"]["photos"]["photo"].length
     for (var i=0; i<numImages; i++) {
@@ -88,18 +87,19 @@ class AnimalDetails extends Component {
 
     return (
       <View>
-        <Swiper style={styles.wrapper} showsButtons={true} height={450} marginTop={45}>
+        <Swiper style={styles.wrapper} showsButtons={true} height={450} marginTop={45} dotColor={'white'} activeDotColor={'purple'}>
           {images}
-       </Swiper>
-       <View style={styles.swipeImage}>
-        <Text style={styles.briefDescription}>
-          I am some text!
-        </Text>
-       </View>
+        </Swiper>
+        <View style={styles.swipeImage}>
+          <Text style={styles.briefDescription}>
+            I am some text!
+          </Text>
+        </View>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
   }
 });
 
-  module.exports = AnimalDetails;
+module.exports = AnimalDetails;
