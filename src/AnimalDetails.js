@@ -13,12 +13,17 @@ import {
   ActivityIndicator
 } from 'react-native';
 
+import Swiper from 'react-native-swiper';
+
 class AnimalDetails extends Component {
 
   constructor() {
     super();
 
-    var petData = {
+  }
+
+  render() {
+    let petData = {
       "petfinder": {
         "header": {
           "version": "0.1",
@@ -50,27 +55,17 @@ class AnimalDetails extends Component {
                 {
                   "_id": "1",
                   "_size": "x",
-                  "__text": "\n     http://photocache.petfinder.com/fotos/NJ94/NJ94.26401-1-x.jpg\n    "
+                  "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/1/?bust=1482790177&width=632&no_scale_up=1"
                 },
                 {
                   "_id": "1",
                   "_size": "t",
-                  "__text": "\n     http://photocache.petfinder.com/fotos/NJ94/NJ94.26401-1-t.jpg\n    "
+                  "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/2/?bust=1482790177&width=632&no_scale_up=1"
                 },
                 {
                   "_id": "1",
                   "_size": "pn",
-                  "__text": "\n     http://photocache.petfinder.com/fotos/NJ94/NJ94.26401-1-pn.jpg\n    "
-                },
-                {
-                  "_id": "1",
-                  "_size": "pnt",
-                  "__text": "\n     http://photocache.petfinder.com/fotos/NJ94/NJ94.26401-1-pnt.jpg\n    "
-                },
-                {
-                  "_id": "1",
-                  "_size": "fpm",
-                  "__text": "\n     http://photocache.petfinder.com/fotos/NJ94/NJ94.26401-1-fpm.jpg\n    "
+                  "__text": "https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/3/?bust=1482790178&width=632&no_scale_up=1"
                 }
               ]
             }
@@ -81,24 +76,43 @@ class AnimalDetails extends Component {
         "_xsi:noNamespaceSchemaLocation": "http://api.petfinder.com/schemas/0.9/petfinder.xsd"
       }
     }
-  }
 
-  render() {
+    let images = []
+    let numImages = petData["petfinder"]["pet"]["media"]["photos"]["photo"].length
+    for (var i=0; i<numImages; i++) {
+      images.push(<Image source={{uri: petData["petfinder"]["pet"]["media"]["photos"]["photo"][i]["__text"]}}><View style={styles.allImages}></View></Image>);
+    }
+
     return (
-      <View style={styles.container}>
-        <Text>Hello from animal details</Text>
-      </View>
+      <Swiper style={styles.wrapper} showsButtons={true}>
+        {images[0]}
+        {images[1]}
+        {images[2]}
+        {images[3]}
+     </Swiper>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  // text: {
-  //   backgroundColor: 'white',
-  //   color: 'white',
-  //   fontSize: 30,
-  //   margin: 80
-  // },
+  wrapper: {
+    backgroundColor: 'pink'
+  },
+  allImages: {
+    // flex: 1,
+    marginTop: 200,
+    // marginRight: 10,
+    // marginLeft: 10,
+    marginBottom: 300,
+    // alignSelf: 'center',
+    // backgroundColor: 'pink'
+  },
+  text: {
+    backgroundColor: 'white',
+    color: 'black',
+    fontSize: 30,
+    margin: 80
+  },
   welcomeContainer: {
     flex: 1,
     alignItems: 'center',
