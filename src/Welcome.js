@@ -1,6 +1,8 @@
 // Welcome/loading page
 'use strict';
 
+var Animal = require('./Animal');
+
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -13,6 +15,18 @@ import {
 } from 'react-native';
 
 class Welcome extends Component {
+  constructor(props) {
+    super(props);
+    // this.state
+  }
+
+  onContinuePressed() {
+    console.log('continue pressed');
+    this.props.navigator.push({
+      title: 'Animal',
+      component: Animal
+    });
+  }
 
   render() {
     let welcomeImage = {
@@ -28,7 +42,8 @@ class Welcome extends Component {
         </Text>
         <Image source={welcomeImage} style={{width: 240, height: 240}}/>
         <TouchableHighlight style={styles.button}
-          underlayColor='#99d9f4'>
+          underlayColor='#654C4F'
+          onPress={this.onContinuePressed.bind(this)}>
           <Text style={styles.buttonText}>Ready?</Text>
         </TouchableHighlight>
       </View>
