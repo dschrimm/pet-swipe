@@ -10,10 +10,13 @@ import {
   Image,
   ListView,
   TouchableHighlight,
-  ActivityIndicator
+  ActivityIndicator,
+  Dimensions
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
+
+const { width } = Dimensions.get('window');
 
 class AnimalDetails extends Component {
 
@@ -84,12 +87,16 @@ class AnimalDetails extends Component {
     }
 
     return (
-      <Swiper style={styles.wrapper} showsButtons={true}>
-        {images[0]}
-        {images[1]}
-        {images[2]}
-        {images[3]}
-     </Swiper>
+      <View>
+        <Swiper style={styles.wrapper} showsButtons={true} height={450} marginTop={45}>
+          {images}
+       </Swiper>
+       <View style={styles.swipeImage}>
+        <Text style={styles.briefDescription}>
+          I am some text!
+        </Text>
+       </View>
+      </View>
     );
   }
 }
@@ -99,6 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'pink'
   },
   allImages: {
+    width,
     // flex: 1,
     marginTop: 200,
     // marginRight: 10,
@@ -166,7 +174,8 @@ const styles = StyleSheet.create({
   briefDescription: {
     fontSize: 20,
     // textAlign: 'center',
-    backgroundColor: 'rgba(0,0,0,0)',
+    // backgroundColor: 'rgba(0,0,0,0)',
+    // backgroundColor: 'green',
     color: 'black'
   }
 });
