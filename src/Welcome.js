@@ -27,6 +27,10 @@ class Welcome extends Component {
           This is going to be fun...
         </Text>
         <Image source={welcomeImage} style={{width: 240, height: 240}}/>
+        <TouchableHighlight style={styles.button}
+          underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Ready?</Text>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -39,18 +43,36 @@ const styles = StyleSheet.create({
   //   fontSize: 30,
   //   margin: 80
   // },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  button: {
+    height: 26,
+    // flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#B26E63',
+    borderColor: '#B26E63',
+    borderWidth: 1,
+    borderRadius: 8,
+    margin: 20,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
   welcomeContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#90BAAD',
-    // backgroundColor: 'white'
+    // backgroundColor: '#90BAAD',
+    // backgroundColor: 'white',
+    backgroundColor: '#C0CAAD'
   },
   welcome: {
     fontSize: 30,
     textAlign: 'center',
     margin: 10,
-    color: '#717C89',
+    color: '#654C4F',
     fontWeight: 'bold'
   },
   container: {
@@ -69,7 +91,7 @@ const styles = StyleSheet.create({
   instructions: {
     fontSize: 20,
     textAlign: 'center',
-    color: '#717C89',
+    color: '#654C4F',
     marginBottom: 5,
   },
   backdrop: {

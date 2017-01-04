@@ -23,7 +23,7 @@ class Navigation extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Pet Swipe',
-          component: FavoritesList,
+          component: Welcome,
         }}/>
     );
   }
