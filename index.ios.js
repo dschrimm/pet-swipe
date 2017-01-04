@@ -3,6 +3,7 @@
 var Animal = require('./src/Animal');
 var Welcome = require('./src/Welcome');
 var FavoritesList = require('./src/FavoritesList');
+var Menu = require('./src/Menu');
 var styles = require('./stylesheet');
 
 import React, { Component } from 'react';
@@ -23,7 +24,8 @@ class Navigation extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Pet Swipe',
-          component: Welcome,
+          // component: Welcome,
+          component: Menu
         }}/>
     );
   }

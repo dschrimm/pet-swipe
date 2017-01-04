@@ -18,10 +18,6 @@ import Swiper from 'react-native-swiper';
 
 const { width } = Dimensions.get('window');
 
-
-
-
-
 const petData = {
   "petfinder": {
     "header": {
@@ -79,10 +75,12 @@ const petData = {
 class AnimalDetails extends Component {
 
   render() {
-    let images = []
+    let images = [];
+    let loadQueue = [];
     let numImages = petData["petfinder"]["pet"]["media"]["photos"]["photo"].length
     for (var i=0; i<numImages; i++) {
       images.push(<Image source={{uri: petData["petfinder"]["pet"]["media"]["photos"]["photo"][i]["__text"]}}><View style={styles.allImages}></View></Image>);
+      loadQueue.push(0);
     }
 
     return (
