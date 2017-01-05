@@ -27,11 +27,6 @@ class Menu extends Component {
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
         this.props.navigator.pop();
-        // this.props.navigator.push({
-        //   title: 'Menu',
-        //   component: Menu,
-        //   leftButtonTitle: ' '
-        // })
       },
       leftButtonTitle: ' '
     });
@@ -44,11 +39,6 @@ class Menu extends Component {
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
         this.props.navigator.pop();
-        // this.props.navigator.push({
-        //   title: 'Menu',
-        //   component: Menu,
-        //   leftButtonTitle: ' '
-        // })
       },
       leftButtonTitle: ' '
     });
@@ -57,7 +47,7 @@ class Menu extends Component {
   // onProfilePressed() {
   //   console.log('image pressed');
   //   this.props.navigator.push({
-  //     title: 'Animal Details',
+  //     title: 'My Favorites',
   //     component: AnimalDetails
   //   });
   // }

@@ -7,6 +7,7 @@ import {
   Text,
   View,
   Image,
+  ScrollView
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
@@ -81,16 +82,18 @@ class AnimalDetails extends Component {
     }
 
     return (
+      <ScrollView>
       <View>
         <Swiper style={styles.wrapper} showsButtons={true} height={450} marginTop={45} dotColor={'white'} activeDotColor={'purple'}>
           {images}
         </Swiper>
         <View style={styles.swipeImage}>
           <Text style={styles.briefDescription}>
-            I am some text!
+            I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay!
           </Text>
         </View>
       </View>
+      </ScrollView>
     );
   }
 }
