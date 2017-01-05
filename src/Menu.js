@@ -23,14 +23,32 @@ class Menu extends Component {
   onMatchesPressed() {
     this.props.navigator.push({
       title: 'Find Matches',
-      component: Animal
+      component: Animal,
+      rightButtonTitle: 'Menu',
+      onRightButtonPress: () => {
+        this.props.navigator.push({
+          title: 'Menu',
+          component: Menu,
+          leftButtonTitle: ' '
+        })
+      },
+      leftButtonTitle: ' '
     });
   }
 
   onFavoritesPressed() {
     this.props.navigator.push({
       title: 'My Favorites',
-      component: FavoritesList
+      component: FavoritesList,
+      rightButtonTitle: 'Menu',
+      onRightButtonPress: () => {
+        this.props.navigator.push({
+          title: 'Menu',
+          component: Menu,
+          leftButtonTitle: ' '
+        })
+      },
+      leftButtonTitle: ' '
     });
   }
 

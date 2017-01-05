@@ -1,6 +1,10 @@
 'use strict';
 
-var AnimalDetails = require('./AnimalDetails');
+import AnimalDetails from './AnimalDetails';
+
+// import Menu from './Menu';
+
+import FavoritesList from './FavoritesList';
 
 import React, { Component } from 'react';
 import {
@@ -19,20 +23,24 @@ class Animal extends Component {
     this.props.navigator.push({
       title: 'Animal Details',
       component: AnimalDetails,
-      leftButtonSystemIcon: 'cancel',
+      leftButtonTitle: '< Back',
       onLeftButtonPress: () => this.props.navigator.pop(),
-      rightButtonSystemIcon: 'search',
+      rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
-        AlertIOS.alert(
-          'Bar Button Action',
-          'Recognized a tap on the bar button icon',
-          [
-            {
-              text: 'OK',
-              onPress: () => console.log('Tapped OK')
-            },
-          ]
-        );
+        this.props.navigator.push({
+          title: 'My Favorites',
+          component: FavoritesList
+        });
+        // AlertIOS.alert(
+        //   'Bar Button Action',
+        //   'Recognized a tap on the bar button icon',
+        //   [
+        //     {
+        //       text: 'OK',
+        //       onPress: () => console.log('Tapped OK')
+        //     },
+        //   ]
+        // );
       }
     });
   }
