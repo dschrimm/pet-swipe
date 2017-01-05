@@ -26,11 +26,12 @@ class Menu extends Component {
       component: Animal,
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
-        this.props.navigator.push({
-          title: 'Menu',
-          component: Menu,
-          leftButtonTitle: ' '
-        })
+        this.props.navigator.pop();
+        // this.props.navigator.push({
+        //   title: 'Menu',
+        //   component: Menu,
+        //   leftButtonTitle: ' '
+        // })
       },
       leftButtonTitle: ' '
     });
@@ -42,11 +43,12 @@ class Menu extends Component {
       component: FavoritesList,
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
-        this.props.navigator.push({
-          title: 'Menu',
-          component: Menu,
-          leftButtonTitle: ' '
-        })
+        this.props.navigator.pop();
+        // this.props.navigator.push({
+        //   title: 'Menu',
+        //   component: Menu,
+        //   leftButtonTitle: ' '
+        // })
       },
       leftButtonTitle: ' '
     });
