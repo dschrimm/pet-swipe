@@ -79,17 +79,15 @@ const AppStyleSheet = StyleSheet.create({
         color: 'white',
         alignSelf: 'center'
       },
-      swipeImage: {
+      swipeImageText: {
         flex: 1,
-        marginTop: 55,
-        marginRight: 10,
-        marginLeft: 10,
-        marginBottom: 200,
+        margin: 10
 
         // alignSelf: 'center',
         // backgroundColor: 'pink'
       },
       imageButton: {
+        marginTop: 44,
         borderRadius: 8
       },
       allImages: {
@@ -101,6 +99,11 @@ const AppStyleSheet = StyleSheet.create({
         marginBottom: 300,
         // alignSelf: 'center',
         // backgroundColor: 'pink'
+      },
+      detailView: {
+        // paddingTop: 5,
+        // backgroundColor: '#90BAAD',
+        flex: 1,
       },
       wrapper: {
         backgroundColor: 'pink'

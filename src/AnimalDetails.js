@@ -13,7 +13,7 @@ import {
 import Swiper from 'react-native-swiper';
 
 import styles from '../utilities/stylesheet';
-
+import clrs from '../utilities/clrs';
 
 
 const petData = {
@@ -82,18 +82,18 @@ class AnimalDetails extends Component {
     }
 
     return (
-      <ScrollView>
-      <View>
-        <Swiper style={styles.wrapper} showsButtons={true} height={450} marginTop={45} dotColor={'white'} activeDotColor={'purple'}>
+      <View style={styles.detailView}>
+      <ScrollView bounces scrollsToTop>
+        <Swiper height={450} dotColor={clrs.lightYellow} activeDotColor={'purple'}>
           {images}
         </Swiper>
-        <View style={styles.swipeImage}>
+        <View style={styles.swipeImageText}>
           <Text style={styles.briefDescription}>
             I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay!
           </Text>
         </View>
-      </View>
       </ScrollView>
+      </View>
     );
   }
 }
