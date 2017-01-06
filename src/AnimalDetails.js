@@ -42,7 +42,7 @@ class AnimalDetails extends Component {
     return (
       <View style={styles.detailView}>
         <ScrollView bounces scrollsToTop>
-          <Swiper height={350} dotColor={clrs.lightYellow} activeDotColor={'purple'}>
+        <Swiper height={350} dotColor={clrs.lightYellow} activeDotColor={'purple'}>
             {images}
           </Swiper>
           <View style={styles.swipeImageText}>

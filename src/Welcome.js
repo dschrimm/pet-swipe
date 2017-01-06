@@ -1,7 +1,7 @@
 // Welcome/loading page
 'use strict';
 
-var Animal = require('./Animal');
+var Menu = require('./Menu');
 
 import React, { Component } from 'react';
 import {
@@ -24,8 +24,9 @@ class Welcome extends Component {
   onContinuePressed() {
     console.log('continue pressed');
     this.props.navigator.push({
-      title: 'Animal',
-      component: Animal
+      title: 'Menu',
+      component: Menu,
+      leftButtonTitle: ' '
     });
   }
 

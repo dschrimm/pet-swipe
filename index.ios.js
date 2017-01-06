@@ -1,5 +1,7 @@
 'use strict';
 
+var LotsOfGreetings = require('./src/LotsOfGreetings');
+
 var Animal = require('./src/Animal');
 var Welcome = require('./src/Welcome');
 var FavoritesList = require('./src/FavoritesList');
@@ -28,8 +30,8 @@ class Navigation extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Pet Swipe',
-          // component: Welcome,
-          component: Menu
+          component: Welcome,
+          // component: Menu
         }}/>
     );
   }

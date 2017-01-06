@@ -14,6 +14,8 @@ import {
   AlertIOS
 } from 'react-native';
 
+import Swiper from 'react-native-swiper';
+
 class Animal extends Component {
   constructor(props) {
     super(props);
