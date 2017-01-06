@@ -1,11 +1,8 @@
 'use strict';
 
 import AnimalDetails from './AnimalDetails';
-
-// import Menu from './Menu';
-// var Menu = require('./Menu').default;
-
 import FavoritesList from './FavoritesList';
+import styles from '../utilities/stylesheet';
 
 import React, { Component } from 'react';
 import {
@@ -16,15 +13,12 @@ import {
   AlertIOS
 } from 'react-native';
 
-import styles from '../utilities/stylesheet';
-
 class Animal extends Component {
   constructor(props) {
     super(props);
   }
 
   onImagePressed() {
-    console.log('image pressed');
     this.props.navigator.push({
       title: 'Animal Details',
       component: AnimalDetails,
@@ -33,10 +27,6 @@ class Animal extends Component {
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
         this.props.navigator.popN(2);
-        // this.props.navigator.push({
-        //   title: 'My Favorites',
-        //   component: FavoritesList
-        // })
         // AlertIOS.alert(
         //   'Bar Button Action',
         //   'Recognized a tap on the bar button icon',

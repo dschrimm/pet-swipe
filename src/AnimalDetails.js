@@ -2,6 +2,9 @@
 
 'use strict';
 
+import styles from '../utilities/stylesheet';
+import clrs from '../utilities/clrs';
+
 import React, { Component } from 'react';
 import {
   Text,
@@ -12,10 +15,6 @@ import {
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
-
-import styles from '../utilities/stylesheet';
-import clrs from '../utilities/clrs';
-
 
 const petData = {
   "petfinder": {

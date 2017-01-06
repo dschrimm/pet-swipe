@@ -1,9 +1,8 @@
 // Welcome/loading page
 'use strict';
 
-var Animal = require('./Animal');
-var FavoritesList = require('./FavoritesList');
-
+import Animal from './Animal';
+import FavoritesList from './FavoritesList';
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
 
@@ -47,7 +46,7 @@ class Menu extends Component {
   // onProfilePressed() {
   //   console.log('image pressed');
   //   this.props.navigator.push({
-  //     title: 'My Favorites',
+  //     title: 'Profile',
   //     component: AnimalDetails
   //   });
   // }
