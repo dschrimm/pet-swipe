@@ -7,7 +7,8 @@ import {
   Text,
   View,
   Image,
-  ScrollView
+  ScrollView,
+  TouchableHighlight
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
@@ -72,6 +73,14 @@ const petData = {
 
 class AnimalDetails extends Component {
 
+  onXPressed() {
+    console.log('nope');
+  }
+
+  onYPressed() {
+    console.log('yep');
+  }
+
   render() {
     let images = [];
     let loadQueue = [];
@@ -83,16 +92,26 @@ class AnimalDetails extends Component {
 
     return (
       <View style={styles.detailView}>
-      <ScrollView bounces scrollsToTop>
-        <Swiper height={450} dotColor={clrs.lightYellow} activeDotColor={'purple'}>
-          {images}
-        </Swiper>
-        <View style={styles.swipeImageText}>
-          <Text style={styles.briefDescription}>
-            I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay!
-          </Text>
-        </View>
-      </ScrollView>
+        <ScrollView bounces scrollsToTop>
+          <Swiper height={350} dotColor={clrs.lightYellow} activeDotColor={'purple'}>
+            {images}
+          </Swiper>
+          <View style={styles.swipeImageText}>
+            <Text style={styles.briefDescription}>
+              I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay! I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay! I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay! I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay!
+            </Text>
+          </View>
+          <View style={styles.nextPetButtons}>
+            <TouchableHighlight onPress={this.onXPressed.bind(this)}>
+              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
+              </Image>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this.onYPressed.bind(this)}>
+              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginLeft: 50}}>
+              </Image>
+            </TouchableHighlight>
+          </View>
+        </ScrollView>
       </View>
     );
   }

@@ -88,10 +88,22 @@ const AppStyleSheet = StyleSheet.create({
       },
       imageButton: {
         marginTop: 44,
-        borderRadius: 8
+        borderRadius: 8,
+        height: 450
       },
+      nextPetButtons: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center'
+      },
+      // nextPetButton: {
+      //   flex: 1,
+      //   width: 50,
+      //   height: 50,
+      // },
       allImages: {
         width,
+        // height: 300,
         // flex: 1,
         marginTop: 200,
         // marginRight: 10,

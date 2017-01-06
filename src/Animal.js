@@ -51,6 +51,14 @@ class Animal extends Component {
     });
   }
 
+  onXPressed() {
+    console.log('nope');
+  }
+
+  onYPressed() {
+    console.log('yep');
+  }
+
   render() {
 
     let petImage = {
@@ -60,16 +68,26 @@ class Animal extends Component {
     return (
       // Browse pets
       // https://www.petfinder.com/petdetail/37055772
-      <View style={styles.swipeImage}>
-      <TouchableHighlight
-        onPress={this.onImagePressed.bind(this)}>
-        <Image source={petImage} style={{flex: 1}, styles.imageButton}>
-        <View style={styles.backdrop}>
-        </View>
-        </Image>
-      </TouchableHighlight>
+      <View>
+        <TouchableHighlight
+          onPress={this.onImagePressed.bind(this)}>
+          <Image source={petImage} style={{flex: 1}, styles.imageButton}>
+          <View style={styles.backdrop}>
+          </View>
+          </Image>
+        </TouchableHighlight>
         <View>
-        <Text style={styles.briefDescription}>Annika, German Shepherd</Text>
+          <Text style={styles.briefDescription}>Annika, German Shepherd</Text>
+          <View style={styles.nextPetButtons}>
+            <TouchableHighlight onPress={this.onXPressed.bind(this)}>
+              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
+              </Image>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this.onYPressed.bind(this)}>
+              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginLeft: 50}}>
+              </Image>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     );
