@@ -1,5 +1,6 @@
 'use strict';
 
+import AnimalData from './AnimalData';
 import AnimalDetails from './AnimalDetails';
 import FavoritesList from './FavoritesList';
 import styles from '../utilities/stylesheet';
@@ -50,10 +51,14 @@ class Animal extends Component {
   }
 
   render() {
-
     let petImage = {
-      uri: 'https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/1/?bust=1482790177&width=632&no_scale_up=1'
+      // uri: imageUri
+      uri: AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"][2]["__text"]
     };
+    // uri: AnimalData["petfinder"]["pet"]["media"]["photos"]["photo"][0]["__text"]
+    //       uri: AnimalData["petfinder"]["pets"]["pet"][0]["media"]["photos"]["photo"][0]["__text"]
+
+    console.log(petImage);
 
     return (
       // Browse pets

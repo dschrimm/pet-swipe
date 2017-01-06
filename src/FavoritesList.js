@@ -28,10 +28,11 @@ class FavoritesList extends Component {
     let imageFive = {
       uri: 'https://drpem3xzef3kf.cloudfront.net/photos/pets/36490552/1/?bust=1480459899&width=632&no_scale_up=1'
     };
+    let images = [imageOne, imageTwo, imageThree, imageFour, imageFive];
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([imageOne, imageTwo, imageThree, imageFour, imageFive]),
+      dataSource: ds.cloneWithRows(images),
     };
   }
 
