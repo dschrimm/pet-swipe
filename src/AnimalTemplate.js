@@ -19,38 +19,38 @@ import Swiper from 'react-native-swiper';
 class AnimalTemplate extends Component {
   constructor(props) {
     super(props);
-    console.log('>>>>>>> props')
-    console.log(props);
+    // console.log('>>>>>>> props')
+    // console.log(props);
   }
 
-  onImagePressed(uri) {
-    console.log('>>>>>>>>>>> uri');
-    console.log(uri);
+  onImagePressed() {
+    console.log('>>>>>>>>>>> props');
+    console.log(this);
     // console.log(this.props);
-    var image = this.props.filter(prop => prop.uri === uri)[0];
-    console.log('>>>>>>>> image');
-    console.log(image);
-    this.props.navigator.push({
-      title: 'Animal Details',
-      component: AnimalDetails,
-      passProps: {image: image},
-      leftButtonTitle: '< Back',
-      onLeftButtonPress: () => this.props.navigator.pop(),
-      rightButtonTitle: 'Menu',
-      onRightButtonPress: () => {
-        this.props.navigator.popN(2);
-        // AlertIOS.alert(
-        //   'Bar Button Action',
-        //   'Recognized a tap on the bar button icon',
-        //   [
-        //     {
-        //       text: 'OK',
-        //       onPress: () => console.log('Tapped OK')
-        //     },
-        //   ]
-        // );
-      }
-    });
+    // var image = this.props.filter(prop => prop.uri === uri)[0];
+    // console.log('>>>>>>>> image');
+    // console.log(image);
+    // this.props.navigator.push({
+    //   title: 'Animal Details',
+    //   component: AnimalDetails,
+    //   passProps: {image: image},
+    //   leftButtonTitle: '< Back',
+    //   onLeftButtonPress: () => this.props.navigator.pop(),
+    //   rightButtonTitle: 'Menu',
+    //   onRightButtonPress: () => {
+    //     this.props.navigator.popN(2);
+    //     // AlertIOS.alert(
+    //     //   'Bar Button Action',
+    //     //   'Recognized a tap on the bar button icon',
+    //     //   [
+    //     //     {
+    //     //       text: 'OK',
+    //     //       onPress: () => console.log('Tapped OK')
+    //     //     },
+    //     //   ]
+    //     // );
+    //   }
+    // });
   }
 
   onXPressed() {
@@ -62,8 +62,8 @@ class AnimalTemplate extends Component {
   }
 
   render() {
-    console.log('>>>>>>>')
-    console.log(this.props.pets);
+    // console.log('>>>>>>>')
+    // console.log(this.props.pets);
     // let petImage = {
     //   // uri: imageUri
     //   uri: AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"][2]["__text"]
@@ -76,7 +76,17 @@ class AnimalTemplate extends Component {
 
     let pets = [];
     for (var i=0; i<this.props.pets.length; i++) {
-      pets.push(<Image source={this.props.pets[i]}><View style={styles.backdrop}><Text>{this.props.pets[i].id}</Text></View></Image>);
+      pets.push(
+          <View>
+          <TouchableHighlight onPress={this.onImagePressed.bind(this.props.pets[i].id)}>
+            <Image source={this.props.pets[i]}>
+              <View style={styles.backdrop}>
+              </View>
+            </Image>
+            </TouchableHighlight>
+            <Text>{this.props.pets[i].id}</Text>
+          </View>
+      );
     }
 
     return (

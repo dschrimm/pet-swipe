@@ -50,8 +50,8 @@ class Animal extends Component {
       }
       pets.push(pet);
     })
-    console.log('>>>>>>>>>> pets')
-    console.log(pets);
+    // console.log('>>>>>>>>>> pets')
+    // console.log(pets);
 
 
     return (
