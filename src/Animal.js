@@ -35,9 +35,10 @@ class Animal extends Component {
     let images = []
     let id = []
     for (var i=3; i<AnimalData["petfinder"]["pets"]["pet"].length; i++) {
+      let animal = AnimalData["petfinder"]["pets"]["pet"][i]
       images.push({
-        uri: AnimalData["petfinder"]["pets"]["pet"][i]["media"]["photos"]["photo"][2]["__text"],
-        id: i
+        uri: animal["media"]["photos"]["photo"][2]["__text"],
+        id: animal["id"]
       });
     }
     let pets = []
