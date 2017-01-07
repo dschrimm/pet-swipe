@@ -34,7 +34,7 @@ class AnimalDetails extends Component {
     let numImages = AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"].length
     for (var i=0; i<numImages; i++) {
       let uriPath = AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"][i]
-      if (uriPath["_size"] == 'x') {
+      if (uriPath["_size"] == 'pn') {
         images.push(<Image source={{uri: uriPath["__text"]}}><View style={styles.allImages}></View></Image>);
         loadQueue.push(0);
       }

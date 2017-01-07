@@ -51,10 +51,11 @@ const AppStyleSheet = StyleSheet.create({
   backdrop: {
     backgroundColor: clrs.transparent,
     // backgroundColor: 'white',
-    width: 320,
-    height: 320,
+    width,
+    height: 450,
+    // resizeMode: 'contain',
     flexDirection: 'column-reverse',
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
   },
   briefDescription: {
     fontSize: 20,
@@ -112,6 +113,17 @@ const AppStyleSheet = StyleSheet.create({
         // alignSelf: 'center',
         // backgroundColor: 'pink'
       },
+      // swipeImages: {
+      //   width,
+      //   // height: 300,
+      //   // flex: 1,
+      //   marginTop: 200,
+      //   // marginRight: 10,
+      //   // marginLeft: 10,
+      //   marginBottom: 300,
+      //   // alignSelf: 'center',
+      //   // backgroundColor: 'pink'
+      // },
       detailView: {
         // paddingTop: 5,
         // backgroundColor: '#90BAAD',
