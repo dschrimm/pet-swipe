@@ -84,7 +84,7 @@ class AnimalTemplate extends Component {
               </View>
             </Image>
             </TouchableHighlight>
-            <Text>{this.props.pets[i].id}</Text>
+            <Text>{this.props.pets[i].name}, {this.props.pets[i].breeds}</Text>
           </View>
       );
     }

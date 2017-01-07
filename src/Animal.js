@@ -38,16 +38,21 @@ class Animal extends Component {
       let animal = AnimalData["petfinder"]["pets"]["pet"][i]
       images.push({
         uri: animal["media"]["photos"]["photo"][2]["__text"],
-        id: animal["id"]
+        id: animal["id"],
+        name: animal["name"],
+        breeds: animal["breeds"]["breed"]
       });
     }
     let pets = []
 
     images.map((pet, index) => {
       // console.log(pet.id + ' ' + pet.uri)
+      console.log(pet.breeds);
       pet = {
         uri: pet.uri,
-        id: pet.id
+        id: pet.id,
+        name: pet.name,
+        breeds: pet.breeds
       }
       pets.push(pet);
     })
