@@ -57,7 +57,7 @@ class Animal extends Component {
     return (
       // Browse pets
       // https://www.petfinder.com/petdetail/37055772
-      <AnimalTemplate pets={pets[0]} />
+      <AnimalTemplate pets={pets} />
     )
   }
 }

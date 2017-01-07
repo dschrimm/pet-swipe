@@ -78,7 +78,7 @@ class AnimalTemplate extends Component {
       <View>
         <TouchableHighlight
           onPress={this.onImagePressed.bind(this)}>
-          <Image source={this.props.pets} style={{flex: 1}, styles.imageButton}>
+          <Image source={this.props.pets[2]} style={{flex: 1}, styles.imageButton}>
           <View style={styles.backdrop}>
           </View>
           </Image>
