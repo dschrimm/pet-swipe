@@ -28,6 +28,7 @@ class AnimalDetails extends Component {
   }
 
   render() {
+    // console.log(this.props.image);
     let images = [];
     let loadQueue = [];
     let numImages = AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"].length

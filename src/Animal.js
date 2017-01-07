@@ -1,5 +1,6 @@
 'use strict';
 
+import AnimalTemplate from './AnimalTemplate';
 import AnimalData from './AnimalData';
 import AnimalDetails from './AnimalDetails';
 import FavoritesList from './FavoritesList';
@@ -21,73 +22,43 @@ class Animal extends Component {
     super(props);
   }
 
-  onImagePressed() {
-    this.props.navigator.push({
-      title: 'Animal Details',
-      component: AnimalDetails,
-      leftButtonTitle: '< Back',
-      onLeftButtonPress: () => this.props.navigator.pop(),
-      rightButtonTitle: 'Menu',
-      onRightButtonPress: () => {
-        this.props.navigator.popN(2);
-        // AlertIOS.alert(
-        //   'Bar Button Action',
-        //   'Recognized a tap on the bar button icon',
-        //   [
-        //     {
-        //       text: 'OK',
-        //       onPress: () => console.log('Tapped OK')
-        //     },
-        //   ]
-        // );
-      }
-    });
-  }
-
-  onXPressed() {
-    console.log('nope');
-  }
-
-  onYPressed() {
-    console.log('yep');
-  }
-
   render() {
-    let petImage = {
-      // uri: imageUri
-      uri: AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"][2]["__text"]
-    };
+    // let petImage = {
+    //   // uri: imageUri
+    //   uri: AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"][2]["__text"]
+    // };
     // uri: AnimalData["petfinder"]["pet"]["media"]["photos"]["photo"][0]["__text"]
     //       uri: AnimalData["petfinder"]["pets"]["pet"][0]["media"]["photos"]["photo"][0]["__text"]
 
-    console.log(petImage);
+    // console.log(petImage);
+
+    let images = []
+    let id = []
+    for (var i=3; i<AnimalData["petfinder"]["pets"]["pet"].length; i++) {
+      images.push({
+        uri: AnimalData["petfinder"]["pets"]["pet"][i]["media"]["photos"]["photo"][2]["__text"],
+        id: i
+      });
+    }
+    let pets = []
+
+    images.map((pet, index) => {
+      // console.log(pet.id + ' ' + pet.uri)
+      pet = {
+        uri: pet.uri,
+        id: pet.id
+      }
+      pets.push(pet);
+    })
+    console.log('>>>>>>>>>> pets')
+    console.log(pets);
+
 
     return (
       // Browse pets
       // https://www.petfinder.com/petdetail/37055772
-      <View>
-        <TouchableHighlight
-          onPress={this.onImagePressed.bind(this)}>
-          <Image source={petImage} style={{flex: 1}, styles.imageButton}>
-          <View style={styles.backdrop}>
-          </View>
-          </Image>
-        </TouchableHighlight>
-        <View>
-          <Text style={styles.briefDescription}>Annika, German Shepherd</Text>
-          <View style={styles.nextPetButtons}>
-            <TouchableHighlight onPress={this.onXPressed.bind(this)}>
-              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
-              </Image>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this.onYPressed.bind(this)}>
-              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginLeft: 50}}>
-              </Image>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </View>
-    );
+      <AnimalTemplate pets={pets[0]} />
+    )
   }
 }
 

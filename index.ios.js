@@ -1,7 +1,5 @@
 'use strict';
 
-var LotsOfGreetings = require('./src/LotsOfGreetings');
-
 var Animal = require('./src/Animal');
 var Welcome = require('./src/Welcome');
 var FavoritesList = require('./src/FavoritesList');
