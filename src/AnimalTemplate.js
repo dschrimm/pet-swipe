@@ -62,6 +62,8 @@ class AnimalTemplate extends Component {
   }
 
   render() {
+    console.log('>>>>>>>')
+    console.log(this.props.pets);
     // let petImage = {
     //   // uri: imageUri
     //   uri: AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"][2]["__text"]
@@ -72,19 +74,27 @@ class AnimalTemplate extends Component {
 
     // console.log(petImage);
 
+    let pets = [];
+    for (var i=0; i<this.props.pets.length; i++) {
+      pets.push(<Image source={this.props.pets[i]}><View style={styles.backdrop}><Text>{this.props.pets[i].id}</Text></View></Image>);
+    }
+
     return (
       // Browse pets
       // https://www.petfinder.com/petdetail/37055772
       <View>
-        <TouchableHighlight
+      <Swiper height={350}>
+        {pets}
+      </Swiper>
+        {/*<TouchableHighlight
           onPress={this.onImagePressed.bind(this)}>
           <Image source={this.props.pets[2]} style={{flex: 1}, styles.imageButton}>
           <View style={styles.backdrop}>
           </View>
           </Image>
-        </TouchableHighlight>
+        </TouchableHighlight>*/}
         <View>
-          <Text style={styles.briefDescription}>Annika, German Shepherd</Text>
+          <Text style={styles.briefDescription}>{this.props.pets.id}</Text>
           <View style={styles.nextPetButtons}>
             <TouchableHighlight onPress={this.onXPressed.bind(this)}>
               <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
