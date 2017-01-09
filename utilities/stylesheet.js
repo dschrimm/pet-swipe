@@ -14,6 +14,9 @@ const AppStyleSheet = StyleSheet.create({
   //   fontSize: 30,
   //   margin: 80
   // },
+  responseButton: {
+    paddingTop: 50
+  },
   welcomeContainer: {
     flex: 1,
     alignItems: 'center',
@@ -52,16 +55,16 @@ const AppStyleSheet = StyleSheet.create({
     backgroundColor: clrs.transparent,
     // backgroundColor: 'white',
     width,
-    height: 450,
+    height: 420,
     // resizeMode: 'contain',
     flexDirection: 'column-reverse',
-    alignSelf: 'flex-end',
+    // alignSelf: 'flex-end',
   },
   briefDescription: {
     fontSize: 20,
     // textAlign: 'center',
     backgroundColor: clrs.transparent,
-    color: 'black'
+    color: 'black',
   },
     button: {
       height: 26,
@@ -95,7 +98,7 @@ const AppStyleSheet = StyleSheet.create({
       nextPetButtons: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
       },
       // nextPetButton: {
       //   flex: 1,

@@ -26,9 +26,11 @@ class AnimalTemplate extends Component {
     // console.log(props);
   }
 
-  onImagePressed() {
-    console.log('>>>>>>>>>>> this (pet id)');
-    console.log(this.props);
+  onImagePressed(petId) {
+    // var animal = this.props.filter(prop => prop.id );
+    // console.log('>>>>>>>>>>> this (pet id)');
+    // console.log(this.props);
+    // console.log(petId);
     // console.log(this.props);
     // var image = this.props.filter(prop => prop.uri === uri)[0];
     // console.log('>>>>>>>> image');
@@ -36,7 +38,7 @@ class AnimalTemplate extends Component {
     this.props.navigator.push({
       title: 'Animal Details',
       component: AnimalDetails,
-      // passProps: {image: image},
+      passProps: {petId: petId},
       leftButtonTitle: '< Back',
       onLeftButtonPress: () => this.props.navigator.pop(),
       rightButtonTitle: 'Menu',
@@ -100,34 +102,36 @@ class AnimalTemplate extends Component {
 
     let petProfiles = [];
     for (var i=0; i<pets.length; i++) {
+      let pet = pets[i]
       petProfiles.push(
           <View>
-            <TouchableHighlight onPress={this.onImagePressed.bind(this)}>
-                <Image source={pets[i]}>
+{/*          <TouchableHighlight onPress={this.onImagePressed.bind(this)}>*/}
+          <TouchableHighlight onPress={() => this.onImagePressed(pet.id)}>
+                <Image source={pet}>
                   <View style={styles.backdrop}>
                   </View>
                 </Image>
               </TouchableHighlight>
-              <Text style={styles.briefDescription}>{pets[i].name}, {pets[i].breeds}</Text>
+              <Text style={styles.briefDescription}>{pet.name}, {pet.breeds}</Text>
           </View>
       );
     }
 
     return (
       <View>
-      <ScrollView bounces scrollsToTop>
-      <Swiper height={500} dotColor={clrs.transparent} activeDotColor={clrs.transparent}>
+      <ScrollView bounces scrollsToTop height={650}>
+      <Swiper height={470} dotColor={clrs.transparent} activeDotColor={clrs.transparent}>
         {petProfiles}
       </Swiper>
         <View>
           {/*<Text style={styles.briefDescription}>{this.props.pets.id}</Text>*/}
           <View style={styles.nextPetButtons}>
             <TouchableHighlight onPress={this.onXPressed.bind(this)}>
-              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
+              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
               </Image>
             </TouchableHighlight>
             <TouchableHighlight onPress={this.onYPressed.bind(this)}>
-              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginLeft: 50}}>
+              <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginLeft: 50}}>
               </Image>
             </TouchableHighlight>
           </View>

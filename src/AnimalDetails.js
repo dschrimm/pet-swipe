@@ -28,6 +28,8 @@ class AnimalDetails extends Component {
   }
 
   render() {
+    console.log('>>>>>>>> pet id from details page:');
+    console.log(this.props.petId);
     // console.log(this.props.image);
     let images = [];
     let loadQueue = [];

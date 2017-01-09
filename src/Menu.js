@@ -24,6 +24,7 @@ class Menu extends Component {
     this.props.navigator.push({
       title: 'Find Matches',
       component: AnimalTemplate,
+      // passProps: {pets: response.pets},
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
         this.props.navigator.pop();
