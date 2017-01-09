@@ -30,15 +30,22 @@ class AnimalDetails extends Component {
   render() {
     console.log('>>>>>>>> pet id from details page:');
     console.log(this.props.petId);
-    // console.log(this.props.image);
+    let animals = AnimalData["petfinder"]["pets"]["pet"]
+    let animal = ''
+    for (var i=0; i<animals.length; i++) {
+      if (animals[i].id == this.props.petId) {
+        animal = animals[i]
+        // TODO: break loop here, do not need to continue to end of animal list if match is found
+      }
+      // TODO: add error message if for some reason pet details cannot be found
+    }
+
     let images = [];
-    let loadQueue = [];
-    let numImages = AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"].length
+    let numImages = animal["media"]["photos"]["photo"].length
     for (var i=0; i<numImages; i++) {
-      let uriPath = AnimalData["petfinder"]["pets"]["pet"][3]["media"]["photos"]["photo"][i]
+      let uriPath = animal["media"]["photos"]["photo"][i]
       if (uriPath["_size"] == 'pn') {
         images.push(<Image source={{uri: uriPath["__text"]}}><View style={styles.allImages}></View></Image>);
-        loadQueue.push(0);
       }
     }
 
@@ -50,7 +57,7 @@ class AnimalDetails extends Component {
           </Swiper>
           <View style={styles.swipeImageText}>
             <Text style={styles.briefDescription}>
-              I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay! I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay! I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay! I am some text and I am long and I keep going past the bottom of the page so we will see what will happen yay!
+              {animal.description["__cdata"]}
             </Text>
           </View>
           <View style={styles.nextPetButtons}>
