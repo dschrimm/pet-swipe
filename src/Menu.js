@@ -2,6 +2,7 @@
 'use strict';
 
 import Animal from './Animal';
+import AnimalTemplate from './AnimalTemplate';
 import FavoritesList from './FavoritesList';
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
@@ -22,7 +23,7 @@ class Menu extends Component {
   onMatchesPressed() {
     this.props.navigator.push({
       title: 'Find Matches',
-      component: Animal,
+      component: AnimalTemplate,
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
         this.props.navigator.pop();
