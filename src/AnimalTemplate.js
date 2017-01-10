@@ -28,6 +28,7 @@ class AnimalTemplate extends Component {
   }
 
   fetchAnimals() {
+    // TODO: make this faster!
     fetch('http://api.petfinder.com/pet.find?format=json&key=f2e828ff92a5d99a6e9ff79e10ca558a&animal=dog&location=98144&size=M')
       .then((response) => response.json())
       .then((responseJson) => {
@@ -91,7 +92,7 @@ class AnimalTemplate extends Component {
         id: animal["id"]['$t'],
         name: animal["name"]['$t'],
         breeds: animal["breeds"]["breed"]['$t'],
-        // TODO: Handle dogs with more than one breed
+        // TODO: Handle animals with more than one breed
       });
     }
     {/*for (var i=4; i<AnimalData["petfinder"]["pets"]["pet"].length; i++) {
