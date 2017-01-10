@@ -22,6 +22,21 @@ import Swiper from 'react-native-swiper';
 class AnimalTemplate extends Component {
   constructor(props) {
     super(props);
+
+    this.pets = [];
+    this.fetchAnimals();
+  }
+
+  fetchAnimals() {
+    fetch('http://api.petfinder.com/pet.find?format=json&key=f2e828ff92a5d99a6e9ff79e10ca558a&animal=dog&location=98144&size=M')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.pets = responseJson.petfinder.pets.pet;
+        this.render();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   onImagePressed(petId) {
@@ -69,7 +84,17 @@ class AnimalTemplate extends Component {
   render() {
     let petList = []
     let id = []
-    for (var i=4; i<AnimalData["petfinder"]["pets"]["pet"].length; i++) {
+    for (var i=0; i<this.pets.length; i++) {
+      let animal = this.pets[i]
+      petList.push({
+        uri: animal["media"]["photos"]["photo"][3]['$t'],
+        id: animal["id"]['$t'],
+        name: animal["name"]['$t'],
+        breeds: animal["breeds"]["breed"]['$t'],
+        // TODO: Handle dogs with more than one breed
+      });
+    }
+    {/*for (var i=4; i<AnimalData["petfinder"]["pets"]["pet"].length; i++) {
       let animal = AnimalData["petfinder"]["pets"]["pet"][i]
       petList.push({
         uri: animal["media"]["photos"]["photo"][3]["__text"],
@@ -77,7 +102,7 @@ class AnimalTemplate extends Component {
         name: animal["name"],
         breeds: animal["breeds"]["breed"],
       });
-    }
+    }*/}
     {/*let pets = []
 
     petList.map((pet, index) => {
