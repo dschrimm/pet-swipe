@@ -61,10 +61,12 @@ const AppStyleSheet = StyleSheet.create({
     // alignSelf: 'flex-end',
   },
   briefDescription: {
-    fontSize: 20,
+    fontSize: 18,
     // textAlign: 'center',
     backgroundColor: clrs.transparent,
     color: 'black',
+    fontFamily: 'helvetica',
+    lineHeight: 25
   },
     button: {
       height: 26,
