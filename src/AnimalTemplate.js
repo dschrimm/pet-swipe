@@ -99,7 +99,6 @@ class AnimalTemplate extends Component {
     let id = []
     for (var i=0; i<this.pets.length; i++) {
       let animal = this.pets[i]
-      console.log(animal);
       var breeds = animal["breeds"]["breed"];
       var breedList = ''
       if (typeof breeds['$t'] == 'string') {

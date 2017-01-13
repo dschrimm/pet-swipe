@@ -18,6 +18,30 @@ import {
 import Swiper from 'react-native-swiper';
 
 class AnimalDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.fetchAnimal();
+    this.animal = {}
+  }
+
+  fetchAnimal() {
+    // TODO: use promises to load in correct order
+    fetch('http://localhost:3000/v1/get', {
+      headers: {
+        id: this.props.petId
+      }
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.animal = responseJson;
+      // console.log('>>>>>>');
+      // console.log(this.animal.petfinder.pet.media);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 
   onXPressed() {
     console.log('nope');
@@ -30,20 +54,21 @@ class AnimalDetails extends Component {
   render() {
     console.log('>>>>>>>> pet id from details page:');
     console.log(this.props.petId);
-    let animals = AnimalData["petfinder"]["pets"]["pet"]
-    let animal = ''
-    for (var i=0; i<animals.length; i++) {
-      if (animals[i].id == this.props.petId) {
-        animal = animals[i]
-        // TODO: break loop here, do not need to continue to end of animal list if match is found
-      }
-      // TODO: add error message if for some reason pet details cannot be found
-    }
+    console.log(this.animal);
+    // let animals = AnimalData["petfinder"]["pets"]["pet"]
+    // let animal = ''
+    // for (var i=0; i<animals.length; i++) {
+    //   if (animals[i].id == this.props.petId) {
+    //     animal = animals[i]
+    //     // TODO: break loop here, do not need to continue to end of animal list if match is found
+    //   }
+    //   // TODO: add error message if for some reason pet details cannot be found
+    // }
 
     let images = [];
-    let numImages = animal["media"]["photos"]["photo"].length
+    let numImages = this.animal.petfinder.pet.media.photos.photo.length
     for (var i=0; i<numImages; i++) {
-      let uriPath = animal["media"]["photos"]["photo"][i]
+      let uriPath = this.animal.petfinder.pet.media.photos.photo[i]
       if (uriPath["_size"] == 'pn') {
         images.push(<Image source={{uri: uriPath["__text"]}}><View style={styles.allImages}></View></Image>);
       }
