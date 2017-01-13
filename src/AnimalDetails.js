@@ -29,7 +29,6 @@ class AnimalDetails extends Component {
   }
 
   fetchAnimal() {
-    // TODO: use promises to load in correct order
     fetch('http://localhost:3000/v1/get', {
       headers: {
         id: this.props.petId
@@ -38,8 +37,6 @@ class AnimalDetails extends Component {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({animal: responseJson.petfinder.pet, isSet: true});
-      // console.log('>>>>>>>', this.state);
-      // console.log(this.animal.petfinder.pet.media);
     })
     .catch((error) => {
       console.error(error);
@@ -55,24 +52,10 @@ class AnimalDetails extends Component {
   }
 
   render() {
-    console.log('>>>>> animaldetails render');
-    // console.log('>>>>>>>> pet id from details page:');
-    // console.log(this.props.petId);
-    // console.log(this.animal);
-    // let animals = AnimalData["petfinder"]["pets"]["pet"]
-    // let animal = ''
-    // for (var i=0; i<animals.length; i++) {
-    //   if (animals[i].id == this.props.petId) {
-    //     animal = animals[i]
-    //     // TODO: break loop here, do not need to continue to end of animal list if match is found
-    //   }
-    //   // TODO: add error message if for some reason pet details cannot be found
-    // }
+   // TODO: add error message if for some reason pet details cannot be found
     let images = [];
     let description = '';
-    // console.log(this.state.isSet);
     if (this.state.isSet == true) {
-      console.log(this.state.animal);
       description = this.state.animal.description["$t"];
       let numImages = this.state.animal.media.photos.photo.length;
       for (var i=0; i<numImages; i++) {
