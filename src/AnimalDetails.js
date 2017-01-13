@@ -21,8 +21,11 @@ class AnimalDetails extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      animal: {},
+      isSet: false
+    };
     this.fetchAnimal();
-    this.animal = {}
   }
 
   fetchAnimal() {
@@ -34,8 +37,8 @@ class AnimalDetails extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      this.animal = responseJson;
-      // console.log('>>>>>>');
+      this.setState({animal: responseJson.petfinder.pet, isSet: true});
+      // console.log('>>>>>>>', this.state);
       // console.log(this.animal.petfinder.pet.media);
     })
     .catch((error) => {
@@ -52,9 +55,10 @@ class AnimalDetails extends Component {
   }
 
   render() {
-    console.log('>>>>>>>> pet id from details page:');
-    console.log(this.props.petId);
-    console.log(this.animal);
+    console.log('>>>>> animaldetails render');
+    // console.log('>>>>>>>> pet id from details page:');
+    // console.log(this.props.petId);
+    // console.log(this.animal);
     // let animals = AnimalData["petfinder"]["pets"]["pet"]
     // let animal = ''
     // for (var i=0; i<animals.length; i++) {
@@ -64,25 +68,34 @@ class AnimalDetails extends Component {
     //   }
     //   // TODO: add error message if for some reason pet details cannot be found
     // }
-
     let images = [];
-    let numImages = this.animal.petfinder.pet.media.photos.photo.length
-    for (var i=0; i<numImages; i++) {
-      let uriPath = this.animal.petfinder.pet.media.photos.photo[i]
-      if (uriPath["_size"] == 'pn') {
-        images.push(<Image source={{uri: uriPath["__text"]}}><View style={styles.allImages}></View></Image>);
+    let description = '';
+    // console.log(this.state.isSet);
+    if (this.state.isSet == true) {
+      console.log(this.state.animal);
+      description = this.state.animal.description["$t"];
+      let numImages = this.state.animal.media.photos.photo.length;
+      for (var i=0; i<numImages; i++) {
+        let uriPath = this.state.animal.media.photos.photo[i];
+        if (uriPath["@size"] == 'pn') {
+          images.push(
+            <Image source={{uri: uriPath["$t"]}} >
+              <View style={styles.backdrop}></View>
+            </Image>
+          );
+        }
       }
     }
 
     return (
       <View style={styles.detailView}>
-        <ScrollView bounces scrollsToTop>
+        <ScrollView bounces scrollsToTop height={650}>
         <Swiper height={350} dotColor={clrs.lightYellow} activeDotColor={'purple'}>
             {images}
           </Swiper>
           <View style={styles.swipeImageText}>
             <Text style={styles.briefDescription}>
-              {animal.description["__cdata"]}
+              {description}
             </Text>
           </View>
           <View style={styles.nextPetButtons}>

@@ -43,6 +43,7 @@ class AnimalTemplate extends Component {
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({pets: responseJson.petfinder.pets.pet});
+        // console.log(this.state);
       })
       .catch((error) => {
         console.error(error);
@@ -96,7 +97,6 @@ class AnimalTemplate extends Component {
     let id = []
     for (var i=0; i<this.state.pets.length; i++) {
       let animal = this.state.pets[i]
-      console.log('>>>>>>>>>', animal);
       var breeds = animal["breeds"]["breed"];
       var breedList = ''
       if (typeof breeds['$t'] == 'string') {
