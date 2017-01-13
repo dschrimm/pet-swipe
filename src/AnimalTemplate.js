@@ -19,6 +19,8 @@ import {
 
 import Swiper from 'react-native-swiper';
 
+// var API_URL =require('react-native-dotenv');
+
 class AnimalTemplate extends Component {
   constructor(props) {
     super(props);
@@ -27,9 +29,18 @@ class AnimalTemplate extends Component {
     this.fetchAnimals();
   }
 
+// get favorites from db
+// post a fav
+
   fetchAnimals() {
-    // TODO: make this faster!
-    fetch('http://api.petfinder.com/pet.find?format=json&key=f2e828ff92a5d99a6e9ff79e10ca558a&animal=dog&location=98144&size=M')
+    // TODO: use promises to load in correct order
+    fetch('http://localhost:3000/v1/search', {
+      headers: {
+        location: '98144',
+        size: 'M',
+        animal: 'dog'
+      }
+    })
       .then((response) => response.json())
       .then((responseJson) => {
         this.pets = responseJson.petfinder.pets.pet;
@@ -38,6 +49,7 @@ class AnimalTemplate extends Component {
       .catch((error) => {
         console.error(error);
       });
+      this.render();
   }
 
   onImagePressed(petId) {
