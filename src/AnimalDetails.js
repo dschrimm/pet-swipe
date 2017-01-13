@@ -29,7 +29,7 @@ class AnimalDetails extends Component {
   }
 
   fetchAnimal() {
-    fetch('http://localhost:3000/v1/get', {
+    fetch('http://localhost:3000/get', {
       headers: {
         id: this.props.petId
       }
@@ -49,6 +49,17 @@ class AnimalDetails extends Component {
 
   onYPressed() {
     console.log('yep');
+    fetch('http://localhost:3000/favorites', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'test1@test.com',
+        petId: this.props.petId
+      })
+    });
   }
 
   render() {

@@ -33,7 +33,7 @@ class AnimalTemplate extends Component {
 // post a fav
 
   fetchAnimals() {
-    fetch('http://localhost:3000/v1/search', {
+    fetch('http://localhost:3000/search', {
       headers: {
         location: '98144',
         size: 'M',
