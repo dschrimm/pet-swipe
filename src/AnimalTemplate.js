@@ -99,11 +99,23 @@ class AnimalTemplate extends Component {
     let id = []
     for (var i=0; i<this.pets.length; i++) {
       let animal = this.pets[i]
+      console.log(animal);
+      var breeds = animal["breeds"]["breed"];
+      var breedList = ''
+      if (typeof breeds['$t'] == 'string') {
+        breedList = breeds['$t'];
+      } else {
+        for (var j=0; j<breeds.length - 1; j++) {
+          breedList = breedList + breeds[j]['$t'] + ' / ';
+        }
+        breedList = breedList + breeds[breeds.length - 1]['$t'];
+      }
       petList.push({
         uri: animal["media"]["photos"]["photo"][3]['$t'],
         id: animal["id"]['$t'],
         name: animal["name"]['$t'],
-        breeds: animal["breeds"]["breed"]['$t'],
+        // breeds: animal["breeds"]["breed"]['$t'],
+        breeds: breedList
         // TODO: Handle animals with more than one breed
       });
     }
@@ -139,7 +151,7 @@ class AnimalTemplate extends Component {
               </View>
             </Image>
           </TouchableHighlight>
-          <Text style={styles.briefDescription}>{pet.name}, {pet.breeds}</Text>
+          <Text style={styles.briefDescription}>{pet.name} - {pet.breeds}</Text>
         </View>
       );
     }
