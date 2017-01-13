@@ -19,13 +19,13 @@ import {
 
 import Swiper from 'react-native-swiper';
 
-// var API_URL =require('react-native-dotenv');
-
 class AnimalTemplate extends Component {
   constructor(props) {
     super(props);
 
-    this.pets = [];
+    this.state = {
+      pets: []
+    };
     this.fetchAnimals();
   }
 
@@ -33,7 +33,6 @@ class AnimalTemplate extends Component {
 // post a fav
 
   fetchAnimals() {
-    // TODO: use promises to load in correct order
     fetch('http://localhost:3000/v1/search', {
       headers: {
         location: '98144',
@@ -43,14 +42,12 @@ class AnimalTemplate extends Component {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        this.pets = responseJson.petfinder.pets.pet;
-        this.render();
+        this.setState({pets: responseJson.petfinder.pets.pet});
       })
       .catch((error) => {
         console.error(error);
       });
-      this.render();
-  }
+    }
 
   onImagePressed(petId) {
     this.props.navigator.push({
@@ -97,8 +94,9 @@ class AnimalTemplate extends Component {
   render() {
     let petList = []
     let id = []
-    for (var i=0; i<this.pets.length; i++) {
-      let animal = this.pets[i]
+    for (var i=0; i<this.state.pets.length; i++) {
+      let animal = this.state.pets[i]
+      console.log('>>>>>>>>>', animal);
       var breeds = animal["breeds"]["breed"];
       var breedList = ''
       if (typeof breeds['$t'] == 'string') {
@@ -113,9 +111,7 @@ class AnimalTemplate extends Component {
         uri: animal["media"]["photos"]["photo"][3]['$t'],
         id: animal["id"]['$t'],
         name: animal["name"]['$t'],
-        // breeds: animal["breeds"]["breed"]['$t'],
         breeds: breedList
-        // TODO: Handle animals with more than one breed
       });
     }
     {/*for (var i=4; i<AnimalData["petfinder"]["pets"]["pet"].length; i++) {
