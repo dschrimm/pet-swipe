@@ -71,7 +71,7 @@ class AnimalDetails extends Component {
       let numImages = this.state.animal.media.photos.photo.length;
       for (var i=0; i<numImages; i++) {
         let uriPath = this.state.animal.media.photos.photo[i];
-        if (uriPath["@size"] == 'pn') {
+        if (uriPath["@size"] == 'x') {
           images.push(
             <Image source={{uri: uriPath["$t"]}} >
               <View style={styles.backdrop}></View>
