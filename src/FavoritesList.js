@@ -1,4 +1,3 @@
-// Favorites page
 'use strict';
 
 import styles from '../utilities/stylesheet';
@@ -58,6 +57,7 @@ class FavoritesList extends Component {
           // TODO: break loop
         }
       }
+      // TODO: Should render in the same order each time
       this.state.petList.push(
         <View>
         <Image source={{uri: displayImage}}>
@@ -66,8 +66,8 @@ class FavoritesList extends Component {
         </Image>
         </View>
       )
+      this.setState({isSet: true});
     })
-    // this.setState({petList: petList});
   }
 
   render() {
