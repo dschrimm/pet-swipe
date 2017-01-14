@@ -9,29 +9,12 @@ import {
   View,
   Image,
   ListView,
+  ScrollView
 } from 'react-native';
 
 class FavoritesList extends Component {
   constructor() {
-    // let imageOne = {
-    //   uri: 'https://drpem3xzef3kf.cloudfront.net/photos/pets/37055772/1/?bust=1482790177&width=632&no_scale_up=1'
-    // };
-    // let imageTwo = {
-    //   uri: 'https://drpem3xzef3kf.cloudfront.net/photos/pets/36618931/3/?bust=1478714805&width=632&no_scale_up=1'
-    // };
-    // let imageThree = {
-    //   uri: 'https://drpem3xzef3kf.cloudfront.net/photos/pets/36687740/1/?bust=1478648999&width=632&no_scale_up=1'
-    // };
-    // let imageFour = {
-    //   uri: 'https://drpem3xzef3kf.cloudfront.net/photos/pets/37064665/1/?bust=1482900212&width=632&no_scale_up=1'
-    // };
-    // let imageFive = {
-    //   uri: 'https://drpem3xzef3kf.cloudfront.net/photos/pets/36490552/1/?bust=1480459899&width=632&no_scale_up=1'
-    // };
-    // //
-    // // constructor(props) {
       super();
-    // //
       this.state = {
         animals: [],
         petIdList: [],
@@ -39,15 +22,6 @@ class FavoritesList extends Component {
         isSet: false,
         petList: []
       };
-    //
-    //
-    //
-    // let images = [imageOne, imageTwo, imageThree, imageFour, imageFive];
-    // // super();
-    // const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    // this.state = {
-    //   dataSource: ds.cloneWithRows(images),
-    // };
 
     this.fetchFavorites();
   }
@@ -68,7 +42,6 @@ class FavoritesList extends Component {
   }
 
   fetchImage(petId) {
-    console.log('im in fetchimage');
     var imageUrl = ''
     fetch('http://localhost:3000/get', {
       headers: {
@@ -85,22 +58,27 @@ class FavoritesList extends Component {
           // TODO: break loop
         }
       }
-      this.state.petList.push({id: petId, uri: displayImage});
-      console.log(this.state);
+      this.state.petList.push(
+        <View>
+        <Image source={{uri: displayImage}}>
+          <View style={styles.backdrop}></View>
+          {/*id: petId, uri: displayImage});*/}
+        </Image>
+        </View>
+      )
     })
+    // this.setState({petList: petList});
   }
 
   render() {
-    // console.log('>>>>>>>', this.state.petIdList);
     return (
-      <View style={styles.container}>
-      {/*<Image source={this.state.petList}><View style={styles.backdrop}></View></Image>
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={(rowData) => <Image source={this.state.petList} style={{width: 140, height: 140}}/>}
-      />*/}
+
+      <View>
+      <ScrollView bounces scrollsToTop height={650}>
+      {this.state.petList}
+      </ScrollView>
       </View>
-    );
+    )
   }
 }
 
