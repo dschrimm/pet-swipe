@@ -1,5 +1,6 @@
 'use strict';
 
+import AnimalDetails from './AnimalDetails';
 import styles from '../utilities/stylesheet';
 
 import React, { Component } from 'react';
@@ -8,19 +9,20 @@ import {
   View,
   Image,
   ListView,
-  ScrollView
+  ScrollView,
+  TouchableHighlight
 } from 'react-native';
 
 class FavoritesList extends Component {
-  constructor() {
-      super();
-      this.state = {
-        animals: [],
-        petIdList: [],
-        petImage: '',
-        isSet: false,
-        petList: []
-      };
+  constructor(props) {
+    super(props);
+    this.state = {
+      animals: [],
+      petIdList: [],
+      petImage: '',
+      isSet: false,
+      petList: []
+    };
 
     this.fetchFavorites();
   }
@@ -60,14 +62,29 @@ class FavoritesList extends Component {
       // TODO: Should render in the same order each time
       this.state.petList.push(
         <View>
-        <Image source={{uri: displayImage}}>
-          <View style={styles.backdrop}></View>
-          {/*id: petId, uri: displayImage});*/}
-        </Image>
+          <TouchableHighlight onPress={() => this.onImagePressed(petId)}>
+            <Image source={{uri: displayImage}}>
+              <View style={styles.backdrop}></View>
+            </Image>
+          </TouchableHighlight>
         </View>
       )
       this.setState({isSet: true});
     })
+  }
+
+  onImagePressed(petId) {
+    this.props.navigator.push({
+      title: 'Animal Details',
+      component: AnimalDetails,
+      passProps: {petId: petId},
+      leftButtonTitle: '< Back',
+      onLeftButtonPress: () => this.props.navigator.pop(),
+      rightButtonTitle: 'Menu',
+      onRightButtonPress: () => {
+        this.props.navigator.popN(2);
+      }
+    });
   }
 
   render() {
