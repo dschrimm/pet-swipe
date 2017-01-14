@@ -61,13 +61,11 @@ class FavoritesList extends Component {
       }
       // TODO: Should render in the same order each time
       this.state.petList.push(
-        <View>
-          <TouchableHighlight onPress={() => this.onImagePressed(petId)}>
-            <Image source={{uri: displayImage}}>
+          <TouchableHighlight onPress={() => this.onImagePressed(petId)} style={styles.favoriteImages}>
+            <Image source={{uri: displayImage}} style={{borderRadius: 30}}>
               <View style={styles.backdrop}></View>
             </Image>
           </TouchableHighlight>
-        </View>
       )
       this.setState({isSet: true});
     })
@@ -89,11 +87,12 @@ class FavoritesList extends Component {
 
   render() {
     return (
-
-      <View>
-      <ScrollView bounces scrollsToTop height={650}>
-      {this.state.petList}
-      </ScrollView>
+      <View style={{flex: 1}}>
+        <ScrollView bounces scrollsToTop>
+          <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+            {this.state.petList}
+          </View>
+        </ScrollView>
       </View>
     )
   }

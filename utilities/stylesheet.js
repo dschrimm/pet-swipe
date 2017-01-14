@@ -45,6 +45,13 @@ const AppStyleSheet = StyleSheet.create({
     // height: Dimensions.get('window').height
     // resizeMode: 'cover'
   },
+
+  favoriteImages: {
+    height: 125,
+    width: 125,
+    margin: 20,
+  },
+
   instructions: {
     fontSize: 20,
     textAlign: 'center',
