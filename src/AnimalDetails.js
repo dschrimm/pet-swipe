@@ -48,7 +48,6 @@ class AnimalDetails extends Component {
   }
 
   onYPressed() {
-    console.log('yep');
     fetch('http://localhost:3000/favorites', {
       method: 'POST',
       headers: {

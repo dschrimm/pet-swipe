@@ -47,9 +47,9 @@ const AppStyleSheet = StyleSheet.create({
   },
 
   favoriteImages: {
-    height: 125,
-    width: 125,
-    margin: 20,
+    height: 145,
+    width: 145,
+    margin: 15,
   },
 
   instructions: {

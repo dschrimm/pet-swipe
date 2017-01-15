@@ -78,18 +78,33 @@ class AnimalTemplate extends Component {
     );
   }
 
-  onYPressed() {
-    console.log('yep');
-    AlertIOS.alert(
-      'Yep',
-      ':)!',
-      [
-        {
-          text: 'OK',
-          onPress: () => console.log('Tapped OK')
-        },
-      ]
-    );
+  // onYPressed() {
+  //   console.log('yep');
+  //   AlertIOS.alert(
+  //     'Yep',
+  //     ':)!',
+  //     [
+  //       {
+  //         text: 'OK',
+  //         onPress: () => console.log('Tapped OK')
+  //       },
+  //     ]
+  //   );
+  // }
+
+  onYPressed(id) {
+    console.log(id);
+    // fetch('http://localhost:3000/favorites', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     email: 'test1@test.com',
+    //     petId: this.props.petId
+    //   })
+    // });
   }
 
   render() {

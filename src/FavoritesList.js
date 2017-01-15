@@ -10,16 +10,13 @@ import {
   Image,
   ListView,
   ScrollView,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native';
 
 class FavoritesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animals: [],
-      petIdList: [],
-      petImage: '',
       isSet: false,
       petList: []
     };
@@ -51,7 +48,7 @@ class FavoritesList extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      var imageList = responseJson.petfinder.pet.media.photos.photo
+      var imageList = responseJson.petfinder.pet.media.photos.photo;
       var displayImage = '';
       for (var i=0; i<imageList.length; i++) {
         if(imageList[i]["@size"] == 'x') {
@@ -61,11 +58,11 @@ class FavoritesList extends Component {
       }
       // TODO: Should render in the same order each time
       this.state.petList.push(
-          <TouchableHighlight onPress={() => this.onImagePressed(petId)} style={styles.favoriteImages}>
-            <Image source={{uri: displayImage}} style={{borderRadius: 30}}>
+          <TouchableOpacity onPress={() => this.onImagePressed(petId)} style={styles.favoriteImages}>
+            <Image source={{uri: displayImage}} style={{borderRadius: 40}}>
               <View style={styles.backdrop}></View>
             </Image>
-          </TouchableHighlight>
+          </TouchableOpacity>
       )
       this.setState({isSet: true});
     })
@@ -87,7 +84,7 @@ class FavoritesList extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, alignItems: 'center'}}>
         <ScrollView bounces scrollsToTop>
           <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
             {this.state.petList}
