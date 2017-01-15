@@ -43,7 +43,6 @@ class AnimalTemplate extends Component {
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({pets: responseJson.petfinder.pets.pet});
-        // console.log(this.state);
       })
       .catch((error) => {
         console.error(error);

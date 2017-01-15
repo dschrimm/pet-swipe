@@ -53,7 +53,7 @@ class FavoritesList extends Component {
       for (var i=0; i<imageList.length; i++) {
         if(imageList[i]["@size"] == 'x') {
           displayImage = imageList[i]["$t"]
-          // TODO: break loop
+          break;
         }
       }
       // TODO: Should render in the same order each time
