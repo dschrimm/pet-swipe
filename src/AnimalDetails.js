@@ -44,7 +44,17 @@ class AnimalDetails extends Component {
   }
 
   onXPressed() {
-    console.log('nope');
+    fetch('http://localhost:3000/rejections', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'test1@test.com',
+        petId: this.props.petId
+      })
+    });
   }
 
   onYPressed() {
