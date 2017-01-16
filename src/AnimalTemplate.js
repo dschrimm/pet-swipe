@@ -26,8 +26,10 @@ class AnimalTemplate extends Component {
 
     this.state = {
       pets: [],
-      favorites: this.getFavorites()
+      favorites: this.getFavorites(),
+      currentPet: 0
     };
+    console.log('props.nextpet',this.props.nextPet);
     this.fetchAnimals();
   }
 
@@ -79,7 +81,7 @@ class AnimalTemplate extends Component {
   onYPressed() {
     console.log('yep');
     AlertIOS.alert(
-      'Yep',
+      this.state.pets[this.state.currentPet],
       ':)!',
       [
         {
@@ -122,6 +124,7 @@ class AnimalTemplate extends Component {
   }
 
   render() {
+    var favorites = this.getFavorites();
     let petList = [];
     let id = [];
     for (var i=0; i<this.state.pets.length; i++) {
@@ -177,9 +180,7 @@ class AnimalTemplate extends Component {
     return (
       <View>
         <ScrollView bounces scrollsToTop height={650}>
-          <Swiper height={470} dotColor={clrs.transparent} activeDotColor={clrs.transparent}>
-            {petProfiles}
-          </Swiper>
+            {petProfiles[this.state.currentPet]}
           <View>
             <View style={styles.nextPetButtons}>
               <TouchableOpacity onPress={this.onXPressed.bind(this)}>

@@ -83,17 +83,19 @@ class AnimalDetails extends Component {
         petId: this.props.petId
       })
     });
-    AlertIOS.alert(
-      'Added to favorites!',
-      'Swipe to continue looking at more pets',
-      [
-        {
-          text: 'OK',
-          onPress: () => this.props.navigator.pop()
-        },
-      ]
-    );
-    // this.props.navigator.pop();
+    // AlertIOS.alert(
+    //   'Added to favorites!',
+    //   'Swipe to continue looking at more pets',
+    //   [
+    //     {
+    //       text: 'OK',
+    //       onPress: () => this.props.navigator.pop({
+    //         passProps: {nextPet: 1}
+    //       })
+    //     },
+    //   ]
+    // );
+    this.props.navigator.pop();
     // this.props.navigator.popToRoute({
     //   title: 'Find Matches',
     //   component: AnimalTemplate
