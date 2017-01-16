@@ -29,7 +29,6 @@ class AnimalTemplate extends Component {
       favorites: this.getFavorites(),
       currentPet: 0
     };
-    console.log('props.nextpet',this.props.nextPet);
     this.fetchAnimals();
   }
 
@@ -78,34 +77,35 @@ class AnimalTemplate extends Component {
     );
   }
 
-  onYPressed() {
-    console.log('yep');
-    AlertIOS.alert(
-      this.state.pets[this.state.currentPet],
-      ':)!',
-      [
-        {
-          text: 'OK',
-          onPress: () => console.log('Tapped OK')
-        },
-      ]
-    );
-  }
-
-  // onYPressed(id) {
-    // console.log(id);
-    // fetch('http://localhost:3000/favorites', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     email: 'test1@test.com',
-    //     petId: this.props.petId
-    //   })
-    // });
+  // onYPressed(pet) {
+  //   console.log('petttt', pet);
+  //   // AlertIOS.alert(
+  //   //   this.state.pets[this.state.currentPet],
+  //   //   ':)!',
+  //   //   [
+  //   //     {
+  //   //       text: 'OK',
+  //   //       onPress: () => console.log('Tapped OK')
+  //   //     },
+  //   //   ]
+  //   // );
   // }
+
+  onYPressed(id) {
+    console.log(id);
+    fetch('http://localhost:3000/favorites', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'test1@test.com',
+        petId: id
+      })
+    });
+    // this.render();
+  }
 
   getFavorites() {
     let idList = [];
@@ -187,7 +187,7 @@ class AnimalTemplate extends Component {
                 <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
                 </Image>
               </TouchableOpacity>
-              <TouchableOpacity onPress={this.onYPressed.bind(this)}>
+              <TouchableOpacity onPress={() => this.onYPressed(this.state.pets[this.state.currentPet].id.$t)}>
                 <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginLeft: 50}}>
                 </Image>
               </TouchableOpacity>

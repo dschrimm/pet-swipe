@@ -72,6 +72,7 @@ class AnimalDetails extends Component {
   }
 
   onYPressed() {
+    console.log(this.props.petId);
     fetch('http://localhost:3000/favorites', {
       method: 'POST',
       headers: {
