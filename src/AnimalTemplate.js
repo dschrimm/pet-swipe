@@ -124,7 +124,7 @@ class AnimalTemplate extends Component {
   }
 
   render() {
-    var favorites = this.getFavorites();
+    this.getFavorites();
     let petList = [];
     let id = [];
     for (var i=0; i<this.state.pets.length; i++) {
