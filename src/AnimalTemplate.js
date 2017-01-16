@@ -24,7 +24,8 @@ class AnimalTemplate extends Component {
     super(props);
 
     this.state = {
-      pets: []
+      pets: [],
+      favorites: this.getFavorites()
     };
     this.fetchAnimals();
   }
@@ -106,25 +107,44 @@ class AnimalTemplate extends Component {
     // });
   }
 
+  getFavorites() {
+    let idList = [];
+    fetch('http://localhost:3000/favorites', {
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      for (var i=0; i<responseJson.length; i++) {
+        idList.push(responseJson[i].petId);
+      }
+      this.setState({favorites: idList});
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
   render() {
-    let petList = []
-    let id = []
+    let petList = [];
+    let id = [];
     for (var i=0; i<this.state.pets.length; i++) {
-      let animal = this.state.pets[i]
-      var breeds = animal["breeds"]["breed"];
-      var breedList = ''
-      if (typeof breeds['$t'] == 'string') {
-        breedList = breeds['$t'];
+      if (this.state.favorites.includes(this.state.pets[i].id.$t)) {
+        continue;
+      }
+      let animal = this.state.pets[i];
+      var breeds = animal.breeds.breed;
+      var breedList = '';
+      if (typeof breeds.$t == 'string') {
+        breedList = breeds.$t;
       } else {
         for (var j=0; j<breeds.length - 1; j++) {
-          breedList = breedList + breeds[j]['$t'] + ' / ';
+          breedList = breedList + breeds[j].$t + ' / ';
         }
-        breedList = breedList + breeds[breeds.length - 1]['$t'];
+        breedList = breedList + breeds[breeds.length - 1].$t;
       }
       petList.push({
-        uri: animal["media"]["photos"]["photo"][3]['$t'],
-        id: animal["id"]['$t'],
-        name: animal["name"]['$t'],
+        uri: animal.media.photos.photo[3].$t,
+        id: animal.id.$t,
+        name: animal.name.$t,
         breeds: breedList
       });
     }
@@ -151,7 +171,7 @@ class AnimalTemplate extends Component {
 
     let petProfiles = [];
     for (var i=0; i<petList.length; i++) {
-      let pet = petList[i]
+      let pet = petList[i];
       petProfiles.push(
         <View>
           <TouchableHighlight onPress={() => this.onImagePressed(pet.id)}>

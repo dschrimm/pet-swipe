@@ -3,6 +3,7 @@
 'use strict';
 
 import AnimalData from './AnimalData';
+import AnimalTemplate from './AnimalTemplate';
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
 
@@ -55,6 +56,7 @@ class AnimalDetails extends Component {
         petId: this.props.petId
       })
     });
+    this.removeOption(this.props.petId);
   }
 
   onYPressed() {
@@ -69,6 +71,27 @@ class AnimalDetails extends Component {
         petId: this.props.petId
       })
     });
+    this.removeOption(this.props.petId);
+  }
+
+  removeOption(petId) {
+    this.props.navigator.replacePreviousAndPop({
+      title: 'Find Matches',
+      component: AnimalTemplate,
+      passProps: {petId: petId, greeting: 'hi'}
+    });
+
+    // push({
+    //   title: 'Animal Details',
+    //   component: AnimalDetails,
+    //   passProps: {petId: petId},
+    //   leftButtonTitle: '< Back',
+    //   onLeftButtonPress: () => this.props.navigator.pop(),
+    //   rightButtonTitle: 'Menu',
+    //   onRightButtonPress: () => {
+    //     this.props.navigator.popN(2);
+    //   }
+    // });
   }
 
   render() {

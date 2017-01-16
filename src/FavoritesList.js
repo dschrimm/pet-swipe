@@ -25,7 +25,7 @@ class FavoritesList extends Component {
   }
 
   fetchFavorites() {
-    let idList = [];
+    // let idList = [];
     fetch('http://localhost:3000/favorites', {
     })
     .then((response) => response.json())
