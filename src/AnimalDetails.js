@@ -59,20 +59,20 @@ class AnimalDetails extends Component {
         petId: this.props.petId
       })
     });
-    AlertIOS.alert(
-      'Removed from your list',
-      'Swipe to continue looking at more pets',
-      [
-        {
-          text: 'OK',
-          onPress: () => this.props.navigator.pop()
-        },
-      ]
-    );
+    this.props.navigator.pop();
+    // AlertIOS.alert(
+    //   'Removed from your list',
+    //   'Swipe to continue looking at more pets',
+    //   [
+    //     {
+    //       text: 'OK',
+    //       onPress: () => this.props.navigator.pop()
+    //     },
+    //   ]
+    // );
   }
 
   onYPressed() {
-    console.log(this.props.petId);
     fetch('http://localhost:3000/favorites', {
       method: 'POST',
       headers: {

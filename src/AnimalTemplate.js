@@ -26,7 +26,8 @@ class AnimalTemplate extends Component {
 
     this.state = {
       pets: [],
-      favorites: this.getFavorites(),
+      categorized: this.getCategorizedPets(),
+      // rejections: this.getRejections(),
       currentPet: 0
     };
     this.fetchAnimals();
@@ -107,9 +108,17 @@ class AnimalTemplate extends Component {
     // this.render();
   }
 
-  getFavorites() {
+  getCategorizedPets() {
     let idList = [];
     fetch('http://localhost:3000/favorites', {
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      for (var i=0; i<responseJson.length; i++) {
+        idList.push(responseJson[i].petId);
+      }
+    })
+    fetch('http://localhost:3000/rejections', {
     })
     .then((response) => response.json())
     .then((responseJson) => {
@@ -123,8 +132,24 @@ class AnimalTemplate extends Component {
     });
   }
 
+  // getRejections() {
+  //   let idList = [];
+  //   fetch('http://localhost:3000/rejections', {
+  //   })
+  //   .then((response) => response.json())
+  //   .then((responseJson) => {
+  //     for (var i=0; i<responseJson.length; i++) {
+  //       idList.push(responseJson[i].petId);
+  //     }
+  //     this.setState({rejections: idList});
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+  // }
+
   render() {
-    this.getFavorites();
+    this.getCategorizedPets();
     let petList = [];
     let id = [];
     for (var i=0; i<this.state.pets.length; i++) {
