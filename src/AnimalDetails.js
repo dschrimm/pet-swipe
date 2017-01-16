@@ -4,6 +4,7 @@
 
 import AnimalData from './AnimalData';
 import AnimalTemplate from './AnimalTemplate';
+// import Menu from './Menu';
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
 
@@ -13,7 +14,9 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  TouchableOpacity,
+  AlertIOS
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
@@ -56,7 +59,16 @@ class AnimalDetails extends Component {
         petId: this.props.petId
       })
     });
-    this.removeOption(this.props.petId);
+    AlertIOS.alert(
+      'Removed from your list',
+      'Swipe to continue looking at more pets',
+      [
+        {
+          text: 'OK',
+          onPress: () => this.props.navigator.pop()
+        },
+      ]
+    );
   }
 
   onYPressed() {
@@ -71,20 +83,48 @@ class AnimalDetails extends Component {
         petId: this.props.petId
       })
     });
-    this.removeOption(this.props.petId);
-  }
+    AlertIOS.alert(
+      'Added to favorites!',
+      'Swipe to continue looking at more pets',
+      [
+        {
+          text: 'OK',
+          onPress: () => this.props.navigator.pop()
+        },
+      ]
+    );
+    // this.props.navigator.pop();
+    // this.props.navigator.popToRoute({
+    //   title: 'Find Matches',
+    //   component: AnimalTemplate
+    // });
+    // this.removeOption(this.props.petId);
+    // this.props.navigator.replacePreviousAndPop({
+    //   title: 'Find Matches',
+    //   component: AnimalTemplate,
+    //   passProps: {greeting: 'hi'}
+    // });
+    // this.props.navigator.push({
+    //   title: 'Find Matches',
+    //   component: AnimalTemplate,
+    //   leftButtonTitle: ' ',
+    //   rightButtonTitle: ' ',
+    //
+    // });
+  // }
 
-  removeOption(petId) {
-    this.props.navigator.replacePreviousAndPop({
-      title: 'Find Matches',
-      component: AnimalTemplate,
-      passProps: {petId: petId, greeting: 'hi'}
-    });
+  // removeOption(petId) {
+  //   this.props.navigator.replacePreviousAndPop({
+  //     title: 'Find Matches',
+  //     component: AnimalTemplate,
+  //     passProps: {petId: petId, greeting: 'hi'}
+  //   });
+  // }
 
-    // push({
+    // this.props.navigator.push({
     //   title: 'Animal Details',
     //   component: AnimalDetails,
-    //   passProps: {petId: petId},
+    //   // passProps: {petId: petId},
     //   leftButtonTitle: '< Back',
     //   onLeftButtonPress: () => this.props.navigator.pop(),
     //   rightButtonTitle: 'Menu',
@@ -125,14 +165,14 @@ class AnimalDetails extends Component {
             </Text>
           </View>
           <View style={styles.nextPetButtons}>
-            <TouchableHighlight onPress={this.onXPressed.bind(this)}>
+            <TouchableOpacity onPress={this.onXPressed.bind(this)}>
               <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
               </Image>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this.onYPressed.bind(this)}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.onYPressed.bind(this)}>
               <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginLeft: 50}}>
               </Image>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>

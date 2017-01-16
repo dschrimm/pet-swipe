@@ -13,6 +13,7 @@ import {
   View,
   Image,
   TouchableHighlight,
+  TouchableOpacity,
   AlertIOS,
   ScrollView
 } from 'react-native';
@@ -29,9 +30,6 @@ class AnimalTemplate extends Component {
     };
     this.fetchAnimals();
   }
-
-// get favorites from db
-// post a fav
 
   fetchAnimals() {
     fetch('http://localhost:3000/search', {
@@ -78,22 +76,22 @@ class AnimalTemplate extends Component {
     );
   }
 
-  // onYPressed() {
-  //   console.log('yep');
-  //   AlertIOS.alert(
-  //     'Yep',
-  //     ':)!',
-  //     [
-  //       {
-  //         text: 'OK',
-  //         onPress: () => console.log('Tapped OK')
-  //       },
-  //     ]
-  //   );
-  // }
+  onYPressed() {
+    console.log('yep');
+    AlertIOS.alert(
+      'Yep',
+      ':)!',
+      [
+        {
+          text: 'OK',
+          onPress: () => console.log('Tapped OK')
+        },
+      ]
+    );
+  }
 
-  onYPressed(id) {
-    console.log(id);
+  // onYPressed(id) {
+    // console.log(id);
     // fetch('http://localhost:3000/favorites', {
     //   method: 'POST',
     //   headers: {
@@ -105,7 +103,7 @@ class AnimalTemplate extends Component {
     //     petId: this.props.petId
     //   })
     // });
-  }
+  // }
 
   getFavorites() {
     let idList = [];
@@ -148,15 +146,7 @@ class AnimalTemplate extends Component {
         breeds: breedList
       });
     }
-    {/*for (var i=4; i<AnimalData["petfinder"]["pets"]["pet"].length; i++) {
-      let animal = AnimalData["petfinder"]["pets"]["pet"][i]
-      petList.push({
-        uri: animal["media"]["photos"]["photo"][3]["__text"],
-        id: animal["id"],
-        name: animal["name"],
-        breeds: animal["breeds"]["breed"],
-      });
-    }*/}
+
     {/*let pets = []
 
     petList.map((pet, index) => {
@@ -184,7 +174,6 @@ class AnimalTemplate extends Component {
         </View>
       );
     }
-
     return (
       <View>
         <ScrollView bounces scrollsToTop height={650}>
@@ -193,14 +182,14 @@ class AnimalTemplate extends Component {
           </Swiper>
           <View>
             <View style={styles.nextPetButtons}>
-              <TouchableHighlight onPress={this.onXPressed.bind(this)}>
+              <TouchableOpacity onPress={this.onXPressed.bind(this)}>
                 <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
                 </Image>
-              </TouchableHighlight>
-              <TouchableHighlight onPress={this.onYPressed.bind(this)}>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.onYPressed.bind(this)}>
                 <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginLeft: 50}}>
                 </Image>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
