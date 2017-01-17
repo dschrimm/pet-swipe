@@ -64,18 +64,19 @@ class AnimalTemplate extends Component {
     });
   }
 
-  onXPressed() {
-    console.log('nope');
-    AlertIOS.alert(
-      'Nope',
-      ':(',
-      [
-        {
-          text: 'OK',
-          onPress: () => console.log('Tapped OK')
-        },
-      ]
-    );
+  onXPressed(id) {
+    fetch('http://localhost:3000/rejections', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'test1@test.com',
+        petId: id
+      })
+    });
+    this.render();
   }
 
   // onYPressed(pet) {
@@ -207,7 +208,7 @@ class AnimalTemplate extends Component {
             {petProfiles[this.state.currentPet]}
           <View>
             <View style={styles.nextPetButtons}>
-              <TouchableOpacity onPress={this.onXPressed.bind(this)}>
+              <TouchableOpacity onPress={() => this.onXPressed(petList[this.state.currentPet].id)}>
                 <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
                 </Image>
               </TouchableOpacity>
