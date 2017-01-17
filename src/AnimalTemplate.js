@@ -93,7 +93,6 @@ class AnimalTemplate extends Component {
   // }
 
   onYPressed(id) {
-    console.log(id);
     fetch('http://localhost:3000/favorites', {
       method: 'POST',
       headers: {
@@ -105,7 +104,7 @@ class AnimalTemplate extends Component {
         petId: id
       })
     });
-    // this.render();
+    this.render();
   }
 
   getCategorizedPets() {
@@ -212,7 +211,7 @@ class AnimalTemplate extends Component {
                 <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
                 </Image>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onYPressed(this.state.pets[this.state.currentPet].id.$t)}>
+              <TouchableOpacity onPress={() => this.onYPressed(petList[this.state.currentPet].id)}>
                 <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginLeft: 50}}>
                 </Image>
               </TouchableOpacity>
