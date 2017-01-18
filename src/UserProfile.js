@@ -29,6 +29,13 @@ function getData(key, value, pageNumber) {
 class UserProfile extends Component {
   constructor(props) {
     super(props);
+    AsyncStorage.getItem('zipCode', (err, result) => {
+      if (err) {
+        this.setState({searchString: '90210'})
+      } else {
+        this.setState({searchString: result});
+      }
+    });
     this.state = {
       searchString: '90210',
       isLoading: false
@@ -71,32 +78,31 @@ class UserProfile extends Component {
             onChange={this.onSearchTextChanged.bind(this)}
             placeholder='Search via zip code'/>
         {/*  // TODO: check for valid zip code
-          // TODO: send data to backend for query
-        <View style={styles.flowRight}>
-          <TouchableHighlight style={styles.profileButton}
-              underlayColor={clrs.darkBrown}>
-            <Text style={styles.profileButtonText}>Location</Text>
-          </TouchableHighlight>
-        </View> */}
-        <Text style={styles.searchText}>
-          Animal Type
-        </Text>
-        <Text style={styles.searchText}>
-          Breed
-        </Text>
-        <Text style={styles.searchText}>
-          Size
-        </Text>
-        <Text style={styles.searchText}>
-          Sex
-        </Text>
-        <View style={styles.profileButton}>
-        <TouchableHighlight style={{flex: 1, justifyContent: 'center'}}
-        onPress={this.onSearchPressed.bind(this)}
-        underlayColor={clrs.darkBrown}>
-        <Text style={styles.profileButtonText}>Save</Text>
-        </TouchableHighlight>
-        </View>
+          <View style={styles.flowRight}>
+            <TouchableHighlight style={styles.profileButton}
+                underlayColor={clrs.darkBrown}>
+              <Text style={styles.profileButtonText}>Location</Text>
+            </TouchableHighlight>
+          </View> */}
+          <Text style={styles.searchText}>
+            Animal Type
+          </Text>
+          <Text style={styles.searchText}>
+            Breed
+          </Text>
+          <Text style={styles.searchText}>
+            Size
+          </Text>
+          <Text style={styles.searchText}>
+            Sex
+          </Text>
+          <View style={styles.profileButton}>
+            <TouchableHighlight style={{flex: 1, justifyContent: 'center'}}
+            onPress={this.onSearchPressed.bind(this)}
+            underlayColor={clrs.darkBrown}>
+            <Text style={styles.profileButtonText}>Save</Text>
+            </TouchableHighlight>
+          </View>
         </View>
         {/*  <View style={{backgroundColor: 'blue'}}>
           <TouchableHighlight>

@@ -15,7 +15,8 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   AlertIOS,
-  ScrollView
+  ScrollView,
+  AsyncStorage
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
@@ -34,13 +35,16 @@ class AnimalTemplate extends Component {
   }
 
   fetchAnimals() {
-    fetch('http://localhost:3000/search', {
-      headers: {
-        location: '98144',
-        size: 'M',
-        animal: 'dog'
-      }
-    })
+    var zipCode = ''
+    AsyncStorage.getItem('zipCode', (err, result) => {
+      zipCode = result;
+      fetch('http://localhost:3000/search', {
+        headers: {
+          location: zipCode,
+          size: 'M',
+          animal: 'dog'
+        }
+      })
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({pets: responseJson.petfinder.pets.pet});
@@ -48,6 +52,7 @@ class AnimalTemplate extends Component {
       .catch((error) => {
         console.error(error);
       });
+    });
     }
 
   onImagePressed(petId) {
