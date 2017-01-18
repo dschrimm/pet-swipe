@@ -34,6 +34,7 @@ class Menu extends Component {
     var zipCode = ''
     AsyncStorage.getItem('zipCode', (err, result) => {
       zipCode = result;
+      console.log(zipCode);
     });
   }
 

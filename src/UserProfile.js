@@ -70,12 +70,6 @@ class UserProfile extends Component {
             maxLength={5}
             onChange={this.onSearchTextChanged.bind(this)}
             placeholder='Search via zip code'/>
-          <TouchableHighlight style={styles.profileButton}
-              onPress={this.onSearchPressed.bind(this)}
-              underlayColor={clrs.darkBrown}>
-            <Text style={styles.profileButtonText}>Save</Text>
-          </TouchableHighlight>
-        </View>
         {/*  // TODO: check for valid zip code
           // TODO: send data to backend for query
         <View style={styles.flowRight}>
@@ -96,6 +90,14 @@ class UserProfile extends Component {
         <Text style={styles.searchText}>
           Sex
         </Text>
+        <View style={styles.profileButton}>
+        <TouchableHighlight style={{flex: 1, justifyContent: 'center'}}
+        onPress={this.onSearchPressed.bind(this)}
+        underlayColor={clrs.darkBrown}>
+        <Text style={styles.profileButtonText}>Save</Text>
+        </TouchableHighlight>
+        </View>
+        </View>
         {/*  <View style={{backgroundColor: 'blue'}}>
           <TouchableHighlight>
             <Text style={{flex: 1}}>M</Text>

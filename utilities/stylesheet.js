@@ -179,7 +179,7 @@ const AppStyleSheet = StyleSheet.create({
   },
 
   flowRight: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch'
   },
@@ -190,7 +190,6 @@ const AppStyleSheet = StyleSheet.create({
   },
   profileButton: {
     height: 36,
-    flex: 1,
     flexDirection: 'row',
     backgroundColor: clrs.brown,
     borderColor: clrs.brown,
@@ -202,14 +201,15 @@ const AppStyleSheet = StyleSheet.create({
   },
   searchInput: {
     height: 36,
-    padding: 4,
+    // padding: 4,
     marginRight: 5,
-    flex: 4,
+    // flex: 4,
     fontSize: 18,
     borderWidth: 1,
     borderColor: clrs.brown,
     borderRadius: 8,
-    color: clrs.brown
+    color: clrs.brown,
+    textAlign: 'center'
   }
 });
 
