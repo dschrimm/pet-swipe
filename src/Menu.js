@@ -13,15 +13,32 @@ import {
   Text,
   View,
   TouchableHighlight,
+  AsyncStorage
 } from 'react-native';
 
 class Menu extends Component {
   constructor(props) {
     super(props);
+    if (!this.props.zipCode) {
+      // this.props.zipCode = 92130;
+      console.log('undefined');
+    } else {
+      console.log('defined');
+    }
+    // console.log('menu props', this.props.zipCode);
     // this.state
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('in component will receive props')
+    var zipCode = ''
+    AsyncStorage.getItem('zipCode', (err, result) => {
+      zipCode = result;
+    });
+  }
+
   onMatchesPressed() {
+    console.log('zipcode', this.props.zipCode);
     this.props.navigator.push({
       title: 'Find Matches',
       component: AnimalTemplate,
@@ -50,6 +67,10 @@ class Menu extends Component {
     this.props.navigator.push({
       title: 'My Profile',
       component: UserProfile,
+      leftButtonTitle: 'Cancel',
+      onLeftButtonPress: () => {
+        this.props.navigator.pop();
+      },
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
         this.props.navigator.pop();
@@ -59,6 +80,8 @@ class Menu extends Component {
   }
 
   render() {
+    // console.log('menu props', this.props.zipCode);
+
     return (
       <View style={styles.menuContainer}>
         <TouchableHighlight

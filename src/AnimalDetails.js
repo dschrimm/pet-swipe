@@ -24,7 +24,7 @@ import Swiper from 'react-native-swiper';
 class AnimalDetails extends Component {
   constructor(props) {
     super(props);
-    props.isFavorite = this.checkFavorite();
+    // props.isFavorite = this.checkFavorite();
 
     this.state = {
       animal: {},
@@ -33,9 +33,9 @@ class AnimalDetails extends Component {
     this.fetchAnimal();
   }
 
-  checkFavorite() {
-
-  }
+  // checkFavorite() {
+  //
+  // }
 
   fetchAnimal() {
     fetch('http://localhost:3000/get', {

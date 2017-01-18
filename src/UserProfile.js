@@ -4,8 +4,11 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
-  ActivityIndicator
+  ActivityIndicator,
+  AsyncStorage
 } from 'react-native';
+
+import AnimalTemplate from './AnimalTemplate';
 
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
@@ -43,6 +46,8 @@ class UserProfile extends Component {
   onSearchPressed() {
     var query = getData('place_name', this.state.searchString, 1);
     this._executeQuery(query);
+
+    AsyncStorage.setItem('zipCode', query, () => {this.props.navigator.pop()});
   }
 
   render() {
@@ -56,32 +61,49 @@ class UserProfile extends Component {
           Find pets that match your needs!
         </Text>
         <Text style={styles.searchText}>
-          Search by zip code or find avaialble pets near your location.
+          Search by zip code
         </Text>
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
             value={this.state.searchString}
+            maxLength={5}
             onChange={this.onSearchTextChanged.bind(this)}
             placeholder='Search via zip code'/>
           <TouchableHighlight style={styles.profileButton}
               onPress={this.onSearchPressed.bind(this)}
-              underlayColor='#99d9f4'>
-            <Text style={styles.profileButtonText}>Go</Text>
+              underlayColor={clrs.darkBrown}>
+            <Text style={styles.profileButtonText}>Save</Text>
           </TouchableHighlight>
         </View>
+        {/*  // TODO: check for valid zip code
+          // TODO: send data to backend for query
         <View style={styles.flowRight}>
           <TouchableHighlight style={styles.profileButton}
               underlayColor={clrs.darkBrown}>
             <Text style={styles.profileButtonText}>Location</Text>
           </TouchableHighlight>
-        </View>
+        </View> */}
         <Text style={styles.searchText}>
           Animal Type
         </Text>
         <Text style={styles.searchText}>
           Breed
         </Text>
+        <Text style={styles.searchText}>
+          Size
+        </Text>
+        <Text style={styles.searchText}>
+          Sex
+        </Text>
+        {/*  <View style={{backgroundColor: 'blue'}}>
+          <TouchableHighlight>
+            <Text style={{flex: 1}}>M</Text>
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <Text style={{flex: 1}}>F</Text>
+          </TouchableHighlight>
+          </View> */}
         {spinner}
       </View>
     );
