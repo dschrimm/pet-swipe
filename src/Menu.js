@@ -4,6 +4,7 @@
 import Animal from './Animal';
 import AnimalTemplate from './AnimalTemplate';
 import FavoritesList from './FavoritesList';
+import UserProfile from './UserProfile';
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
 
@@ -45,13 +46,17 @@ class Menu extends Component {
     });
   }
 
-  // onProfilePressed() {
-  //   console.log('image pressed');
-  //   this.props.navigator.push({
-  //     title: 'Profile',
-  //     component: AnimalDetails
-  //   });
-  // }
+  onProfilePressed() {
+    this.props.navigator.push({
+      title: 'My Profile',
+      component: UserProfile,
+      rightButtonTitle: 'Menu',
+      onRightButtonPress: () => {
+        this.props.navigator.pop();
+      },
+      leftButtonTitle: ' '
+    });
+  }
 
   render() {
     return (
@@ -72,12 +77,14 @@ class Menu extends Component {
             </Text>
           </View>
         </TouchableHighlight>
-        <View style={styles.menuRows, {backgroundColor: clrs.lightGreen}}>
-          <Text style={styles.menuText}>
-          Edit Profile
-          </Text>
-        </View>
-
+        <TouchableHighlight
+          onPress={this.onProfilePressed.bind(this)}>
+          <View style={styles.menuRows, {backgroundColor: clrs.lightGreen}}>
+            <Text style={styles.menuText}>
+            Edit Profile
+            </Text>
+          </View>
+        </TouchableHighlight>
       </View>
     )
   }

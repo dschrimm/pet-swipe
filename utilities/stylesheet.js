@@ -46,6 +46,13 @@ const AppStyleSheet = StyleSheet.create({
     // resizeMode: 'cover'
   },
 
+  searchText: {
+    marginBottom: 20,
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#656565'
+  },
+
   favoriteImages: {
     height: 145,
     width: 145,
@@ -162,6 +169,48 @@ const AppStyleSheet = StyleSheet.create({
         margin: 82,
         alignSelf: 'center'
       },
+
+      // Profile page
+
+      profileContainer: {
+        padding: 30,
+        marginTop: 65,
+        alignItems: 'center',
+      },
+
+      flowRight: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  alignSelf: 'stretch'
+},
+profileButtonText: {
+  fontSize: 18,
+  color: 'white',
+  alignSelf: 'center'
+},
+profileButton: {
+  height: 36,
+  flex: 1,
+  flexDirection: 'row',
+  backgroundColor: clrs.brown,
+  borderColor: clrs.brown,
+  borderWidth: 1,
+  borderRadius: 8,
+  marginBottom: 10,
+  alignSelf: 'stretch',
+  justifyContent: 'center'
+},
+searchInput: {
+  height: 36,
+  padding: 4,
+  marginRight: 5,
+  flex: 4,
+  fontSize: 18,
+  borderWidth: 1,
+  borderColor: clrs.brown,
+  borderRadius: 8,
+  color: clrs.brown
+}
 });
 
 module.exports = AppStyleSheet;

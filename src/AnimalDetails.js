@@ -24,12 +24,17 @@ import Swiper from 'react-native-swiper';
 class AnimalDetails extends Component {
   constructor(props) {
     super(props);
+    props.isFavorite = this.checkFavorite();
 
     this.state = {
       animal: {},
       isSet: false
     };
     this.fetchAnimal();
+  }
+
+  checkFavorite() {
+
   }
 
   fetchAnimal() {
