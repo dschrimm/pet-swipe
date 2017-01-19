@@ -71,8 +71,32 @@ class UserProfile extends Component {
     this.state = {
       searchString: '90210',
       isLoading: false,
-      textInputValue: ''
+      animalType: '',
+      breedList: []
     };
+
+  }
+
+  getBreedList(animalType) {
+    let breedList = [];
+    fetch('http://localhost:3000/breeds', {
+      headers: {
+        animal: animalType
+      }
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      let breedsJson = responseJson.petfinder.breeds.breed
+      for (var i=0; i<breedsJson.length; i++) {
+        breedList.push({key: i, label: breedsJson[i].$t});
+      }
+      this.setState({animalType: animalType})
+      this.setState({breedList: breedList});
+    })
+
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   onSearchTextChanged(event) {
@@ -98,8 +122,7 @@ class UserProfile extends Component {
         size='large'/> ) :
     ( <View/>);
 
-console.log(this.state);
-
+    console.log(this.state);
 
     return(
       <View style={styles.profileContainer}>
@@ -127,13 +150,14 @@ console.log(this.state);
             data={animalTypes}
             initValue="Select animal type"
             style={{height: 36}}
-            onChange={(option)=>{ this.setState({animalType:option.type})}}>
+            onChange={(option)=>{ this.setState({breedList: this.getBreedList(option.type)})}}>
 
             <TextInput
               style={styles.searchInput}
               editable={false}
               placeholder="Select animal type"
-              value={this.state.animalType} />
+              value={this.state.animalType}/>
+            {/*  value={this.state.animalType} */}
 
           </ModalPicker>
           </View>
@@ -156,7 +180,7 @@ console.log(this.state);
             style={styles.pickBreed}/>*/}
 
           <ModalPicker
-            data={data}
+            data={this.state.breedList}
             initValue="Select breed"
             style={{height: 36}}
             onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
