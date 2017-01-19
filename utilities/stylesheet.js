@@ -48,6 +48,7 @@ const AppStyleSheet = StyleSheet.create({
 
   searchText: {
     marginBottom: 20,
+    marginTop: 20,
     fontSize: 18,
     textAlign: 'center',
     color: '#656565'

@@ -5,13 +5,45 @@ import {
   TextInput,
   TouchableHighlight,
   ActivityIndicator,
-  AsyncStorage
+  AsyncStorage,
+  Keyboard
 } from 'react-native';
 
 import AnimalTemplate from './AnimalTemplate';
 
+import ModalPicker from 'react-native-modal-picker'
+
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
+
+let index = 0;
+  const animalTypes = [
+    {key: index++, label: 'Dog', type: 'dog'},
+    {key: index++, label: 'Cat', type: 'cat'},
+    {key: index++, label: 'Bird', type: 'bird'},
+    {key: index++, label: 'Reptile', type: 'reptile'},
+    {key: index++, label: 'Barnyard', type: 'barnyard'},
+    {key: index++, label: 'Horse', type: 'horse'},
+    {key: index++, label: 'Pig', type: 'pig'},
+    {key: index++, label: 'Small Furry', type: 'smallfurry'},
+  ]
+    const data = [
+        { key: index++, section: true, label: 'Fruits' },
+        { key: index++, label: 'Red Apples' },
+        { key: index++, label: 'Cherries' },
+        { key: index++, label: 'Cranberries' },
+        { key: index++, label: 'Pink Grapefruit' },
+        { key: index++, label: 'Raspberries' },
+        { key: index++, section: true, label: 'Vegetables' },
+        { key: index++, label: 'Beets' },
+        { key: index++, label: 'Red Peppers' },
+        { key: index++, label: 'Radishes' },
+        { key: index++, label: 'Radicchio' },
+        { key: index++, label: 'Red Onions' },
+        { key: index++, label: 'Red Potatoes' },
+        { key: index++, label: 'Rhubarb' },
+        { key: index++, label: 'Tomatoes' }
+    ];
 
 function getData(key, value, pageNumber) {
   var data = {
@@ -38,7 +70,8 @@ class UserProfile extends Component {
     });
     this.state = {
       searchString: '90210',
-      isLoading: false
+      isLoading: false,
+      textInputValue: ''
     };
   }
 
@@ -57,11 +90,17 @@ class UserProfile extends Component {
     AsyncStorage.setItem('zipCode', query, () => {this.props.navigator.pop()});
   }
 
+
+
   render() {
     var spinner = this.state.isLoading ?
     ( <ActivityIndicator
         size='large'/> ) :
     ( <View/>);
+
+console.log(this.state);
+
+
     return(
       <View style={styles.profileContainer}>
         <Text style={styles.searchText}>
@@ -75,21 +114,65 @@ class UserProfile extends Component {
             style={styles.searchInput}
             value={this.state.searchString}
             maxLength={5}
+            keyboardType='phone-pad'
             onChange={this.onSearchTextChanged.bind(this)}
             placeholder='Search via zip code'/>
-        {/*  // TODO: check for valid zip code
-          <View style={styles.flowRight}>
-            <TouchableHighlight style={styles.profileButton}
-                underlayColor={clrs.darkBrown}>
-              <Text style={styles.profileButtonText}>Location</Text>
-            </TouchableHighlight>
-          </View> */}
+        {/* TODO: Pop up keyboard
+          TODO: check for valid zip code */}
           <Text style={styles.searchText}>
             Animal Type
           </Text>
+          <View style={{flex:1, justifyContent:'space-around', alignSelf: 'stretch', marginBottom: 20}}>
+          <ModalPicker
+            data={animalTypes}
+            initValue="Select animal type"
+            style={{height: 36}}
+            onChange={(option)=>{ this.setState({animalType:option.type})}}>
+
+            <TextInput
+              style={styles.searchInput}
+              editable={false}
+              placeholder="Select animal type"
+              value={this.state.animalType} />
+
+          </ModalPicker>
+          </View>
+
+
+
+
+
           <Text style={styles.searchText}>
             Breed
           </Text>
+
+
+
+          <View style={{flex:1, justifyContent:'space-around', alignSelf: 'stretch', marginBottom: 20}}>
+        {/*  <ModalPicker
+            data={data}
+            initValue="Select breed"
+            onChange={(option)=>{ alert(`${option.label} (${option.key}) nom nom nom`) }}
+            style={styles.pickBreed}/>*/}
+
+          <ModalPicker
+            data={data}
+            initValue="Select breed"
+            style={{height: 36}}
+            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+
+            <TextInput
+              style={styles.searchInput}
+              editable={false}
+              placeholder="Select breed"
+              value={this.state.textInputValue} />
+
+          </ModalPicker>
+          </View>
+
+
+
+
           <Text style={styles.searchText}>
             Size
           </Text>
