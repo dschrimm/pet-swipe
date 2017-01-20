@@ -23,7 +23,7 @@ class Navigation extends Component {
   render() {
     return (
       <NavigatorIOS
-        interactivePopGestureEnabled={false}
+        interactivePopGestureEnabled={true}
         // navigationBarHidden={true}
         style={styles.container}
         initialRoute={{

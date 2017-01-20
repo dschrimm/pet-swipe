@@ -19,7 +19,7 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import Swiper from 'react-native-swiper';
+// import Swiper from 'react-native-swiper';
 
 class AnimalTemplate extends Component {
   constructor(props) {
@@ -58,6 +58,7 @@ class AnimalTemplate extends Component {
 
   onImagePressed(petId) {
     this.props.navigator.push({
+      // interactivePopGestureEnabled: true,
       title: 'Animal Details',
       component: AnimalDetails,
       passProps: {petId: petId},
