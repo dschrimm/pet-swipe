@@ -71,6 +71,8 @@ class AnimalTemplate extends Component {
     });
   }
 
+
+
   onXPressed(id) {
     fetch('http://localhost:3000/rejections', {
       method: 'POST',
@@ -99,6 +101,27 @@ class AnimalTemplate extends Component {
       })
     });
     this.setState({currentPet: (this.state.currentPet + 1)});
+  }
+
+  afterPress(action) {
+    var i = 0;
+    var timer = setInterval(function(){
+      console.log(++i);
+      if(i === 6) {
+        this.nextPet()
+        // clearInterval(timer)
+        // this.setState({currentPet: (this.state.currentPet + 1)});
+      console.log('post-interval'); //this will still run after clearing
+      // this.nextPet();
+    }
+    },200);
+
+  }
+
+  nextPet() {
+    var currentIndex = this.state.currentPet;
+    this.setState({currentPet: (currentIndex + 1)});
+    return true;
   }
 
   getCategorizedPets() {
