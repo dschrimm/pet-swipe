@@ -25,9 +25,11 @@ class AnimalTemplate extends Component {
   constructor(props) {
     super(props);
 
+    var categorizedPets = this.getCategorizedPets();
+
     this.state = {
       pets: [],
-      categorized: this.getCategorizedPets(),
+      categorized: categorizedPets,
       currentPet: 0
     };
     this.fetchAnimals();
@@ -66,6 +68,7 @@ class AnimalTemplate extends Component {
         this.props.navigator.popN(2);
       }
     });
+    this.setState({currentPet: (this.state.currentPet + 1)});
   }
 
   onXPressed(id) {
@@ -80,22 +83,8 @@ class AnimalTemplate extends Component {
         petId: id
       })
     });
-    this.render();
+    this.setState({currentPet: (this.state.currentPet + 1)});
   }
-
-  // onYPressed(pet) {
-  //   console.log('petttt', pet);
-  //   // AlertIOS.alert(
-  //   //   this.state.pets[this.state.currentPet],
-  //   //   ':)!',
-  //   //   [
-  //   //     {
-  //   //       text: 'OK',
-  //   //       onPress: () => console.log('Tapped OK')
-  //   //     },
-  //   //   ]
-  //   // );
-  // }
 
   onYPressed(id) {
     fetch('http://localhost:3000/favorites', {
@@ -109,7 +98,7 @@ class AnimalTemplate extends Component {
         petId: id
       })
     });
-    this.render();
+    this.setState({currentPet: (this.state.currentPet + 1)});
   }
 
   getCategorizedPets() {
@@ -129,31 +118,14 @@ class AnimalTemplate extends Component {
       for (var i=0; i<responseJson.length; i++) {
         idList.push(responseJson[i].petId);
       }
-      this.setState({favorites: idList});
+      this.state.favorites = idList;
     })
     .catch((error) => {
       console.error(error);
     });
   }
 
-  // getRejections() {
-  //   let idList = [];
-  //   fetch('http://localhost:3000/rejections', {
-  //   })
-  //   .then((response) => response.json())
-  //   .then((responseJson) => {
-  //     for (var i=0; i<responseJson.length; i++) {
-  //       idList.push(responseJson[i].petId);
-  //     }
-  //     this.setState({rejections: idList});
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
-  // }
-
   render() {
-    this.getCategorizedPets();
     let petList = [];
     let id = [];
     for (var i=0; i<this.state.pets.length; i++) {

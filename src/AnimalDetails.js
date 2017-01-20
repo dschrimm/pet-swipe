@@ -172,6 +172,7 @@ class AnimalDetails extends Component {
               {description}
             </Text>
           </View>
+          {/*
           <View style={styles.nextPetButtons}>
             <TouchableOpacity onPress={this.onXPressed.bind(this)}>
               <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
@@ -181,7 +182,7 @@ class AnimalDetails extends Component {
               <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginLeft: 50}}>
               </Image>
             </TouchableOpacity>
-          </View>
+          </View>*/}
         </ScrollView>
       </View>
     );
