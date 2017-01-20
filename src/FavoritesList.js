@@ -74,7 +74,7 @@ class FavoritesList extends Component {
     this.props.navigator.push({
       title: 'Animal Details',
       component: AnimalDetails,
-      passProps: {petId: petId},
+      passProps: {petId: petId, fromFavorites: true},
       leftButtonTitle: '< Back',
       onLeftButtonPress: () => this.props.navigator.pop(),
       rightButtonTitle: 'Menu',

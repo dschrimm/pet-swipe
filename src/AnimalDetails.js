@@ -65,16 +65,6 @@ class AnimalDetails extends Component {
       })
     });
     this.props.navigator.pop();
-    // AlertIOS.alert(
-    //   'Removed from your list',
-    //   'Swipe to continue looking at more pets',
-    //   [
-    //     {
-    //       text: 'OK',
-    //       onPress: () => this.props.navigator.pop()
-    //     },
-    //   ]
-    // );
   }
 
   onYPressed() {
@@ -89,61 +79,42 @@ class AnimalDetails extends Component {
         petId: this.props.petId
       })
     });
-    // AlertIOS.alert(
-    //   'Added to favorites!',
-    //   'Swipe to continue looking at more pets',
-    //   [
-    //     {
-    //       text: 'OK',
-    //       onPress: () => this.props.navigator.pop({
-    //         passProps: {nextPet: 1}
-    //       })
-    //     },
-    //   ]
-    // );
+
     this.props.navigator.pop();
-    // this.props.navigator.popToRoute({
-    //   title: 'Find Matches',
-    //   component: AnimalTemplate
-    // });
-    // this.removeOption(this.props.petId);
-    // this.props.navigator.replacePreviousAndPop({
-    //   title: 'Find Matches',
-    //   component: AnimalTemplate,
-    //   passProps: {greeting: 'hi'}
-    // });
-    // this.props.navigator.push({
-    //   title: 'Find Matches',
-    //   component: AnimalTemplate,
-    //   leftButtonTitle: ' ',
-    //   rightButtonTitle: ' ',
-    //
-    // });
-  // }
+  }
 
-  // removeOption(petId) {
-  //   this.props.navigator.replacePreviousAndPop({
-  //     title: 'Find Matches',
-  //     component: AnimalTemplate,
-  //     passProps: {petId: petId, greeting: 'hi'}
-  //   });
-  // }
+  isFavorite() {
+    console.log(this.props.fromFavorites);
+    if (this.props.fromFavorites){
+      console.log('from favorites');
+      return (
+        <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
+        </Image>
+      )
+    } else {
+      console.log('not from favorites');
+    //   return (
+    //     true
+    //   )
+    }
+  }
 
-    // this.props.navigator.push({
-    //   title: 'Animal Details',
-    //   component: AnimalDetails,
-    //   // passProps: {petId: petId},
-    //   leftButtonTitle: '< Back',
-    //   onLeftButtonPress: () => this.props.navigator.pop(),
-    //   rightButtonTitle: 'Menu',
-    //   onRightButtonPress: () => {
-    //     this.props.navigator.popN(2);
-    //   }
-    // });
+  removeFavorite() {
+    fetch('http://localhost:3000/favorites', {
+      method: 'DELETE',
+      headers: {
+        // 'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        // email: 'test1@test.com',
+        petId: this.props.petId
+      })
+    });
   }
 
   render() {
-   // TODO: add error message if for some reason pet details cannot be found
+   // TODO: add error message if pet details cannot be found
     let images = [];
     let description = '';
     if (this.state.isSet == true) {
@@ -159,6 +130,7 @@ class AnimalDetails extends Component {
           );
         }
       }
+
     }
 
     return (
@@ -171,6 +143,7 @@ class AnimalDetails extends Component {
             <Text style={styles.briefDescription}>
               {description}
             </Text>
+            {this.isFavorite()}
           </View>
           {/*
           <View style={styles.nextPetButtons}>

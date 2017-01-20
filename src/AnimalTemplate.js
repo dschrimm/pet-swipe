@@ -124,7 +124,7 @@ class AnimalTemplate extends Component {
     return true;
   }
 
-  getCategorizedPets() {
+  fetchFavorites() {
     let idList = [];
     fetch('http://localhost:3000/favorites', {
     })
@@ -134,6 +134,11 @@ class AnimalTemplate extends Component {
         idList.push(responseJson[i].petId);
       }
     })
+    return idList;
+  }
+
+  getCategorizedPets() {
+    let idList = this.fetchFavorites();
     fetch('http://localhost:3000/rejections', {
     })
     .then((response) => response.json())
