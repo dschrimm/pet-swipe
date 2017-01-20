@@ -26,7 +26,7 @@ class FavoritesList extends Component {
 
   fetchFavorites() {
     // let idList = [];
-    fetch('http://localhost:3000/favorites', {
+    fetch('http://www.thepetswipeapp.com/favorites', {
     })
     .then((response) => response.json())
     .then((responseJson) => {
@@ -41,7 +41,7 @@ class FavoritesList extends Component {
 
   fetchImage(petId) {
     var imageUrl = ''
-    fetch('http://localhost:3000/get', {
+    fetch('http://www.thepetswipeapp.com/get', {
       headers: {
         id: petId
       }

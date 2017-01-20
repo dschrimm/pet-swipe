@@ -39,7 +39,7 @@ class AnimalTemplate extends Component {
     var zipCode = ''
     AsyncStorage.getItem('zipCode', (err, result) => {
       zipCode = result;
-      fetch('http://localhost:3000/search', {
+      fetch('http://www.thepetswipeapp.com/search', {
         headers: {
           location: zipCode,
           size: 'M',
@@ -74,7 +74,7 @@ class AnimalTemplate extends Component {
 
 
   onXPressed(id) {
-    fetch('http://localhost:3000/rejections', {
+    fetch('http://www.thepetswipeapp.com/rejections', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -89,7 +89,7 @@ class AnimalTemplate extends Component {
   }
 
   onYPressed(id) {
-    fetch('http://localhost:3000/favorites', {
+    fetch('http://www.thepetswipeapp.com/favorites', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -126,7 +126,7 @@ class AnimalTemplate extends Component {
 
   fetchFavorites() {
     let idList = [];
-    fetch('http://localhost:3000/favorites', {
+    fetch('http://www.thepetswipeapp.com/favorites', {
     })
     .then((response) => response.json())
     .then((responseJson) => {
@@ -139,7 +139,7 @@ class AnimalTemplate extends Component {
 
   getCategorizedPets() {
     let idList = this.fetchFavorites();
-    fetch('http://localhost:3000/rejections', {
+    fetch('http://www.thepetswipeapp.com/rejections', {
     })
     .then((response) => response.json())
     .then((responseJson) => {

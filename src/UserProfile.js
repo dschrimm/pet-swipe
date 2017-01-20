@@ -58,7 +58,7 @@ class UserProfile extends Component {
 
   getBreedList(animalType) {
     let breedList = [];
-    fetch('http://localhost:3000/breeds', {
+    fetch('http://www.thepetswipeapp.com/breeds', {
       headers: {
         animal: animalType
       }

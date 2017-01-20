@@ -38,7 +38,7 @@ class AnimalDetails extends Component {
   // }
 
   fetchAnimal() {
-    fetch('http://localhost:3000/get', {
+    fetch('http://www.thepetswipeapp.com/get', {
       headers: {
         id: this.props.petId
       }
@@ -53,7 +53,7 @@ class AnimalDetails extends Component {
   }
 
   onXPressed() {
-    fetch('http://localhost:3000/rejections', {
+    fetch('http://www.thepetswipeapp.com/rejections', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -68,7 +68,7 @@ class AnimalDetails extends Component {
   }
 
   onYPressed() {
-    fetch('http://localhost:3000/favorites', {
+    fetch('http://www.thepetswipeapp.com/favorites', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -98,11 +98,11 @@ class AnimalDetails extends Component {
   }
 
   removeFavorite(petId) {
-    fetch('http://localhost:3000/favorites/' + petId, {
+    fetch('http://www.thepetswipeapp.com/favorites/' + petId, {
       method: 'DELETE',
     });
     // Add to rejections to avoid showing up in options again
-    fetch('http://localhost:3000/rejections', {
+    fetch('http://www.thepetswipeapp.com/rejections', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
