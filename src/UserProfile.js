@@ -87,12 +87,21 @@ class UserProfile extends Component {
   }
 
   onSearchPressed() {
-    var query = getData('place_name', this.state.searchString, 1);
-    this._executeQuery(query);
+    var zipCode = getData('place_name', this.state.searchString, 1);
+    this._executeQuery(zipCode);
+    console.log('hi');
+    animalType = getData('place_name', this.state.animalType, 1);
+    if (getData('place_name', this.state.breed, 1) == null) {
+      breed = ''
+    } else {
+      breed = getData('place_name', this.state.breed, 1);
+    }
 
     // var breedList = getData()
     // AsyncStorage.setItem('breedList', this.state.breedList, () => {})
-    AsyncStorage.setItem('zipCode', query, () => {this.props.navigator.pop()})
+    AsyncStorage.setItem('animalType', animalType)
+    AsyncStorage.setItem('breed', breed)
+    AsyncStorage.setItem('zipCode', zipCode, () => {this.props.navigator.pop()})
   }
 
   render() {
@@ -101,7 +110,7 @@ class UserProfile extends Component {
         size='large'/> ) :
     ( <View/>);
 
-    console.log(this.state);
+    // console.log(this.state);
 
     return(
       <View style={styles.profileContainer}>
@@ -136,20 +145,12 @@ class UserProfile extends Component {
               editable={false}
               placeholder="Select animal type"
               value={this.state.animalType}/>
-            {/*  value={this.state.animalType} */}
-
           </ModalPicker>
           </View>
-
-
-
-
 
           <Text style={styles.searchText}>
             Breed
           </Text>
-
-
 
           <View style={{flex:1, justifyContent:'space-around', alignSelf: 'stretch', marginBottom: 20}}>
         {/*  <ModalPicker
@@ -162,13 +163,13 @@ class UserProfile extends Component {
             data={this.state.breedList}
             initValue="Select breed"
             style={{height: 36}}
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{ this.setState({breed:option.label})}}>
 
             <TextInput
               style={styles.searchInput}
               editable={false}
               placeholder="Select breed"
-              value={this.state.textInputValue} />
+              value={this.state.breed} />
 
           </ModalPicker>
           </View>
