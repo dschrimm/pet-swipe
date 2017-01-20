@@ -86,8 +86,13 @@ class AnimalDetails extends Component {
   isFavorite() {
     if (this.props.fromFavorites){
       return (
-        <TouchableOpacity onPress={() => this.removeFavorite(this.props.petId)}><Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
-        </Image></TouchableOpacity>
+        <View style={styles.removeButton}>
+          <TouchableHighlight style={{flex: 1, justifyContent: 'center'}}
+          onPress={() => this.removeFavorite(this.props.petId)}
+          underlayColor={clrs.darkRed}>
+          <Text style={styles.profileButtonText}>Remove From Favorites</Text>
+          </TouchableHighlight>
+        </View>
       )
     } else {
       console.log('not from favorites');

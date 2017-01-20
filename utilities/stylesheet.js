@@ -200,6 +200,18 @@ const AppStyleSheet = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  removeButton: {
+    height: 36,
+    flexDirection: 'row',
+    backgroundColor: clrs.red,
+    borderColor: clrs.red,
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginTop: 20
+  },
   searchInput: {
     height: 36,
     // padding: 4,
