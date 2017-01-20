@@ -68,7 +68,6 @@ class AnimalTemplate extends Component {
         this.props.navigator.popN(2);
       }
     });
-    this.setState({currentPet: (this.state.currentPet + 1)});
   }
 
   onXPressed(id) {
