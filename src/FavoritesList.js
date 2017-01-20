@@ -58,7 +58,9 @@ class FavoritesList extends Component {
       }
       // TODO: Should render in the same order each time
       this.state.petList.push(
-          <TouchableOpacity onPress={() => this.onImagePressed(petId)} style={styles.favoriteImages}>
+          <TouchableOpacity onPress={() => this.onImagePressed(petId)}
+           style={styles.favoriteImages}
+           key={petId}>
             <Image source={{uri: displayImage}} style={{borderRadius: 40}}>
               <View style={styles.backdrop}></View>
             </Image>

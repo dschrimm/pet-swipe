@@ -26,34 +26,13 @@ let index = 0;
     {key: index++, label: 'Horse', type: 'horse'},
     {key: index++, label: 'Pig', type: 'pig'},
     {key: index++, label: 'Small Furry', type: 'smallfurry'},
-  ]
-    const data = [
-        { key: index++, section: true, label: 'Fruits' },
-        { key: index++, label: 'Red Apples' },
-        { key: index++, label: 'Cherries' },
-        { key: index++, label: 'Cranberries' },
-        { key: index++, label: 'Pink Grapefruit' },
-        { key: index++, label: 'Raspberries' },
-        { key: index++, section: true, label: 'Vegetables' },
-        { key: index++, label: 'Beets' },
-        { key: index++, label: 'Red Peppers' },
-        { key: index++, label: 'Radishes' },
-        { key: index++, label: 'Radicchio' },
-        { key: index++, label: 'Red Onions' },
-        { key: index++, label: 'Red Potatoes' },
-        { key: index++, label: 'Rhubarb' },
-        { key: index++, label: 'Tomatoes' }
-    ];
+  ];
 
 function getData(key, value, pageNumber) {
   var data = {
       page: pageNumber
   };
   data[key] = value;
-
-  // var querystring = Object.keys(data)
-  //   .map(key => key + '=' + encodeURIComponent(data[key]))
-  //   .join('&');
 
   return data[key];
 };
@@ -111,10 +90,10 @@ class UserProfile extends Component {
     var query = getData('place_name', this.state.searchString, 1);
     this._executeQuery(query);
 
-    AsyncStorage.setItem('zipCode', query, () => {this.props.navigator.pop()});
+    // var breedList = getData()
+    // AsyncStorage.setItem('breedList', this.state.breedList, () => {})
+    AsyncStorage.setItem('zipCode', query, () => {this.props.navigator.pop()})
   }
-
-
 
   render() {
     var spinner = this.state.isLoading ?
@@ -207,7 +186,7 @@ class UserProfile extends Component {
             <TouchableHighlight style={{flex: 1, justifyContent: 'center'}}
             onPress={this.onSearchPressed.bind(this)}
             underlayColor={clrs.darkBrown}>
-            <Text style={styles.profileButtonText}>Save</Text>
+            <Text style={styles.profileButtonText}>Go</Text>
             </TouchableHighlight>
           </View>
         </View>

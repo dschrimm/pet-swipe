@@ -28,7 +28,6 @@ class AnimalTemplate extends Component {
     this.state = {
       pets: [],
       categorized: this.getCategorizedPets(),
-      // rejections: this.getRejections(),
       currentPet: 0
     };
     this.fetchAnimals();
