@@ -36,23 +36,29 @@ class AnimalTemplate extends Component {
   }
 
   fetchAnimals() {
-    var zipCode = ''
+    var zipCode, animalType, breed;
+    AsyncStorage.getItem('animalType', (err, result) => {
+      animalType = result;
+
     AsyncStorage.getItem('zipCode', (err, result) => {
       zipCode = result;
       fetch('http://www.thepetswipeapp.com/search', {
         headers: {
           location: zipCode,
           size: 'M',
-          animal: 'dog'
+          animal: animalType
         }
       })
+
       .then((response) => response.json())
       .then((responseJson) => {
+        // console.log(responseJson.petfinder.pets.pet);
         this.setState({pets: responseJson.petfinder.pets.pet});
       })
       .catch((error) => {
         console.error(error);
       });
+    })
     });
     }
 
@@ -171,12 +177,33 @@ class AnimalTemplate extends Component {
         }
         breedList = breedList + breeds[breeds.length - 1].$t;
       }
+      // console.log(animal.media.photos.photo[3].$t);
+      // break
+      let photoUri = '';
+      let photos = ''
+      if (animal.media.photos != undefined) {
+        photos = animal.media.photos.photo;
+      } else {
+        break;
+      }
+
+      for (var j=0; j<photos.length; j++) {
+        if (photos[j]["@size"] == 'x') {
+          photoUri = photos[j].$t;
+          break;
+        }
+      }
+      if (photoUri == '') {
+        break;
+      } else {
+
       petList.push({
         uri: animal.media.photos.photo[3].$t,
         id: animal.id.$t,
         name: animal.name.$t,
         breeds: breedList
       });
+    }
     }
 
     {/*let pets = []

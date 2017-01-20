@@ -47,7 +47,7 @@ class Menu extends Component {
   }
 
   onMatchesPressed() {
-    console.log('zipcode', this.props.zipCode);
+    // console.log('zipcode', this.props.zipCode);
     this.props.navigator.push({
       title: 'Find Matches',
       component: AnimalTemplate,
