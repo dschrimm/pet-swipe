@@ -100,7 +100,18 @@ class AnimalDetails extends Component {
   removeFavorite(petId) {
     fetch('http://localhost:3000/favorites/' + petId, {
       method: 'DELETE',
-      // TODO: add to list of rejections
+    });
+    // Add to rejections to avoid showing up in options again
+    fetch('http://localhost:3000/rejections', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'test1@test.com',
+        petId: petId
+      })
     });
     this.props.navigator.pop();
     // TODO: figure out re-render on pop
