@@ -84,12 +84,10 @@ class AnimalDetails extends Component {
   }
 
   isFavorite() {
-    console.log(this.props.fromFavorites);
     if (this.props.fromFavorites){
-      console.log('from favorites');
       return (
-        <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
-        </Image>
+        <TouchableOpacity onPress={() => this.removeFavorite(this.props.petId)}><Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 60, width: 60, margin: 20, marginRight: 50}}>
+        </Image></TouchableOpacity>
       )
     } else {
       console.log('not from favorites');
@@ -99,18 +97,13 @@ class AnimalDetails extends Component {
     }
   }
 
-  removeFavorite() {
-    fetch('http://localhost:3000/favorites', {
+  removeFavorite(petId) {
+    fetch('http://localhost:3000/favorites/' + petId, {
       method: 'DELETE',
-      headers: {
-        // 'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        // email: 'test1@test.com',
-        petId: this.props.petId
-      })
+      // TODO: add to list of rejections
     });
+    this.props.navigator.pop();
+    // TODO: figure out re-render on pop
   }
 
   render() {
