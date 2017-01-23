@@ -60,7 +60,7 @@ class AnimalTemplate extends Component {
               if (breed == null) {
                 breed = ''
               }
-              fetch('http://localhost:3000/search', {
+              fetch('http://www.thepetswipeapp.com/search', {
                 headers: {
                   location: zipCode,
                   size: size,
