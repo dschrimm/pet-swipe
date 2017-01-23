@@ -42,20 +42,29 @@ class AnimalTemplate extends Component {
 
       AsyncStorage.getItem('zipCode', (err, result) => {
         zipCode = result;
-        fetch('http://www.thepetswipeapp.com/search', {
-          headers: {
-            location: zipCode,
-            size: 'M',
-            animal: animalType
-          }
-        })
 
-        .then((response) => response.json())
-        .then((responseJson) => {
-          this.setState({pets: responseJson.petfinder.pets.pet});
-        })
-        .catch((error) => {
-          console.error(error);
+        AsyncStorage.getItem('breed', (err, result) => {
+          breed = result;
+          if (breed == null) {
+            breed = ''
+          }
+
+          fetch('http://www.thepetswipeapp.com/search', {
+            headers: {
+              location: zipCode,
+              size: 'M',
+              animal: animalType,
+              breed: breed
+            }
+          })
+
+          .then((response) => response.json())
+          .then((responseJson) => {
+            this.setState({pets: responseJson.petfinder.pets.pet});
+          })
+          .catch((error) => {
+            console.error(error);
+          });
         });
       });
     });
