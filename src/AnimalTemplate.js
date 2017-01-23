@@ -36,7 +36,7 @@ class AnimalTemplate extends Component {
   }
 
   fetchAnimals() {
-    var zipCode, animalType, breed, size, sex;
+    var zipCode, animalType, breed, size, sex, age;
     AsyncStorage.getItem('animalType', (err, result) => {
       animalType = result;
 
@@ -246,7 +246,7 @@ class AnimalTemplate extends Component {
       petProfiles.push(
         <View>
           <TouchableHighlight onPress={() => this.onImagePressed(pet.id)}>
-            <Image source={pet}>
+            <Image source={pet} resizeMode="contain">
               <View style={styles.backdrop}>
               </View>
             </Image>

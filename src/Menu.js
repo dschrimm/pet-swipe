@@ -74,7 +74,7 @@ class Menu extends Component {
       <View style={styles.menuContainer}>
         <TouchableHighlight
           onPress={this.onMatchesPressed.bind(this)}>
-          <View style={styles.menuRows, {backgroundColor: clrs.grey}}>
+          <View style={styles.menuRows, {backgroundColor: clrs.menuOne}}>
             <Text style={styles.menuText}>
             Find Matches
             </Text>
@@ -82,7 +82,7 @@ class Menu extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           onPress={this.onFavoritesPressed.bind(this)}>
-          <View style={styles.menuRows, {backgroundColor: clrs.brightGreen}}>
+          <View style={styles.menuRows, {backgroundColor: clrs.menuTwo}}>
             <Text style={styles.menuText}>
             My Favorites
             </Text>
@@ -90,7 +90,7 @@ class Menu extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           onPress={this.onProfilePressed.bind(this)}>
-          <View style={styles.menuRows, {backgroundColor: clrs.lightGreen}}>
+          <View style={styles.menuRows, {backgroundColor: clrs.menuThree}}>
             <Text style={styles.menuText}>
             Edit Profile
             </Text>

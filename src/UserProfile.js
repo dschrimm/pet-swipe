@@ -7,7 +7,8 @@ import {
   ActivityIndicator,
   AsyncStorage,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ScrollView
 } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 
@@ -170,6 +171,7 @@ class UserProfile extends Component {
     return(
 
       <View style={styles.profileContainer}>
+      <ScrollView bounces scrollsToTop height={650}>
         <Text style={styles.searchText}>
           Find pets that match your needs!
         </Text>
@@ -261,6 +263,7 @@ class UserProfile extends Component {
         </View>
       </View>
       {spinner}
+      </ScrollView>
     </View>
     );
   }

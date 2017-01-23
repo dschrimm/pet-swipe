@@ -7,5 +7,8 @@ export default {
   transparent: 'rgba(0,0,0,0)',
   lightYellow: '#C0CAAD',
   red: '#ff3333',
-  darkRed: '#990000'
+  darkRed: '#990000',
+  menuOne: '#3891A6',
+  menuTwo: '#4C5B5C',
+  menuThree: '#B26E63'
 }

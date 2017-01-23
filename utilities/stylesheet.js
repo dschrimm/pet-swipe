@@ -116,6 +116,7 @@ const AppStyleSheet = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop: 40
   },
   // nextPetButton: {
   //   flex: 1,
@@ -174,9 +175,10 @@ const AppStyleSheet = StyleSheet.create({
   // Profile page
 
   profileContainer: {
-    padding: 20,
-    marginTop: 25,
-    alignItems: 'center'
+    // padding: 10,
+    // marginTop: 25,
+    // alignItems: 'center',
+    padding: 10
   },
 
   flowRight: {
@@ -195,7 +197,7 @@ const AppStyleSheet = StyleSheet.create({
     borderColor: clrs.brown,
     borderWidth: 1,
     borderRadius: 8,
-    marginTop: 50,
+    marginTop: 30,
     marginBottom: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
@@ -230,8 +232,8 @@ const AppStyleSheet = StyleSheet.create({
     flex:1,
     justifyContent:'space-around',
     alignSelf: 'stretch',
-    marginBottom: 10,
-    marginTop: 20,
+    // marginBottom: 10,
+    // marginTop: 20,
     // marginTop: 5
   }
 });
