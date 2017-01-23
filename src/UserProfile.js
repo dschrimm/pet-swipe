@@ -10,9 +10,7 @@ import {
 } from 'react-native';
 
 import AnimalTemplate from './AnimalTemplate';
-
-import ModalPicker from 'react-native-modal-picker'
-
+import ModalPicker from 'react-native-modal-picker';
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
 
@@ -89,7 +87,6 @@ class UserProfile extends Component {
   onSearchPressed() {
     var zipCode = getData('place_name', this.state.searchString, 1);
     this._executeQuery(zipCode);
-    console.log('hi');
     animalType = getData('place_name', this.state.animalType, 1);
     if (getData('place_name', this.state.breed, 1) == null) {
       breed = ''
@@ -97,8 +94,6 @@ class UserProfile extends Component {
       breed = getData('place_name', this.state.breed, 1);
     }
 
-    // var breedList = getData()
-    // AsyncStorage.setItem('breedList', this.state.breedList, () => {})
     AsyncStorage.setItem('animalType', animalType)
     AsyncStorage.setItem('breed', breed)
     AsyncStorage.setItem('zipCode', zipCode, () => {this.props.navigator.pop()})
@@ -109,8 +104,6 @@ class UserProfile extends Component {
     ( <ActivityIndicator
         size='large'/> ) :
     ( <View/>);
-
-    // console.log(this.state);
 
     return(
       <View style={styles.profileContainer}>
@@ -153,54 +146,47 @@ class UserProfile extends Component {
           </Text>
 
           <View style={{flex:1, justifyContent:'space-around', alignSelf: 'stretch', marginBottom: 20}}>
-        {/*  <ModalPicker
-            data={data}
-            initValue="Select breed"
-            onChange={(option)=>{ alert(`${option.label} (${option.key}) nom nom nom`) }}
-            style={styles.pickBreed}/>*/}
 
-          <ModalPicker
-            data={this.state.breedList}
-            initValue="Select breed"
-            style={{height: 36}}
-            onChange={(option)=>{ this.setState({breed:option.label})}}>
+            <ModalPicker
+              data={this.state.breedList}
+              initValue="Select breed"
+              style={{height: 36}}
+              onChange={(option)=>{ this.setState({breed:option.label})}}>
 
-            <TextInput
-              style={styles.searchInput}
-              editable={false}
-              placeholder="Select breed"
-              value={this.state.breed} />
+              <TextInput
+                style={styles.searchInput}
+                editable={false}
+                placeholder="Select breed"
+                value={this.state.breed} />
 
           </ModalPicker>
-          </View>
-
-
-
-
-          <Text style={styles.searchText}>
-            Size
-          </Text>
-          <Text style={styles.searchText}>
-            Sex
-          </Text>
-          <View style={styles.profileButton}>
-            <TouchableHighlight style={{flex: 1, justifyContent: 'center'}}
-            onPress={this.onSearchPressed.bind(this)}
-            underlayColor={clrs.darkBrown}>
-            <Text style={styles.profileButtonText}>Go</Text>
-            </TouchableHighlight>
-          </View>
         </View>
-        {/*  <View style={{backgroundColor: 'blue'}}>
-          <TouchableHighlight>
-            <Text style={{flex: 1}}>M</Text>
+
+
+        <Text style={styles.searchText}>
+          Size
+        </Text>
+        <Text style={styles.searchText}>
+          Sex
+        </Text>
+        <View style={styles.profileButton}>
+          <TouchableHighlight style={{flex: 1, justifyContent: 'center'}}
+          onPress={this.onSearchPressed.bind(this)}
+          underlayColor={clrs.darkBrown}>
+          <Text style={styles.profileButtonText}>Go</Text>
           </TouchableHighlight>
-          <TouchableHighlight>
-            <Text style={{flex: 1}}>F</Text>
-          </TouchableHighlight>
-          </View> */}
-        {spinner}
+        </View>
       </View>
+      {/*  <View style={{backgroundColor: 'blue'}}>
+        <TouchableHighlight>
+          <Text style={{flex: 1}}>M</Text>
+        </TouchableHighlight>
+        <TouchableHighlight>
+          <Text style={{flex: 1}}>F</Text>
+        </TouchableHighlight>
+        </View> */}
+      {spinner}
+    </View>
     );
   }
 }

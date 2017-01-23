@@ -40,27 +40,26 @@ class AnimalTemplate extends Component {
     AsyncStorage.getItem('animalType', (err, result) => {
       animalType = result;
 
-    AsyncStorage.getItem('zipCode', (err, result) => {
-      zipCode = result;
-      fetch('http://www.thepetswipeapp.com/search', {
-        headers: {
-          location: zipCode,
-          size: 'M',
-          animal: animalType
-        }
-      })
+      AsyncStorage.getItem('zipCode', (err, result) => {
+        zipCode = result;
+        fetch('http://www.thepetswipeapp.com/search', {
+          headers: {
+            location: zipCode,
+            size: 'M',
+            animal: animalType
+          }
+        })
 
-      .then((response) => response.json())
-      .then((responseJson) => {
-        // console.log(responseJson.petfinder.pets.pet);
-        this.setState({pets: responseJson.petfinder.pets.pet});
-      })
-      .catch((error) => {
-        console.error(error);
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({pets: responseJson.petfinder.pets.pet});
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       });
-    })
     });
-    }
+  }
 
   onImagePressed(petId) {
     this.props.navigator.push({
@@ -76,8 +75,6 @@ class AnimalTemplate extends Component {
       }
     });
   }
-
-
 
   onXPressed(id) {
     fetch('http://www.thepetswipeapp.com/rejections', {
@@ -163,10 +160,14 @@ class AnimalTemplate extends Component {
     let petList = [];
     let id = [];
     for (var i=0; i<this.state.pets.length; i++) {
-      if (this.state.favorites.includes(this.state.pets[i].id.$t)) {
+      // If pet is in favorites or rejections, skip it
+      if (this.state.categorizedPets.includes(this.state.pets[i].id.$t)) {
         continue;
       }
+
       let animal = this.state.pets[i];
+
+      // Retrieve all breeds assigned to animal
       var breeds = animal.breeds.breed;
       var breedList = '';
       if (typeof breeds.$t == 'string') {
@@ -177,46 +178,36 @@ class AnimalTemplate extends Component {
         }
         breedList = breedList + breeds[breeds.length - 1].$t;
       }
-      // console.log(animal.media.photos.photo[3].$t);
-      // break
+
       let photoUri = '';
       let photos = ''
+      // Skip animal if they do not have any photos
       if (animal.media.photos != undefined) {
         photos = animal.media.photos.photo;
       } else {
         break;
       }
 
+      // Choose the first high-quality photo
       for (var j=0; j<photos.length; j++) {
         if (photos[j]["@size"] == 'x') {
           photoUri = photos[j].$t;
           break;
         }
       }
+
+      // If the pet does not have at least one high quality photo, skip the pet
       if (photoUri == '') {
         break;
       } else {
-
-      petList.push({
-        uri: animal.media.photos.photo[3].$t,
-        id: animal.id.$t,
-        name: animal.name.$t,
-        breeds: breedList
-      });
-    }
-    }
-
-    {/*let pets = []
-
-    petList.map((pet, index) => {
-      pet = {
-        uri: pet.uri,
-        id: pet.id,
-        name: pet.name,
-        breeds: pet.breeds,
+        petList.push({
+          uri: animal.media.photos.photo[3].$t,
+          id: animal.id.$t,
+          name: animal.name.$t,
+          breeds: breedList
+        });
       }
-      pets.push(pet);
-    })*/}
+    }
 
     let petProfiles = [];
     for (var i=0; i<petList.length; i++) {

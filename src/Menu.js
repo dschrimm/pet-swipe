@@ -25,8 +25,6 @@ class Menu extends Component {
     } else {
       console.log('defined');
     }
-    // console.log('menu props', this.props.zipCode);
-    // this.state
   }
 
   componentWillReceiveProps(nextProps) {
@@ -89,8 +87,6 @@ class Menu extends Component {
   }
 
   render() {
-    // console.log('menu props', this.props.zipCode);
-
     return (
       <View style={styles.menuContainer}>
         <TouchableHighlight
