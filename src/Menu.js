@@ -27,23 +27,6 @@ class Menu extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    var zipCode = '';
-    AsyncStorage.getItem('zipCode', (err, result) => {
-      zipCode = result;
-      console.log(zipCode);
-    });
-    AsyncStorage.getItem('animalType', (err, result) => {
-      console.log(result);
-    });
-    AsyncStorage.getItem('breed', (err, result) => {
-      if (err) {
-        result = 'none';
-      }
-      console.log(result);
-    });
-  }
-
   onMatchesPressed() {
     // console.log('zipcode', this.props.zipCode);
     this.props.navigator.push({

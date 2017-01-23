@@ -38,6 +38,12 @@ class UserProfile extends Component {
         this.setState({searchString: result});
       }
     });
+    // AsyncStorage.getItem('animalType', (err, result) => {
+    //   if (err) {
+    //   } else {
+    //     this.setState({animalType: })
+    //   }
+    //  })
     this.state = {
       searchString: '90210',
       isLoading: false,
@@ -78,31 +84,31 @@ class UserProfile extends Component {
   }
 
 
-     setSelectedSize(selectedSize){
-      this.setState({
-        selectedSize
-      });
-    }
+   setSelectedSize(selectedSize){
+    this.setState({
+      selectedSize
+    });
+  }
 
-    setSelectedSex(selectedSex) {
-      this.setState({
-        selectedSex
-      });
-    }
+  setSelectedSex(selectedSex) {
+    this.setState({
+      selectedSex
+    });
+  }
 
-     renderOption(option, selected, onSelect, index){
-      const style = selected ? { fontWeight: 'bold'} : {};
+   renderOption(option, selected, onSelect, index){
+    const style = selected ? { fontWeight: 'bold'} : {};
 
-      return (
-        <TouchableWithoutFeedback onPress={onSelect} key={index}>
-          <Text style={style}>{option}</Text>
-        </TouchableWithoutFeedback>
-      );
-    }
+    return (
+      <TouchableWithoutFeedback onPress={onSelect} key={index}>
+        <Text style={style}>{option}</Text>
+      </TouchableWithoutFeedback>
+    );
+  }
 
-     renderContainer(optionNodes){
-      return <View>{optionNodes}</View>;
-    }
+   renderContainer(optionNodes){
+    return <View>{optionNodes}</View>;
+  }
 
 
    getData(key, value, pageNumber) {
@@ -123,9 +129,21 @@ class UserProfile extends Component {
     } else {
       breed = this.getData('place_name', this.state.breed, 1);
     }
+    if ((this.getData('place_name', this.state.selectedSize, 1) == null) || (this.getData('place_name', this.state.selectedSize, 1) == 'Any')) {
+      selectedSize = ''
+    } else {
+      selectedSize = this.getData('place_name', this.state.selectedSize, 1);
+    }
+    if ((this.getData('place_name', this.state.selectedSex, 1) == null) || (this.getData('place_name', this.state.selectedSex, 1) == 'Any')) {
+      selectedSex = ''
+    } else {
+      selectedSex = this.getData('place_name', this.state.selectedSex, 1);
+    }
 
     AsyncStorage.setItem('animalType', animalType)
     AsyncStorage.setItem('breed', breed)
+    AsyncStorage.setItem('selectedSize', selectedSize)
+    AsyncStorage.setItem('selectedSex', selectedSex)
     AsyncStorage.setItem('zipCode', zipCode, () => {this.props.navigator.pop()})
   }
 
@@ -220,14 +238,6 @@ class UserProfile extends Component {
           </TouchableHighlight>
         </View>
       </View>
-      {/*  <View style={{backgroundColor: 'blue'}}>
-        <TouchableHighlight>
-          <Text style={{flex: 1}}>M</Text>
-        </TouchableHighlight>
-        <TouchableHighlight>
-          <Text style={{flex: 1}}>F</Text>
-        </TouchableHighlight>
-        </View> */}
       {spinner}
     </View>
     );

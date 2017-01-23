@@ -36,34 +36,48 @@ class AnimalTemplate extends Component {
   }
 
   fetchAnimals() {
-    var zipCode, animalType, breed;
+    var zipCode, animalType, breed, size, sex;
     AsyncStorage.getItem('animalType', (err, result) => {
       animalType = result;
 
       AsyncStorage.getItem('zipCode', (err, result) => {
         zipCode = result;
 
-        AsyncStorage.getItem('breed', (err, result) => {
-          breed = result;
-          if (breed == null) {
-            breed = ''
+        AsyncStorage.getItem('selectedSize', (err, result) => {
+          size = result;
+          if (size == null) {
+            size = ''
           }
 
-          fetch('http://www.thepetswipeapp.com/search', {
-            headers: {
-              location: zipCode,
-              size: 'M',
-              animal: animalType,
-              breed: breed
+          AsyncStorage.getItem('selectedSex', (err, result) => {
+            sex = result;
+            if (sex == null) {
+              sex = ''
             }
-          })
 
-          .then((response) => response.json())
-          .then((responseJson) => {
-            this.setState({pets: responseJson.petfinder.pets.pet});
-          })
-          .catch((error) => {
-            console.error(error);
+            AsyncStorage.getItem('breed', (err, result) => {
+              breed = result;
+              if (breed == null) {
+                breed = ''
+              }
+              fetch('http://localhost:3000/search', {
+                headers: {
+                  location: zipCode,
+                  size: size,
+                  sex: sex,
+                  animal: animalType,
+                  breed: breed
+                }
+              })
+
+              .then((response) => response.json())
+              .then((responseJson) => {
+                this.setState({pets: responseJson.petfinder.pets.pet});
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+            });
           });
         });
       });
