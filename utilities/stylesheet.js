@@ -47,7 +47,7 @@ const AppStyleSheet = StyleSheet.create({
   },
 
   searchText: {
-    marginBottom: 20,
+    marginBottom: 10,
     marginTop: 20,
     fontSize: 18,
     textAlign: 'center',
@@ -174,16 +174,15 @@ const AppStyleSheet = StyleSheet.create({
   // Profile page
 
   profileContainer: {
-    padding: 30,
-    marginTop: 65,
+    padding: 20,
+    marginTop: 25,
     alignItems: 'center'
   },
 
   flowRight: {
-    // flexDirection: 'row',
-    alignItems: 'center',
     alignSelf: 'stretch'
   },
+
   profileButtonText: {
     fontSize: 18,
     color: 'white',
@@ -196,6 +195,7 @@ const AppStyleSheet = StyleSheet.create({
     borderColor: clrs.brown,
     borderWidth: 1,
     borderRadius: 8,
+    marginTop: 50,
     marginBottom: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
@@ -212,6 +212,7 @@ const AppStyleSheet = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 20
   },
+
   searchInput: {
     height: 36,
     // padding: 4,
@@ -223,6 +224,15 @@ const AppStyleSheet = StyleSheet.create({
     borderRadius: 8,
     color: clrs.brown,
     textAlign: 'center'
+  },
+
+  modalPicker: {
+    flex:1,
+    justifyContent:'space-around',
+    alignSelf: 'stretch',
+    marginBottom: 10,
+    marginTop: 20,
+    // marginTop: 5
   }
 });
 

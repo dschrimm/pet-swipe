@@ -6,8 +6,10 @@ import {
   TouchableHighlight,
   ActivityIndicator,
   AsyncStorage,
-  Keyboard
+  Keyboard,
+  TouchableWithoutFeedback
 } from 'react-native';
+import { SegmentedControls } from 'react-native-radio-buttons';
 
 import AnimalTemplate from './AnimalTemplate';
 import ModalPicker from 'react-native-modal-picker';
@@ -15,25 +17,16 @@ import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
 
 let index = 0;
-  const animalTypes = [
-    {key: index++, label: 'Dog', type: 'dog'},
-    {key: index++, label: 'Cat', type: 'cat'},
-    {key: index++, label: 'Bird', type: 'bird'},
-    {key: index++, label: 'Reptile', type: 'reptile'},
-    {key: index++, label: 'Barnyard', type: 'barnyard'},
-    {key: index++, label: 'Horse', type: 'horse'},
-    {key: index++, label: 'Pig', type: 'pig'},
-    {key: index++, label: 'Small Furry', type: 'smallfurry'},
-  ];
-
-function getData(key, value, pageNumber) {
-  var data = {
-      page: pageNumber
-  };
-  data[key] = value;
-
-  return data[key];
-};
+const animalTypes = [
+  {key: index++, label: 'Dog', type: 'dog'},
+  {key: index++, label: 'Cat', type: 'cat'},
+  {key: index++, label: 'Bird', type: 'bird'},
+  {key: index++, label: 'Reptile', type: 'reptile'},
+  {key: index++, label: 'Barnyard', type: 'barnyard'},
+  {key: index++, label: 'Horse', type: 'horse'},
+  {key: index++, label: 'Pig', type: 'pig'},
+  {key: index++, label: 'Small Furry', type: 'smallfurry'},
+];
 
 class UserProfile extends Component {
   constructor(props) {
@@ -84,14 +77,51 @@ class UserProfile extends Component {
     this.setState({ isLoading: true });
   }
 
+
+     setSelectedSize(selectedSize){
+      this.setState({
+        selectedSize
+      });
+    }
+
+    setSelectedSex(selectedSex) {
+      this.setState({
+        selectedSex
+      });
+    }
+
+     renderOption(option, selected, onSelect, index){
+      const style = selected ? { fontWeight: 'bold'} : {};
+
+      return (
+        <TouchableWithoutFeedback onPress={onSelect} key={index}>
+          <Text style={style}>{option}</Text>
+        </TouchableWithoutFeedback>
+      );
+    }
+
+     renderContainer(optionNodes){
+      return <View>{optionNodes}</View>;
+    }
+
+
+   getData(key, value, pageNumber) {
+    var data = {
+        page: pageNumber
+    };
+    data[key] = value;
+
+    return data[key];
+  };
+
   onSearchPressed() {
-    var zipCode = getData('place_name', this.state.searchString, 1);
+    var zipCode = this.getData('place_name', this.state.searchString, 1);
     this._executeQuery(zipCode);
-    animalType = getData('place_name', this.state.animalType, 1);
-    if (getData('place_name', this.state.breed, 1) == null) {
+    animalType = this.getData('place_name', this.state.animalType, 1);
+    if (this.getData('place_name', this.state.breed, 1) == null) {
       breed = ''
     } else {
-      breed = getData('place_name', this.state.breed, 1);
+      breed = this.getData('place_name', this.state.breed, 1);
     }
 
     AsyncStorage.setItem('animalType', animalType)
@@ -106,6 +136,7 @@ class UserProfile extends Component {
     ( <View/>);
 
     return(
+
       <View style={styles.profileContainer}>
         <Text style={styles.searchText}>
           Find pets that match your needs!
@@ -126,7 +157,7 @@ class UserProfile extends Component {
           <Text style={styles.searchText}>
             Animal Type
           </Text>
-          <View style={{flex:1, justifyContent:'space-around', alignSelf: 'stretch', marginBottom: 20}}>
+          <View style={styles.modalPicker}>
           <ModalPicker
             data={animalTypes}
             initValue="Select animal type"
@@ -145,7 +176,7 @@ class UserProfile extends Component {
             Breed
           </Text>
 
-          <View style={{flex:1, justifyContent:'space-around', alignSelf: 'stretch', marginBottom: 20}}>
+          <View style={styles.modalPicker}>
 
             <ModalPicker
               data={this.state.breedList}
@@ -166,9 +197,21 @@ class UserProfile extends Component {
         <Text style={styles.searchText}>
           Size
         </Text>
+        <SegmentedControls
+        options={ ["S", "M", "L", "XL", "Any"] }
+        onSelection={ this.setSelectedSize.bind(this) }
+        selectedOption={ this.state.selectedSize }
+        tint={clrs.brown}
+        />
         <Text style={styles.searchText}>
           Sex
         </Text>
+        <SegmentedControls
+        options={ ["F","M", "Any"] }
+        onSelection={ this.setSelectedSex.bind(this) }
+        selectedOption={ this.state.selectedSex }
+        tint={clrs.brown}
+        />
         <View style={styles.profileButton}>
           <TouchableHighlight style={{flex: 1, justifyContent: 'center'}}
           onPress={this.onSearchPressed.bind(this)}
