@@ -96,6 +96,12 @@ class UserProfile extends Component {
     });
   }
 
+  setSelectedAge(selectedAge) {
+    this.setState({
+      selectedAge
+    });
+  }
+
    renderOption(option, selected, onSelect, index){
     const style = selected ? { fontWeight: 'bold'} : {};
 
@@ -134,16 +140,24 @@ class UserProfile extends Component {
     } else {
       selectedSize = this.getData('place_name', this.state.selectedSize, 1);
     }
+
     if ((this.getData('place_name', this.state.selectedSex, 1) == null) || (this.getData('place_name', this.state.selectedSex, 1) == 'Any')) {
       selectedSex = ''
     } else {
       selectedSex = this.getData('place_name', this.state.selectedSex, 1);
     }
 
+    if ((this.getData('place_name', this.state.selectedAge, 1) == null) || (this.getData('place_name', this.state.selectedAge, 1) == 'Any')) {
+      selectedAge = ''
+    } else {
+      selectedAge = this.getData('place_name', this.state.selectedAge, 1);
+    }
+
     AsyncStorage.setItem('animalType', animalType)
     AsyncStorage.setItem('breed', breed)
     AsyncStorage.setItem('selectedSize', selectedSize)
     AsyncStorage.setItem('selectedSex', selectedSex)
+    AsyncStorage.setItem('selectedAge', selectedAge)
     AsyncStorage.setItem('zipCode', zipCode, () => {this.props.navigator.pop()})
   }
 
@@ -167,11 +181,9 @@ class UserProfile extends Component {
             style={styles.searchInput}
             value={this.state.searchString}
             maxLength={5}
-            keyboardType='phone-pad'
             onChange={this.onSearchTextChanged.bind(this)}
             placeholder='Search via zip code'/>
-        {/* TODO: Pop up keyboard
-          TODO: check for valid zip code */}
+        {/* TODO: check for valid zip code */}
           <Text style={styles.searchText}>
             Animal Type
           </Text>
@@ -211,6 +223,15 @@ class UserProfile extends Component {
           </ModalPicker>
         </View>
 
+        <Text style={styles.searchText}>
+          Age
+        </Text>
+        <SegmentedControls
+        options={ ["Baby", "Young", "Adult", "Senior", "Any"] }
+        onSelection={ this.setSelectedAge.bind(this) }
+        selectedOption={ this.state.selectedAge }
+        tint={clrs.brown}
+        />
 
         <Text style={styles.searchText}>
           Size
@@ -221,6 +242,7 @@ class UserProfile extends Component {
         selectedOption={ this.state.selectedSize }
         tint={clrs.brown}
         />
+
         <Text style={styles.searchText}>
           Sex
         </Text>
