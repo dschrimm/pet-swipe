@@ -149,7 +149,7 @@ class AnimalTemplate extends Component {
       for (var i=0; i<responseJson.length; i++) {
         idList.push(responseJson[i].petId);
       }
-      this.state.favorites = idList;
+      this.state.categorizedPets = idList;
     })
     .catch((error) => {
       console.error(error);
