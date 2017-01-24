@@ -165,11 +165,23 @@ const AppStyleSheet = StyleSheet.create({
   menuRows: {
     flex: 1,
   },
+  menuContent: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
   menuText: {
     color: 'white',
     fontSize: 30,
-    margin: 82,
-    alignSelf: 'center'
+    marginTop: 82,
+    marginBottom: 82,
+    // alignSelf: 'center',
+  },
+  menuIcon: {
+    height: 40,
+    width: 40,
+    marginTop: 80,
+    marginLeft: 15,
+    resizeMode: "contain",
   },
 
   // Profile page

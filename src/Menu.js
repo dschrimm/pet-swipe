@@ -6,12 +6,18 @@ import FavoritesList from './FavoritesList';
 import UserProfile from './UserProfile';
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
+// import heart from '../images/Heart-white.png';
+const Heart = require('../images/Heart-white.png');
+const MagnifyingGlass = require('../images/magnifying-glass-white.png');
+const Settings = require('../images/settings-gear-white.png');
+
 
 import React, { Component } from 'react';
 import {
   Text,
   View,
   TouchableHighlight,
+  Image
 } from 'react-native';
 
 class Menu extends Component {
@@ -71,25 +77,34 @@ class Menu extends Component {
         <TouchableHighlight
           onPress={this.onMatchesPressed.bind(this)}>
           <View style={styles.menuRows, {backgroundColor: clrs.menuOne}}>
+          <View style={styles.menuContent}>
             <Text style={styles.menuText}>
             Find Matches
             </Text>
+            <Image source={MagnifyingGlass} style={styles.menuIcon}/>
+            </View>
           </View>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={this.onFavoritesPressed.bind(this)}>
           <View style={styles.menuRows, {backgroundColor: clrs.menuTwo}}>
-            <Text style={styles.menuText}>
-            My Favorites
-            </Text>
+            <View style={styles.menuContent}>
+              <Text style={styles.menuText}>
+              My Favorites
+              </Text>
+              <Image source={Heart} style={styles.menuIcon}/>
+            </View>
           </View>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={this.onProfilePressed.bind(this)}>
           <View style={styles.menuRows, {backgroundColor: clrs.menuThree}}>
-            <Text style={styles.menuText}>
-            Edit Profile
-            </Text>
+          <View style={styles.menuContent}>
+              <Text style={styles.menuText}>
+              Edit Profile
+              </Text>
+              <Image source={Settings} style={styles.menuIcon}/>
+            </View>
           </View>
         </TouchableHighlight>
       </View>

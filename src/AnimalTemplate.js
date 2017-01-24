@@ -116,8 +116,10 @@ class AnimalTemplate extends Component {
         petId: id
       })
     });
-    // if (this.state.currentPet + 1)
-    this.setState({currentPet: (this.state.currentPet + 1)});
+    var nextPet = this.state.currentPet + 1;
+    console.log(nextPet);
+    // if (nextPet > )
+    this.setState({currentPet: nextPet});
   }
 
   onYPressed(id) {
