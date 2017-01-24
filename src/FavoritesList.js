@@ -17,13 +17,14 @@ class FavoritesList extends Component {
     super(props);
     this.state = {
       isSet: false,
-      petList: []
+      petList: [],
     };
 
     this.fetchFavorites();
   }
 
   fetchFavorites() {
+    this.state.petList = [];
     // let idList = [];
     fetch('http://www.thepetswipeapp.com/favorites', {
     })
@@ -39,7 +40,6 @@ class FavoritesList extends Component {
   }
 
   fetchImage(petId) {
-    var imageUrl = ''
     fetch('http://www.thepetswipeapp.com/get', {
       headers: {
         id: petId
@@ -81,6 +81,12 @@ class FavoritesList extends Component {
         this.props.navigator.popN(2);
       }
     });
+  }
+
+  componentWillReceiveProps() {
+    // this.setState({update: 'yes'});
+    // this.state.petList = [];
+    this.fetchFavorites();
   }
 
   render() {
