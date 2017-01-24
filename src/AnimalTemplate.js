@@ -25,7 +25,8 @@ class AnimalTemplate extends Component {
     this.state = {
       pets: [],
       categorized: categorizedPets,
-      currentPet: 0
+      currentPet: 0,
+      // offset: 0
     };
     this.fetchAnimals();
   }
@@ -68,7 +69,8 @@ class AnimalTemplate extends Component {
                     sex: sex,
                     animal: animalType,
                     breed: breed,
-                    age: age
+                    age: age,
+                    // offset: this.state.offset
                   }
                 })
 
@@ -114,6 +116,7 @@ class AnimalTemplate extends Component {
         petId: id
       })
     });
+    // if (this.state.currentPet + 1)
     this.setState({currentPet: (this.state.currentPet + 1)});
   }
 
@@ -132,26 +135,26 @@ class AnimalTemplate extends Component {
     this.setState({currentPet: (this.state.currentPet + 1)});
   }
 
-  afterPress(action) {
-    var i = 0;
-    var timer = setInterval(function(){
-      console.log(++i);
-      if(i === 6) {
-        this.nextPet()
-        // clearInterval(timer)
-        // this.setState({currentPet: (this.state.currentPet + 1)});
-      console.log('post-interval'); //this will still run after clearing
-      // this.nextPet();
-    }
-    },200);
-
-  }
-
-  nextPet() {
-    var currentIndex = this.state.currentPet;
-    this.setState({currentPet: (currentIndex + 1)});
-    return true;
-  }
+  // afterPress(action) {
+  //   var i = 0;
+  //   var timer = setInterval(function(){
+  //     console.log(++i);
+  //     if(i === 6) {
+  //       this.nextPet()
+  //       // clearInterval(timer)
+  //       // this.setState({currentPet: (this.state.currentPet + 1)});
+  //     console.log('post-interval'); //this will still run after clearing
+  //     // this.nextPet();
+  //   }
+  //   },200);
+  //
+  // }
+  //
+  // nextPet() {
+  //   var currentIndex = this.state.currentPet;
+  //   this.setState({currentPet: (currentIndex + 1)});
+  //   return true;
+  // }
 
   fetchFavorites() {
     let idList = [];
@@ -182,7 +185,7 @@ class AnimalTemplate extends Component {
     });
   }
 
-  render() {
+  makePetList() {
     let petList = [];
     let id = [];
     for (var i=0; i<this.state.pets.length; i++) {
@@ -234,7 +237,11 @@ class AnimalTemplate extends Component {
         });
       }
     }
+    return petList;
+  }
 
+  makeProfileList() {
+    let petList = this.makePetList();
     let petProfiles = [];
     for (var i=0; i<petList.length; i++) {
       let pet = petList[i];
@@ -250,6 +257,12 @@ class AnimalTemplate extends Component {
         </View>
       );
     }
+    return petProfiles
+  }
+
+  render() {
+    let petList = this.makePetList();
+    let petProfiles = this.makeProfileList();
     return (
       <View>
         <ScrollView bounces scrollsToTop height={650}>
