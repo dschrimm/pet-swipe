@@ -6,7 +6,6 @@ import {
   TouchableHighlight,
   ActivityIndicator,
   AsyncStorage,
-  Keyboard,
   TouchableWithoutFeedback,
   ScrollView
 } from 'react-native';
@@ -39,19 +38,13 @@ class UserProfile extends Component {
         this.setState({searchString: result});
       }
     });
-    // AsyncStorage.getItem('animalType', (err, result) => {
-    //   if (err) {
-    //   } else {
-    //     this.setState({animalType: })
-    //   }
-    //  })
+
     this.state = {
       searchString: '90210',
       isLoading: false,
       animalType: '',
       breedList: []
     };
-
   }
 
   getBreedList(animalType) {

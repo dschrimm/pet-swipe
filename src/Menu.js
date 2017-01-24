@@ -1,7 +1,6 @@
 // Welcome/loading page
 'use strict';
 
-import Animal from './Animal';
 import AnimalTemplate from './AnimalTemplate';
 import FavoritesList from './FavoritesList';
 import UserProfile from './UserProfile';
@@ -13,7 +12,6 @@ import {
   Text,
   View,
   TouchableHighlight,
-  AsyncStorage
 } from 'react-native';
 
 class Menu extends Component {
@@ -21,18 +19,16 @@ class Menu extends Component {
     super(props);
     if (!this.props.zipCode) {
       // this.props.zipCode = 92130;
-      console.log('undefined');
+      // console.log('undefined');
     } else {
-      console.log('defined');
+      // console.log('defined');
     }
   }
 
   onMatchesPressed() {
-    // console.log('zipcode', this.props.zipCode);
     this.props.navigator.push({
       title: 'Find Matches',
       component: AnimalTemplate,
-      // passProps: {pets: response.pets},
       rightButtonTitle: 'Menu',
       onRightButtonPress: () => {
         this.props.navigator.pop();

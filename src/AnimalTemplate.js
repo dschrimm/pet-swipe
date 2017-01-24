@@ -1,10 +1,7 @@
 'use strict';
 
-import AnimalData from './AnimalData';
 import AnimalDetails from './AnimalDetails';
-import FavoritesList from './FavoritesList';
 import styles from '../utilities/stylesheet';
-import Animal from './Animal';
 import clrs from '../utilities/clrs';
 
 import React, { Component } from 'react';
@@ -12,9 +9,7 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight,
   TouchableOpacity,
-  AlertIOS,
   ScrollView,
   AsyncStorage
 } from 'react-native';
@@ -245,12 +240,12 @@ class AnimalTemplate extends Component {
       let pet = petList[i];
       petProfiles.push(
         <View>
-          <TouchableHighlight onPress={() => this.onImagePressed(pet.id)}>
+          <TouchableOpacity onPress={() => this.onImagePressed(pet.id)}>
             <Image source={pet} resizeMode="contain">
               <View style={styles.backdrop}>
               </View>
             </Image>
-          </TouchableHighlight>
+          </TouchableOpacity>
           <Text style={styles.briefDescription}>{pet.name} - {pet.breeds}</Text>
         </View>
       );

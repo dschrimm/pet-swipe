@@ -166,7 +166,7 @@ const AppStyleSheet = StyleSheet.create({
     flex: 1,
   },
   menuText: {
-    color: 'black',
+    color: 'white',
     fontSize: 30,
     margin: 82,
     alignSelf: 'center'
