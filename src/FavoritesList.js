@@ -32,7 +32,8 @@ class FavoritesList extends Component {
       console.log(responseJson)
       this.state.petList = [];
       for (var i=0; i<responseJson.length; i++) {
-        this.fetchImage(responseJson[i].petId);
+        this.state.petList.push(<Text key={i}></Text>);
+        this.fetchImage(responseJson[i].petId, i);
       }
     })
     .catch((error) => {
@@ -40,7 +41,7 @@ class FavoritesList extends Component {
     });
   }
 
-  fetchImage(petId) {
+  fetchImage(petId, index) {
     fetch('http://www.thepetswipeapp.com/get', {
       headers: {
         id: petId
@@ -56,8 +57,7 @@ class FavoritesList extends Component {
           break;
         }
       }
-      // TODO: Should render in the same order each time
-      this.state.petList.push(
+      this.state.petList[index] = (
           <TouchableOpacity onPress={() => this.onImagePressed(petId)}
            style={styles.favoriteImages}
            key={petId}>
