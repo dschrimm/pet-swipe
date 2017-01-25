@@ -1,6 +1,5 @@
 'use strict';
 
-// var Welcome = require('./src/Welcome');
 var Menu = require('./src/Menu');
 var styles = require('./utilities/stylesheet');
 
@@ -16,10 +15,9 @@ class Navigation extends Component {
     return (
       <NavigatorIOS
         interactivePopGestureEnabled={true}
-        style={styles.container}
+        style={styles.navigationContainer}
         initialRoute={{
           title: 'Pet Swipe',
-          // component: Welcome,
           component: Menu
         }}/>
     );

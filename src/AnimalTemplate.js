@@ -17,8 +17,6 @@ import {
 
 import SwipeCards from 'react-native-swipe-cards';
 
-// import Swiper from 'react-native-swiper';
-
 let Card = React.createClass({
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps)
@@ -42,7 +40,7 @@ let NoMoreCards = React.createClass({
   render() {
     return (
       <View style={styles.backdrop}>
-        <Text>No more pets match your search. Revise your search and keep on swiping!</Text>
+        <Text style={styles.breedList}>No more pets match your search. Revise your search and keep on swiping!</Text>
       </View>
     )
   }
@@ -122,7 +120,6 @@ class AnimalTemplate extends Component {
 
   onImagePressed(petId) {
     this.props.navigator.push({
-      // interactivePopGestureEnabled: true,
       title: 'Animal Details',
       component: AnimalDetails,
       passProps: {petId: petId},
@@ -222,26 +219,6 @@ class AnimalTemplate extends Component {
     return petList;
   }
 
-  makeProfileList() {
-    let petList = this.makePetList();
-    let petProfiles = [];
-    for (var i=0; i<petList.length; i++) {
-      let pet = petList[i];
-      petProfiles.push(
-        <View>
-          <TouchableOpacity onPress={() => this.onImagePressed(pet.id)}>
-            <Image source={pet} resizeMode="contain">
-              <View style={styles.backdrop}>
-              </View>
-            </Image>
-          </TouchableOpacity>
-          <Text style={styles.briefDescription}>{pet.name} - {pet.breeds}</Text>
-        </View>
-      );
-    }
-    return petProfiles
-  }
-
   handleYup (card) {
     fetch('http://www.thepetswipeapp.com/favorites', {
       method: 'POST',
@@ -287,7 +264,6 @@ class AnimalTemplate extends Component {
     let petList = this.makePetList();
     let index = this.state.currentPet;
 
-    let petProfiles = this.makeProfileList();
     return (
       <View style={{flex: 1, marginTop: 70}}>
       <View style={{flex: 5, marginBottom: 40}}>

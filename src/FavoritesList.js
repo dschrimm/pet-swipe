@@ -24,7 +24,6 @@ class FavoritesList extends Component {
   }
 
   fetchFavorites() {
-    // let idList = [];
     fetch('http://www.thepetswipeapp.com/favorites', {
     })
     .then((response) => response.json())
@@ -84,8 +83,6 @@ class FavoritesList extends Component {
   }
 
   componentWillReceiveProps() {
-    // this.setState({update: 'yes'});
-    // this.state.petList = [];
     this.fetchFavorites();
   }
 

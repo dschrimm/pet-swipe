@@ -2,79 +2,35 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import clrs from './clrs'
+import clrs from './clrs';
 
 const { width } = Dimensions.get('window');
 
 
 const AppStyleSheet = StyleSheet.create({
-  // text: {
-  //   backgroundColor: 'white',
-  //   color: 'white',
-  //   fontSize: 30,
-  //   margin: 80
-  // },
-  responseButton: {
-    paddingTop: 50
-  },
-  welcomeContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: clrs.lightGreen,
-    // backgroundColor: 'white'
-    // backgroundColor: '#C0CAAD'
-  },
-  welcome: {
-    fontSize: 30,
-    textAlign: 'center',
-    margin: 10,
-    color: clrs.darkBrown,
-    fontWeight: 'bold'
-  },
-  container: {
+
+  // -------------Navigation------------------
+  navigationContainer: {
     paddingTop: 25,
-    // backgroundColor: '#90BAAD',
     flex: 1,
-    // justifyContent: 'space-between',
-    // alignContent: 'space-between',
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // backgroundColor: 'rgba(0,0,0,0)',
-    // width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height
-    // resizeMode: 'cover'
   },
 
-  searchText: {
-    marginBottom: 10,
-    marginTop: 20,
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565'
-  },
-
+  // -------------Favorites Page------------------
   favoriteImages: {
     height: 145,
     width: 145,
     margin: 15,
   },
 
-  instructions: {
-    fontSize: 20,
-    textAlign: 'center',
-    color: clrs.darkBrown,
-    marginBottom: 5,
-  },
+  // -------------Image View Filler------------------
   backdrop: {
     backgroundColor: clrs.transparent,
-    // backgroundColor: 'white',
     width,
     height: 420,
-    // resizeMode: 'contain',
     flexDirection: 'column-reverse',
-    // alignSelf: 'flex-end',
   },
+
+  // -------------Animal Template Page------------------
   briefDescription: {
     fontSize: 18,
     textAlign: 'center',
@@ -92,133 +48,10 @@ const AppStyleSheet = StyleSheet.create({
     fontFamily: 'helvetica',
     lineHeight: 25,
   },
-  description: {
-    fontSize: 16,
-    backgroundColor: clrs.transparent,
-    color: clrs.menuOne,
-    fontFamily: 'helvetica',
-    lineHeight: 25,
-  },
-  button: {
-    height: 26,
-    // flex: 1,
-    flexDirection: 'row',
-    backgroundColor: clrs.brown,
-    borderColor: clrs.brown,
-    borderWidth: 1,
-    borderRadius: 8,
-    margin: 20,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  swipeImageText: {
-    flex: 1,
-    margin: 10
-
-    // alignSelf: 'center',
-    // backgroundColor: 'pink'
-  },
-  imageButton: {
-    marginTop: 44,
-    borderRadius: 8,
-    height: 450
-  },
-  nextPetButtons: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 40,
-  },
-  // nextPetButton: {
-  //   flex: 1,
-  //   width: 50,
-  //   height: 50,
-  // },
-  allImages: {
-    width,
-    // height: 300,
-    // flex: 1,
-    marginTop: 200,
-    // marginRight: 10,
-    // marginLeft: 10,
-    marginBottom: 300,
-    // alignSelf: 'center',
-    // backgroundColor: 'pink'
-  },
-  // swipeImages: {
-  //   width,
-  //   // height: 300,
-  //   // flex: 1,
-  //   marginTop: 200,
-  //   // marginRight: 10,
-  //   // marginLeft: 10,
-  //   marginBottom: 300,
-  //   // alignSelf: 'center',
-  //   // backgroundColor: 'pink'
-  // },
-  detailView: {
-    // paddingTop: 5,
-    // backgroundColor: '#90BAAD',
-    flex: 1,
-  },
-  wrapper: {
-    backgroundColor: 'pink'
-  },
-  menuContainer: {
-    marginTop: 45,
-    flex: 1,
-    // alignItems: 'center',
-    justifyContent: 'center',
-    // backgroundColor: clrs.lightGreen,
-    // backgroundColor: 'white',
-    // backgroundColor: clrs.lightYellow
-  },
-  menuRows: {
-    flex: 1,
-  },
-  menuContent: {
-    flexDirection: 'row',
-    justifyContent: 'center'
-  },
-  menuText: {
-    color: 'white',
-    fontSize: 30,
-    marginTop: 82,
-    marginBottom: 82,
-    // alignSelf: 'center',
-  },
-  menuIcon: {
-    height: 40,
-    width: 40,
-    marginTop: 80,
-    marginLeft: 15,
-    resizeMode: "contain",
-  },
-
   learnMoreButtonText: {
     fontSize: 18,
     color: 'white',
   },
-
-  // removeButton: {
-  //   height: 36,
-  //   flexDirection: 'row',
-  //   backgroundColor: clrs.red,
-  //   borderColor: clrs.red,
-  //   borderWidth: 1,
-  //   borderRadius: 8,
-  //   marginBottom: 10,
-  //   alignSelf: 'stretch',
-  //   justifyContent: 'center',
-  //   marginTop: 20
-  // },
-
-
   learnMoreButton: {
     height: 46,
     flexDirection: 'row',
@@ -233,19 +66,76 @@ const AppStyleSheet = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  // Profile page
-
-  profileContainer: {
-    // padding: 10,
-    // marginTop: 25,
-    // alignItems: 'center',
-    padding: 10
+  // -------------Animal Details Page------------------
+  description: {
+    fontSize: 16,
+    backgroundColor: clrs.transparent,
+    color: clrs.menuOne,
+    fontFamily: 'helvetica',
+    lineHeight: 25,
+  },
+  swipeImageText: {
+    flex: 1,
+    margin: 10
+  },
+  detailView: {
+    flex: 1,
+  },
+  removeButton: {
+    height: 36,
+    flexDirection: 'row',
+    backgroundColor: clrs.red,
+    borderColor: clrs.red,
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginTop: 20
   },
 
+  // -------------Menu------------------
+  menuContainer: {
+    marginTop: 45,
+    flex: 1,
+    justifyContent: 'center',
+  },
+  menuRows: {
+    flex: 1,
+  },
+  menuContent: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  menuText: {
+    color: 'white',
+    fontSize: 30,
+    marginTop: 82,
+    marginBottom: 82,
+  },
+  menuIcon: {
+    height: 40,
+    width: 40,
+    marginTop: 80,
+    marginLeft: 15,
+    resizeMode: "contain",
+  },
+
+
+  // Profile page
+  searchText: {
+    marginBottom: 10,
+    marginTop: 20,
+    fontSize: 18,
+    textAlign: 'center',
+    color: clrs.grey
+  },
+  profileContainer: {
+    padding: 10
+  },
   flowRight: {
     alignSelf: 'stretch'
   },
-
   profileButtonText: {
     fontSize: 18,
     color: 'white',
@@ -263,24 +153,9 @@ const AppStyleSheet = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
-  removeButton: {
-    height: 36,
-    flexDirection: 'row',
-    backgroundColor: clrs.red,
-    borderColor: clrs.red,
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    marginTop: 20
-  },
-
   searchInput: {
     height: 36,
-    // padding: 4,
     marginRight: 5,
-    // flex: 4,
     fontSize: 18,
     borderWidth: 1,
     borderColor: clrs.brown,
@@ -288,15 +163,48 @@ const AppStyleSheet = StyleSheet.create({
     color: clrs.brown,
     textAlign: 'center'
   },
-
   modalPicker: {
     flex:1,
     justifyContent:'space-around',
     alignSelf: 'stretch',
-    // marginBottom: 10,
-    // marginTop: 20,
-    // marginTop: 5
-  }
+  },
+
+  // -------------Welcome page------------------
+  welcomeContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: clrs.lightGreen,
+  },
+  welcome: {
+    fontSize: 30,
+    textAlign: 'center',
+    margin: 10,
+    color: clrs.darkBrown,
+    fontWeight: 'bold'
+  },
+  instructions: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: clrs.darkBrown,
+    marginBottom: 5,
+  },
+  button: {
+    height: 26,
+    flexDirection: 'row',
+    backgroundColor: clrs.brown,
+    borderColor: clrs.brown,
+    borderWidth: 1,
+    borderRadius: 8,
+    margin: 20,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
 });
 
 module.exports = AppStyleSheet;
