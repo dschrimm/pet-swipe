@@ -1,4 +1,3 @@
-// Welcome/loading page
 'use strict';
 
 import AnimalTemplate from './AnimalTemplate';
@@ -6,7 +5,6 @@ import FavoritesList from './FavoritesList';
 import UserProfile from './UserProfile';
 import styles from '../utilities/stylesheet';
 import clrs from '../utilities/clrs';
-// import heart from '../images/Heart-white.png';
 const Heart = require('../images/Heart-white.png');
 const MagnifyingGlass = require('../images/magnifying-glass-white.png');
 const Settings = require('../images/settings-gear-white.png');
@@ -23,12 +21,6 @@ import {
 class Menu extends Component {
   constructor(props) {
     super(props);
-    if (!this.props.zipCode) {
-      // this.props.zipCode = 92130;
-      // console.log('undefined');
-    } else {
-      // console.log('defined');
-    }
   }
 
   onMatchesPressed() {

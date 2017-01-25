@@ -18,11 +18,8 @@ import styles from '../utilities/stylesheet';
 class Welcome extends Component {
   constructor(props) {
     super(props);
-    // this.state
   }
 
-  onContinuePressed() {
-    console.log('continue pressed');
     this.props.navigator.push({
       title: 'Menu',
       component: Menu,
