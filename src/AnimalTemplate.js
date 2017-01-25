@@ -14,7 +14,19 @@ import {
   AsyncStorage
 } from 'react-native';
 
+import SwipeCards from 'react-native-swipe-cards';
+
 // import Swiper from 'react-native-swiper';
+
+let Card = React.createClass({
+  render() {
+    return (
+      <View style={[styles.card, {backgroundColor: this.props.backgroundColor}]}>
+        <Text>{this.props.text}</Text>
+      </View>
+    )
+  }
+})
 
 class AnimalTemplate extends Component {
   constructor(props) {
@@ -26,6 +38,12 @@ class AnimalTemplate extends Component {
       pets: [],
       categorized: categorizedPets,
       currentPet: 0,
+      cards: [{text: 'Tomato', backgroundColor: 'red'},
+  {text: 'Aubergine', backgroundColor: 'purple'},
+  {text: 'Courgette', backgroundColor: 'green'},
+  {text: 'Blueberry', backgroundColor: 'blue'},
+  {text: 'Umm...', backgroundColor: 'cyan'},
+  {text: 'orange', backgroundColor: 'orange'},]
       // offset: 0
     };
     this.fetchAnimals();
@@ -262,12 +280,29 @@ class AnimalTemplate extends Component {
     return petProfiles
   }
 
+  handleYup (card) {
+    console.log(`Yup for ${card.text}`)
+  }
+  handleNope (card) {
+    console.log(`Nope for ${card.text}`)
+  }
+
   render() {
     let petList = this.makePetList();
     let petProfiles = this.makeProfileList();
     return (
-      <View>
-        <ScrollView bounces scrollsToTop height={650}>
+      <View style={{flex: 1}}>
+      <SwipeCards
+        cards={this.state.cards}
+
+        renderCard={(cardData) => <Card {...cardData} />}
+        renderNoMoreCards={() => <NoMoreCards />}
+
+        handleYup={this.handleYup}
+        handleNope={this.handleNope}
+      />
+
+        {/*<ScrollView bounces scrollsToTop height={650}>
             {petProfiles[this.state.currentPet]}
           <View>
             <View style={styles.nextPetButtons}>
@@ -281,7 +316,7 @@ class AnimalTemplate extends Component {
               </TouchableOpacity>
             </View>
           </View>
-        </ScrollView>
+        </ScrollView>*/}
       </View>
     );
   }

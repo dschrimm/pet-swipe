@@ -11,6 +11,7 @@
     "react-native": "0.39.2",
     "react-native-modal-picker": "0.0.16",
     "react-native-radio-buttons": "^0.13.0",
+    "react-native-swipe-cards": "0.0.9",
     "react-native-swiper": "^1.5.4"
   },
   "devDependencies": {
