@@ -32,6 +32,16 @@ let Card = React.createClass({
   }
 })
 
+let NoMoreCards = React.createClass({
+  render() {
+    return (
+      <View style={styles.backdrop}>
+        <Text>No more pets match your search. Revise your search and keep on swiping!</Text>
+      </View>
+    )
+  }
+})
+
 class AnimalTemplate extends Component {
   constructor(props) {
     super(props);
@@ -42,13 +52,6 @@ class AnimalTemplate extends Component {
       pets: [],
       categorized: categorizedPets,
       currentPet: 0,
-      cards: [{text: 'Tomato', backgroundColor: 'red'},
-  {text: 'Aubergine', backgroundColor: 'purple'},
-  {text: 'Courgette', backgroundColor: 'green'},
-  {text: 'Blueberry', backgroundColor: 'blue'},
-  {text: 'Umm...', backgroundColor: 'cyan'},
-  {text: 'orange', backgroundColor: 'orange'},]
-      // offset: 0
     };
     this.fetchAnimals();
   }
@@ -326,28 +329,12 @@ class AnimalTemplate extends Component {
         cards={petList}
 
         renderCard={(cardData) => <Card {...cardData} />}
-        renderNoMoreCards={() => console.log('uh oh')}
+        renderNoMoreCards={() => <NoMoreCards />}
 
         handleYup={this.handleYup}
         handleNope={this.handleNope}
       />
       </View>
-
-        {/*<ScrollView bounces scrollsToTop height={650}>
-            {petProfiles[this.state.currentPet]}
-          <View>
-            <View style={styles.nextPetButtons}>
-              <TouchableOpacity onPress={() => this.onXPressed(petList[this.state.currentPet].id)}>
-                <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
-                </Image>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onYPressed(petList[this.state.currentPet].id)}>
-                <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginLeft: 50}}>
-                </Image>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </ScrollView>*/}
         <View style={styles.nextPetButtons}>
           <TouchableOpacity onPress={() => this.onXPressed(petList[this.state.currentPet].id)}>
             <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
