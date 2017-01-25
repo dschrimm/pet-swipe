@@ -212,6 +212,7 @@ class AnimalTemplate extends Component {
         idList.push(responseJson[i].petId);
       }
       this.state.categorizedPets = idList;
+      this.state.currentPet = 0;
     })
     .catch((error) => {
       console.error(error);
@@ -219,6 +220,8 @@ class AnimalTemplate extends Component {
   }
 
   makePetList() {
+    this.getCategorizedPets();
+
     let petList = [];
     let id = [];
     for (var i=0; i<this.state.pets.length; i++) {
@@ -330,8 +333,14 @@ class AnimalTemplate extends Component {
     this.setState({currentPet: (this.state.currentPet + 1)})
   }
 
+  componentWillReceiveProps() {
+    this.setState({updated: true})
+  }
+
   render() {
     let petList = this.makePetList();
+    let index = this.state.currentPet;
+
     let petProfiles = this.makeProfileList();
     return (
       <View style={{flex: 1, marginTop: 70}}>
@@ -352,16 +361,16 @@ class AnimalTemplate extends Component {
       />
       </View>
         <View style={styles.nextPetButtons}>
-          <TouchableOpacity onPress={() => this.onXPressed(petList[this.state.currentPet].id)}>
+          <TouchableOpacity onPress={() => this.onXPressed(petList[index].id)}>
             <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
             </Image>
           </TouchableOpacity>
           <View style={styles.learnMoreButton}>
-            <TouchableOpacity onPress={() => this.onImagePressed(petList[this.state.currentPet].id)} underlayColor={clrs.darkBrown}>
+            <TouchableOpacity onPress={() => this.onImagePressed(petList[index].id)} underlayColor={clrs.darkBrown}>
               <Text style={styles.learnMoreButtonText}>Learn More</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={() => this.onYPressed(petList[this.state.currentPet].id)}>
+          <TouchableOpacity onPress={() => this.onYPressed(petList[index].id)}>
             <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginLeft: 50}}>
             </Image>
           </TouchableOpacity>
