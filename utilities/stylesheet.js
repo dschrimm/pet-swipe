@@ -184,6 +184,24 @@ const AppStyleSheet = StyleSheet.create({
     resizeMode: "contain",
   },
 
+  learnMoreButtonText: {
+    fontSize: 18,
+    color: 'white',
+  },
+  
+  learnMoreButton: {
+    height: 46,
+    flexDirection: 'row',
+    backgroundColor: clrs.menuOne,
+    borderColor: clrs.menuOne,
+    borderWidth: 1,
+    borderRadius: 8,
+    marginTop: 10,
+    paddingTop: 10,
+    paddingRight: 15,
+    paddingLeft: 15,
+  },
+
   // Profile page
 
   profileContainer: {

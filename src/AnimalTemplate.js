@@ -22,12 +22,10 @@ let Card = React.createClass({
   render() {
     return (
       <View>
-        {/*// <TouchableOpacity onPress={() => this.onImagePressed(pet.id)}> */}
           <Image source={{uri: this.props.uri}} resizeMode="contain">
             <View style={styles.backdrop}>
             </View>
           </Image>
-        {/*// </TouchableOpacity>*/}
         <Text style={styles.briefDescription}>{this.props.name} - {this.props.breeds}</Text>
       </View>
     )
@@ -287,18 +285,44 @@ class AnimalTemplate extends Component {
   }
 
   handleYup (card) {
-    console.log(`Yup for ${card.text}`)
+    fetch('http://www.thepetswipeapp.com/favorites', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'test1@test.com',
+        petId: card.id
+      })
+    });
   }
   handleNope (card) {
-    console.log(`Nope for ${card.text}`)
+    fetch('http://www.thepetswipeapp.com/rejections', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'test1@test.com',
+        petId: card.id
+      })
+    });
   }
 
   render() {
     let petList = this.makePetList();
     let petProfiles = this.makeProfileList();
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, marginTop: 70}}>
+      <View style={{flex: 3}}>
       <SwipeCards
+        yupText='YAY!'
+        yupTextStyle={{backgroundColor: clrs.transparent, color: 'green'}}
+        noText='NOPE'
+        nopeTextStyle={{backgroundColor: clrs.transparent, color: 'red'}}
+        containerStyle={{margin: 10}}
         cards={petList}
 
         renderCard={(cardData) => <Card {...cardData} />}
@@ -307,6 +331,7 @@ class AnimalTemplate extends Component {
         handleYup={this.handleYup}
         handleNope={this.handleNope}
       />
+      </View>
 
         {/*<ScrollView bounces scrollsToTop height={650}>
             {petProfiles[this.state.currentPet]}
@@ -323,6 +348,21 @@ class AnimalTemplate extends Component {
             </View>
           </View>
         </ScrollView>*/}
+        <View style={styles.nextPetButtons}>
+          <TouchableOpacity onPress={() => this.onXPressed(petList[this.state.currentPet].id)}>
+            <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
+            </Image>
+          </TouchableOpacity>
+          <View style={styles.learnMoreButton}>
+            <TouchableOpacity onPress={() => this.onImagePressed(petList[this.state.currentPet].id)} underlayColor={clrs.darkBrown}>
+              <Text style={styles.learnMoreButtonText}>Learn More</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity onPress={() => this.onYPressed(petList[this.state.currentPet].id)}>
+            <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginLeft: 50}}>
+            </Image>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
