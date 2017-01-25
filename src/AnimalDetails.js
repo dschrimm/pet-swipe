@@ -104,7 +104,7 @@ class AnimalDetails extends Component {
             {images}
           </Swiper>
           <View style={styles.swipeImageText}>
-            <Text style={styles.briefDescription}>
+            <Text style={styles.description}>
               {description}
             </Text>
             {this.isFavorite()}

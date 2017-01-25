@@ -92,6 +92,13 @@ const AppStyleSheet = StyleSheet.create({
     fontFamily: 'helvetica',
     lineHeight: 25,
   },
+  description: {
+    fontSize: 16,
+    backgroundColor: clrs.transparent,
+    color: clrs.menuOne,
+    fontFamily: 'helvetica',
+    lineHeight: 25,
+  },
   button: {
     height: 26,
     // flex: 1,
@@ -125,7 +132,7 @@ const AppStyleSheet = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 40
+    marginTop: 40,
   },
   // nextPetButton: {
   //   flex: 1,
@@ -198,6 +205,20 @@ const AppStyleSheet = StyleSheet.create({
     color: 'white',
   },
 
+  // removeButton: {
+  //   height: 36,
+  //   flexDirection: 'row',
+  //   backgroundColor: clrs.red,
+  //   borderColor: clrs.red,
+  //   borderWidth: 1,
+  //   borderRadius: 8,
+  //   marginBottom: 10,
+  //   alignSelf: 'stretch',
+  //   justifyContent: 'center',
+  //   marginTop: 20
+  // },
+
+
   learnMoreButton: {
     height: 46,
     flexDirection: 'row',
@@ -205,10 +226,11 @@ const AppStyleSheet = StyleSheet.create({
     borderColor: clrs.menuOne,
     borderWidth: 1,
     borderRadius: 8,
-    marginTop: 10,
+    margin: 15,
+    marginBottom: 22,
     paddingTop: 10,
-    paddingRight: 15,
-    paddingLeft: 15,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
   },
 
   // Profile page

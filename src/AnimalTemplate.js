@@ -135,60 +135,6 @@ class AnimalTemplate extends Component {
     });
   }
 
-  onXPressed(id) {
-    fetch('http://www.thepetswipeapp.com/rejections', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: 'test1@test.com',
-        petId: id
-      })
-    });
-    var nextPet = this.state.currentPet + 1;
-    console.log(nextPet);
-    // if (nextPet > )
-    this.setState({currentPet: nextPet});
-  }
-
-  onYPressed(id) {
-    fetch('http://www.thepetswipeapp.com/favorites', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: 'test1@test.com',
-        petId: id
-      })
-    });
-    this.setState({currentPet: (this.state.currentPet + 1)});
-  }
-
-  // afterPress(action) {
-  //   var i = 0;
-  //   var timer = setInterval(function(){
-  //     console.log(++i);
-  //     if(i === 6) {
-  //       this.nextPet()
-  //       // clearInterval(timer)
-  //       // this.setState({currentPet: (this.state.currentPet + 1)});
-  //     console.log('post-interval'); //this will still run after clearing
-  //     // this.nextPet();
-  //   }
-  //   },200);
-  //
-  // }
-  //
-  // nextPet() {
-  //   var currentIndex = this.state.currentPet;
-  //   this.setState({currentPet: (currentIndex + 1)});
-  //   return true;
-  // }
-
   fetchFavorites() {
     let idList = [];
     fetch('http://www.thepetswipeapp.com/favorites', {
@@ -360,19 +306,9 @@ class AnimalTemplate extends Component {
         handleNope={this.handleNope.bind(this)}
       />
       </View>
-        <View style={styles.nextPetButtons}>
-          <TouchableOpacity onPress={() => this.onXPressed(petList[index].id)}>
-            <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginRight: 50}}>
-            </Image>
-          </TouchableOpacity>
-          <View style={styles.learnMoreButton}>
-            <TouchableOpacity onPress={() => this.onImagePressed(petList[index].id)} underlayColor={clrs.darkBrown}>
-              <Text style={styles.learnMoreButtonText}>Learn More</Text>
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity onPress={() => this.onYPressed(petList[index].id)}>
-            <Image source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Green_check.svg/2000px-Green_check.svg.png'}} style={{flex: 1}, {height: 40, width: 40, margin: 10, marginLeft: 50}}>
-            </Image>
+        <View style={styles.learnMoreButton}>
+          <TouchableOpacity onPress={() => this.onImagePressed(petList[index].id)} underlayColor={clrs.darkBrown}>
+            <Text style={styles.learnMoreButtonText}>Learn More</Text>
           </TouchableOpacity>
         </View>
       </View>
