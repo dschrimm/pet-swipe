@@ -21,8 +21,14 @@ import SwipeCards from 'react-native-swipe-cards';
 let Card = React.createClass({
   render() {
     return (
-      <View style={[styles.card, {backgroundColor: this.props.backgroundColor}]}>
-        <Text>{this.props.text}</Text>
+      <View>
+        {/*// <TouchableOpacity onPress={() => this.onImagePressed(pet.id)}> */}
+          <Image source={{uri: this.props.uri}} resizeMode="contain">
+            <View style={styles.backdrop}>
+            </View>
+          </Image>
+        {/*// </TouchableOpacity>*/}
+        <Text style={styles.briefDescription}>{this.props.name} - {this.props.breeds}</Text>
       </View>
     )
   }
@@ -293,10 +299,10 @@ class AnimalTemplate extends Component {
     return (
       <View style={{flex: 1}}>
       <SwipeCards
-        cards={this.state.cards}
+        cards={petList}
 
         renderCard={(cardData) => <Card {...cardData} />}
-        renderNoMoreCards={() => <NoMoreCards />}
+        renderNoMoreCards={() => console.log('uh oh')}
 
         handleYup={this.handleYup}
         handleNope={this.handleNope}
