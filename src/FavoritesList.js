@@ -24,12 +24,13 @@ class FavoritesList extends Component {
   }
 
   fetchFavorites() {
-    this.state.petList = [];
     // let idList = [];
     fetch('http://www.thepetswipeapp.com/favorites', {
     })
     .then((response) => response.json())
     .then((responseJson) => {
+      console.log(responseJson)
+      this.state.petList = [];
       for (var i=0; i<responseJson.length; i++) {
         this.fetchImage(responseJson[i].petId);
       }
