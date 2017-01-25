@@ -10,6 +10,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  TouchableHighlight,
   ScrollView,
   AsyncStorage
 } from 'react-native';
@@ -19,14 +20,19 @@ import SwipeCards from 'react-native-swipe-cards';
 // import Swiper from 'react-native-swiper';
 
 let Card = React.createClass({
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps)
+  },
+
   render() {
     return (
-      <View>
+       <View ref={component => this._root = component} {...this.props}>
           <Image source={{uri: this.props.uri}} resizeMode="contain">
             <View style={styles.backdrop}>
             </View>
           </Image>
-        <Text style={styles.briefDescription}>{this.props.name} - {this.props.breeds}</Text>
+        <Text style={styles.briefDescription}>{this.props.name}</Text>
+        <Text style={styles.breedList}>{this.props.breeds}</Text>
       </View>
     )
   }
@@ -298,7 +304,10 @@ class AnimalTemplate extends Component {
         email: 'test1@test.com',
         petId: card.id
       })
-    });
+    })
+    .then(() => {
+      this.incrementPetIndex();
+    })
   }
   handleNope (card) {
     fetch('http://www.thepetswipeapp.com/rejections', {
@@ -311,7 +320,14 @@ class AnimalTemplate extends Component {
         email: 'test1@test.com',
         petId: card.id
       })
-    });
+    })
+    .then(() => {
+      this.incrementPetIndex();
+    })
+  }
+
+  incrementPetIndex() {
+    this.setState({currentPet: (this.state.currentPet + 1)})
   }
 
   render() {
@@ -319,7 +335,7 @@ class AnimalTemplate extends Component {
     let petProfiles = this.makeProfileList();
     return (
       <View style={{flex: 1, marginTop: 70}}>
-      <View style={{flex: 3}}>
+      <View style={{flex: 5, marginBottom: 40}}>
       <SwipeCards
         yupText='YAY!'
         yupTextStyle={{backgroundColor: clrs.transparent, color: 'green'}}
@@ -331,8 +347,8 @@ class AnimalTemplate extends Component {
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
 
-        handleYup={this.handleYup}
-        handleNope={this.handleNope}
+        handleYup={this.handleYup.bind(this)}
+        handleNope={this.handleNope.bind(this)}
       />
       </View>
         <View style={styles.nextPetButtons}>

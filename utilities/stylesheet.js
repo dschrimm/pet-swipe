@@ -77,11 +77,20 @@ const AppStyleSheet = StyleSheet.create({
   },
   briefDescription: {
     fontSize: 18,
-    // textAlign: 'center',
+    textAlign: 'center',
     backgroundColor: clrs.transparent,
-    color: 'black',
+    color: clrs.menuOne,
     fontFamily: 'helvetica',
-    lineHeight: 25
+    lineHeight: 25,
+    fontWeight: 'bold'
+  },
+  breedList: {
+    fontSize: 16,
+    textAlign: 'center',
+    backgroundColor: clrs.transparent,
+    color: clrs.menuOne,
+    fontFamily: 'helvetica',
+    lineHeight: 25,
   },
   button: {
     height: 26,
@@ -188,7 +197,7 @@ const AppStyleSheet = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   },
-  
+
   learnMoreButton: {
     height: 46,
     flexDirection: 'row',
