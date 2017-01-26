@@ -282,11 +282,11 @@ class AnimalTemplate extends Component {
         handleNope={this.handleNope.bind(this)}
       />
       </View>
-        <View style={styles.learnMoreButton}>
-          <TouchableOpacity onPress={() => this.onImagePressed(petList[index].id)} underlayColor={clrs.darkBrown}>
+        <TouchableOpacity onPress={() => this.onImagePressed(petList[index].id)} underlayColor={clrs.darkBrown}>
+          <View style={styles.learnMoreButton}>
             <Text style={styles.learnMoreButtonText}>Learn More</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
