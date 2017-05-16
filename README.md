@@ -1,5 +1,4 @@
-# PetSwipe Demo
-![Demo](https://media.giphy.com/media/l1BgQVVohj6Kqquek/giphy.gif)
+# [PetSwipe Demo](https://media.giphy.com/media/l1BgQVVohj6Kqquek/giphy.gif)
 
 # Schrimmer Product Plan
 
