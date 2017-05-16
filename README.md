@@ -1,5 +1,8 @@
 # [PetSwipe Demo](https://media.giphy.com/media/l1BgQVVohj6Kqquek/giphy.gif)
 
+## About
+PetSwipe is a mobile app for iOS built in React Native. This app allows its users to easily look at and sort adoptable animals with a variety of search options. The [back-end API](https://github.com/dschrimm/pet-swipe-api) was built with Node.js, Express.js and MongoDB, and was deployed using AWS.
+
 # Schrimmer Product Plan
 
 ### Problem Statement
