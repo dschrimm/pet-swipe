@@ -1,3 +1,8 @@
+# PetSwipe Demo
+Inline-style: 
+![App Demo](https://drive.google.com/file/d/0B1EkVs7p8AR1aEJOeDlraC1laXc/view?usp=sharing "PetSwipe Demo")
+
+
 # Schrimmer Product Plan
 
 ### Problem Statement
@@ -13,8 +18,6 @@
 
 ### User personas
 + Expected user: Adults 20-60+ looking for a pet or who enjoy looking at photos of animals.
-
-### [Trello board](https://trello.com/b/VwCowjjT/capstone)
 
 ### Technology Selections
 #### Front-end
