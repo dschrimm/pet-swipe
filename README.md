@@ -1,7 +1,5 @@
 # PetSwipe Demo
-Inline-style: 
-![App Demo](https://drive.google.com/file/d/0B1EkVs7p8AR1aEJOeDlraC1laXc/view?usp=sharing "PetSwipe Demo")
-
+![Demo](https://media.giphy.com/media/l1BgQVVohj6Kqquek/giphy.gif)
 
 # Schrimmer Product Plan
 
